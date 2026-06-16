@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1 — Reading a Floor Plan</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #555;
+      --rule: #ddd;
+      --accent: #2a5fa8;
+      --bg: #faf9f7;
+      --card: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .lesson-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-family: system-ui, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    .callout {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .symbol-grid {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      align-items: start;
+    }
+
+    .symbol {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .symbol svg { width: 56px; height: 56px; }
+
+    .symbol-desc strong {
+      display: block;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .symbol-desc {
+      font-size: 0.92rem;
+      color: var(--ink);
+      padding-top: 0.3rem;
+    }
+
+    /* Quiz */
+    .quiz {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .quiz h3 {
+      font-family: system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .question {
+      margin-bottom: 1.5rem;
+    }
+
+    .question p {
+      margin-bottom: 0.6rem;
+      font-size: 0.97rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: var(--bg);
+      transition: background 0.15s;
+      user-select: none;
+    }
+
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+
+    .feedback {
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+      color: var(--muted);
+    }
+
+    .source-box {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+
+    a { color: var(--accent); }
+
+    .ask-teacher {
+      background: #f0f4fb;
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 1 of ? &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Reading a Floor Plan</h1>
+  <p class="subtitle">What you're looking at, and how to see it</p>
+
+  <h2>The core idea</h2>
+
+  <p>A floor plan is a <strong>slice through the building at about chest height</strong>, looking straight down. Imagine cutting the house horizontally — removing the top half — and photographing what's left from above. You see the walls, doorways, windows, and stairs, but not the ceiling or roof.</p>
+
+  <p>Everything on a floor plan is drawn to <strong>scale</strong> — a fixed ratio between the drawing and real life. A typical residential scale is <strong>1:50</strong>, meaning 1 centimetre on paper equals 50 centimetres in the building. When you see a room on paper that looks narrow, it probably is narrow. Scale keeps the drawing honest.</p>
+
+  <div class="callout">
+    First question to ask at any meeting: "What scale is this drawn at?" A 1:200 sketch is for big-picture layout decisions. A 1:50 drawing is for checking whether your furniture fits.
+  </div>
+
+  <h2>The five symbols you must know</h2>
+
+  <div class="symbol-grid">
+
+    <div class="symbol">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Thick wall lines -->
+        <rect x="8" y="8" width="40" height="8" fill="#1a1a1a"/>
+        <rect x="8" y="40" width="40" height="8" fill="#1a1a1a"/>
+        <rect x="8" y="8" width="8" height="40" fill="#1a1a1a"/>
+        <rect x="40" y="8" width="8" height="40" fill="#1a1a1a"/>
+      </svg>
+    </div>
+    <div class="symbol-desc">
+      <strong>Walls</strong>
+      Drawn as thick solid lines or filled rectangles. Exterior walls are thicker than interior partition walls. The thickness tells you something: exterior walls insulate; interior walls just divide.
+    </div>
+
+    <div class="symbol">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wall with gap -->
+        <rect x="4" y="24" width="16" height="8" fill="#1a1a1a"/>
+        <rect x="36" y="24" width="16" height="8" fill="#1a1a1a"/>
+        <!-- Door leaf -->
+        <line x1="20" y1="24" x2="36" y2="24" stroke="#1a1a1a" stroke-width="1.5"/>
+        <!-- Swing arc -->
+        <path d="M 20 24 A 16 16 0 0 1 36 40" stroke="#555" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+        <line x1="20" y1="24" x2="20" y2="40" stroke="#1a1a1a" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="symbol-desc">
+      <strong>Door</strong>
+      A gap in the wall, with a thin rectangle (the door leaf) and a curved arc showing which way it swings. <em>The arc is the most important part</em> — it tells you how much space the door eats when open. A door that swings into a room needs 90cm of clear floor.
+    </div>
+
+    <div class="symbol">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wall section -->
+        <rect x="4" y="22" width="48" height="12" fill="#1a1a1a"/>
+        <!-- Window: break in wall + glass lines -->
+        <rect x="16" y="22" width="24" height="12" fill="white"/>
+        <line x1="16" y1="25" x2="40" y2="25" stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="16" y1="34" x2="40" y2="34" stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="28" y1="22" x2="28" y2="34" stroke="#888" stroke-width="0.75"/>
+      </svg>
+    </div>
+    <div class="symbol-desc">
+      <strong>Window</strong>
+      A break in the wall crossed by thin lines representing the glass. Notice where windows are — they tell you where natural light and views will be. A room with windows on one wall only gets light from one direction.
+    </div>
+
+    <div class="symbol">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stair treads -->
+        <rect x="8" y="8" width="40" height="6" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="8" y="14" width="40" height="6" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <rect x="8" y="20" width="40" height="6" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <rect x="8" y="26" width="40" height="6" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <rect x="8" y="32" width="40" height="6" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <!-- Arrow up -->
+        <line x1="28" y1="38" x2="28" y2="46" stroke="#555" stroke-width="1.5"/>
+        <polyline points="24,43 28,47 32,43" fill="none" stroke="#555" stroke-width="1.5"/>
+        <text x="20" y="46" font-size="7" fill="#555" font-family="system-ui">DN</text>
+      </svg>
+    </div>
+    <div class="symbol-desc">
+      <strong>Stairs</strong>
+      A series of parallel lines (the treads) with an arrow and "UP" or "DN". Where stairs land upstairs is just as important as where they start — they eat space on both floors. A stair taking up the centre of a floor plan is a common problem.
+    </div>
+
+    <div class="symbol">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- North arrow -->
+        <circle cx="28" cy="28" r="20" stroke="#ddd" stroke-width="1" fill="none"/>
+        <line x1="28" y1="8" x2="28" y2="48" stroke="#888" stroke-width="1"/>
+        <line x1="8" y1="28" x2="48" y2="28" stroke="#888" stroke-width="1"/>
+        <!-- N pointer -->
+        <polygon points="28,10 24,24 32,24" fill="#1a1a1a"/>
+        <text x="24" y="52" font-size="10" fill="#1a1a1a" font-family="system-ui" font-weight="bold">N</text>
+      </svg>
+    </div>
+    <div class="symbol-desc">
+      <strong>North arrow</strong>
+      Always find this first. It tells you which direction the plan is oriented, which means you can work out where the sun comes from. In the northern hemisphere, south-facing rooms get the most sun. A living room facing north will be permanently dim.
+    </div>
+
+  </div>
+
+  <h2>How to "walk" through a plan</h2>
+
+  <p>When you look at a floor plan, don't just scan it visually — <strong>move through it mentally</strong>. Start at the front door. Ask yourself:</p>
+
+  <p><em>Where do I arrive? What do I see first? To get to the kitchen, do I walk through the living room? If I'm in bed at night and need the bathroom, do I pass through a room where guests might be?</em></p>
+
+  <p>This mental walk surfaces problems that don't show up when you're just looking at shapes. Good layouts feel inevitable when you walk them. Bad ones have moments where you think "wait, that's strange."</p>
+
+  <div class="callout">
+    The most common layout mistake in residential design: the <strong>corridor house</strong>. A long hallway with rooms off each side. It works in hotels. It feels institutional in a home. Ask your architect how circulation is handled.
+  </div>
+
+  <h2>Quick knowledge check</h2>
+
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> A floor plan drawn at 1:100 shows a bedroom that measures 3cm × 4cm on paper. How large is the room in real life?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">1.5m × 2m — it's small</div>
+        <div class="option" onclick="answer(this, 'q1', true)">3m × 4m — a compact double</div>
+        <div class="option" onclick="answer(this, 'q1', false)">30m × 40m — enormous</div>
+        <div class="option" onclick="answer(this, 'q1', false)">0.3m × 0.4m — a cupboard</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> You see a door arc swinging into a room. What does that tell you about the space behind the door?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">Nothing — the arc is just decorative convention</div>
+        <div class="option" onclick="answer(this, 'q2', false)">The door opens outward, so the room can be smaller</div>
+        <div class="option" onclick="answer(this, 'q2', true)">That area must stay clear — furniture or people can't occupy it</div>
+        <div class="option" onclick="answer(this, 'q2', false)">The room has natural light from that direction</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> You find the north arrow and see the main living area faces south. In the northern hemisphere, what does this tell you?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">The living room will be cold in winter</div>
+        <div class="option" onclick="answer(this, 'q3', false)">The living room faces the street side</div>
+        <div class="option" onclick="answer(this, 'q3', true)">The living room gets the most natural light through the day</div>
+        <div class="option" onclick="answer(this, 'q3', false)">The orientation doesn't affect light — that depends on window size</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <h2>Your win from this lesson</h2>
+
+  <p>Next time you're handed a floor plan, do this before anything else:</p>
+
+  <ol style="padding-left: 1.4rem; margin-bottom: 1.2rem;">
+    <li style="margin-bottom: 0.5rem">Find the north arrow and orient the plan in your head</li>
+    <li style="margin-bottom: 0.5rem">Find the front door and mentally walk to the main living areas</li>
+    <li style="margin-bottom: 0.5rem">Check the scale — is this a sketch or a precise drawing?</li>
+    <li>Look at every door arc: are any swinging into awkward places?</li>
+  </ol>
+
+  <p>That's it. That's enough to start asking useful questions.</p>
+
+  <div class="source-box">
+    <strong>Primary source for this lesson</strong>
+    <a href="https://www.atamanstudio.com/resources/how-to-read-floor-plan-beginners-guide/" target="_blank">How to Read a Floor Plan Like a Pro — Ataman Studio</a><br>
+    Architect-written, visual, and covers everything in this lesson in more depth. Worth reading after you've done the quiz.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    You have a teacher — ask anything. If a symbol on your actual floor plan isn't here, ask about it. If something from your architect meeting felt confusing, describe it and ask. The next lesson will cover <em>zoning</em> — how a good floor plan is organised into public, private, and service areas — and why that's the first thing to check in any layout your architect proposes.
+  </div>
+
+  <footer>
+    Lesson 1 of ? &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="../reference/">Reference documents</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "At 1:100, multiply paper measurements by 100. 3cm × 100 = 300cm = 3m. A compact double bedroom." },
+      q2: { correct: 2, explanation: "The arc shows the door's sweep path — nothing can be in that zone or the door won't open. It's one of the most commonly ignored details in floor plan review." },
+      q3: { correct: 2, explanation: "South-facing rooms in the northern hemisphere receive the most sun across the day. This is one of the first things experienced architects optimise for." }
+    };
+
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) {
+        opts[answers[qid].correct].classList.add('correct');
+      }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
