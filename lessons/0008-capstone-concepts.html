@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capstone — Two Concept Sketches</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #2a5fa8; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.75rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.cn { font-family: system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.3rem; }
+    p { margin-bottom: 1.2rem; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    a { color: var(--accent); }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    .why { background: #eef6ee; border-left: 3px solid #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; margin: 1.25rem 0; font-size: 0.93rem; }
+    .watch { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; margin: 1.25rem 0; font-size: 0.93rem; }
+    .why strong, .watch strong { font-family: system-ui, sans-serif; }
+    table.cmp { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.84rem; margin: 1.25rem 0; }
+    table.cmp th, table.cmp td { border: 1px solid var(--rule); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
+    table.cmp th { background: #f3f1ee; font-weight: 600; }
+    table.cmp td.lab { background: #f7f6f4; font-weight: 600; white-space: nowrap; }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    .ask-teacher { background: #f0f4fb; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Capstone &nbsp;·&nbsp; Concept Sketches</div>
+
+  <h1>Two Ways to Fix the Bones</h1>
+  <p class="subtitle">Concept directions for the dead core and the deep footprint — to take to your architect</p>
+
+  <p>The <a href="0007-capstone.html">capstone critique</a> landed on two structural problems: the <strong>landlocked, windowless core</strong>, and a <strong>plan too deep to cross-ventilate</strong>. Here are two different ways to attack them. These are <em>sketches to argue from</em>, not drawings to build — schematic and not to scale. One keeps a single storey and opens the middle; the other goes partly upstairs and shrinks the whole footprint.</p>
+
+  <!-- ============ CONCEPT A ============ -->
+  <h2>Concept A · The central courtyard</h2>
+  <h3 class="cn">Wrap the house around a void</h3>
+  <p>Instead of a fat block with dead rooms in the middle, the house becomes a <strong>ring of rooms around an open, planted courtyard</strong>. The space that's now your windowless Library becomes a shaded outdoor room open to the sky — and every room that used to be landlocked now faces it.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plan: rooms wrapped around a central planted courtyard, with a shaded veranda ring and the SW breeze drawn through.">
+      <!-- footprint -->
+      <rect x="60" y="70" width="470" height="310" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>
+      <!-- room band labels -->
+      <text x="295" y="92" text-anchor="middle" font-size="11" fill="#555" font-family="system-ui, sans-serif">NORTH — outdoor kitchen / service</text>
+      <text x="295" y="368" text-anchor="middle" font-size="11" fill="#2f6b40" font-family="system-ui, sans-serif">SOUTH — living + terrace (SW breeze)</text>
+      <text x="83" y="228" text-anchor="middle" font-size="11" fill="#a33" font-family="system-ui, sans-serif" transform="rotate(-90 83 228)">WEST — bedrooms</text>
+      <text x="512" y="228" text-anchor="middle" font-size="11" fill="#7a5a16" font-family="system-ui, sans-serif" transform="rotate(90 512 228)">EAST — office / guest</text>
+      <!-- veranda ring -->
+      <rect x="175" y="140" width="240" height="170" fill="none" stroke="#2a5fa8" stroke-width="1.3" stroke-dasharray="6 4"/>
+      <text x="295" y="133" text-anchor="middle" font-size="10" fill="#2a5fa8" font-family="system-ui, sans-serif">shaded veranda (circulation)</text>
+      <!-- courtyard -->
+      <rect x="210" y="170" width="170" height="110" fill="#dcefe0" stroke="#4a9a5e" stroke-width="1.5"/>
+      <text x="295" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#2f6b40" font-family="system-ui, sans-serif">COURTYARD</text>
+      <text x="295" y="228" text-anchor="middle" font-size="10" fill="#2f6b40" font-family="system-ui, sans-serif">shaded · planted · water</text>
+      <!-- tree + water -->
+      <circle cx="245" cy="255" r="11" fill="#7fb88a"/>
+      <ellipse cx="345" cy="256" rx="22" ry="9" fill="#bfe0f2" stroke="#7fb1c9" stroke-width="1"/>
+      <!-- breeze in from SW -->
+      <line x1="35" y1="412" x2="150" y2="330" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="150,330 139,331 144,340" fill="#2a8acb"/>
+      <text x="70" y="424" font-size="10" fill="#2a8acb" font-family="system-ui, sans-serif">SW breeze in</text>
+      <!-- exhaust up in courtyard -->
+      <line x1="295" y1="250" x2="295" y2="180" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+      <polygon points="295,180 290,190 300,190" fill="#c0392b"/>
+      <text x="338" y="172" font-size="9.5" fill="#c0392b" font-family="system-ui, sans-serif">warm air rises &amp; exhausts</text>
+      <!-- two-sided light note -->
+      <text x="295" y="402" text-anchor="middle" font-size="10.5" fill="#1d4576" font-family="system-ui, sans-serif">every room now lit &amp; ventilated on two sides (outer wall + courtyard)</text>
+      <!-- north arrow -->
+      <g transform="translate(560,42)"><polygon points="0,-16 6,8 0,3 -6,8" fill="#1a1a1a"/><text x="0" y="24" text-anchor="middle" font-size="10" font-weight="700" font-family="system-ui, sans-serif">N</text></g>
+    </svg>
+    <div class="figcap">Concept A: rooms ring a planted courtyard. The old dead centre becomes the lung — daylight and the SW breeze reach every room, and warm air vents up out of the court.</div>
+  </div>
+
+  <div class="why">
+    <strong>Why it works (the masters agree):</strong>
+    <ul>
+      <li><strong>Light on two sides everywhere</strong> — every room now has an outer window <em>and</em> a courtyard window (Alexander 159). The Library problem disappears.</li>
+      <li><strong>It cools itself</strong> — a shaded, planted courtyard with water is Hassan Fathy's central cooling device: it shades the heart of the house, and warm air rising out of the court draws fresh air through the rooms (stack-effect ventilation).</li>
+      <li><strong>The veranda ring becomes the circulation</strong> — you move room-to-room under shade around the court, indoors and out blurring together (Bawa). No more dark internal corridors.</li>
+      <li><strong>The west bedrooms get a second, shaded source of light</strong> from the courtyard, so they rely less on hot west windows.</li>
+    </ul>
+  </div>
+  <div class="watch">
+    <strong>Trade-offs to weigh:</strong> a courtyard <em>uses</em> footprint — it keeps the building roughly as large (or a touch larger) on the ground, so it suits a <strong>generous plot</strong> (which yours is — you have garden and vegetable-garden room to give). It also needs thought on drainage and rain (a tropical downpour fills a courtyard fast) and a little upkeep on the planting.
+  </div>
+
+  <!-- ============ CONCEPT B ============ -->
+  <h2>Concept B · Lift the bedrooms, shrink the footprint</h2>
+  <h3 class="cn">Part single-storey, part two</h3>
+  <p>Keep the public rooms (living, dining, kitchen) and the elder's suite on the ground, and <strong>stack the other bedrooms onto a partial upper floor</strong>. The same accommodation now sits on a much smaller footprint — so the plan can be <em>thin</em> (one room deep), every room cross-ventilates, and you free up the plot.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Section: a tall single-storey living wing beside a two-storey sleeping block on a smaller footprint, with breeze and roof venting.">
+      <!-- ghost of old wide footprint -->
+      <rect x="60" y="250" width="490" height="40" fill="none" stroke="#bbb" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="470" y="306" text-anchor="middle" font-size="10" fill="#999" font-family="system-ui, sans-serif">old single-storey footprint (wide)</text>
+      <!-- ground line -->
+      <line x1="40" y1="250" x2="560" y2="250" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- living wing: tall single storey, left -->
+      <rect x="80" y="150" width="180" height="100" fill="#fdf4dc" stroke="#1a1a1a" stroke-width="2"/>
+      <polygon points="72,150 170,104 268,150" fill="#e9d9b0" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="170" y="205" text-anchor="middle" font-size="11" fill="#7a5a16" font-family="system-ui, sans-serif">living — tall,</text>
+      <text x="170" y="221" text-anchor="middle" font-size="11" fill="#7a5a16" font-family="system-ui, sans-serif">single storey</text>
+      <!-- clerestory on living -->
+      <rect x="150" y="120" width="40" height="12" fill="#bfe0f2" stroke="#7fb1c9" stroke-width="1"/>
+      <text x="170" y="98" text-anchor="middle" font-size="9" fill="#2a8acb" font-family="system-ui, sans-serif">clerestory</text>
+      <!-- two-storey block, right -->
+      <rect x="300" y="150" width="150" height="100" fill="#eef3fb" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="300" y="150" width="150" height="50" fill="#dce9f7" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="300" y1="200" x2="450" y2="200" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="375" y="178" text-anchor="middle" font-size="10.5" fill="#1d4576" font-family="system-ui, sans-serif">bedrooms (up)</text>
+      <text x="375" y="228" text-anchor="middle" font-size="10.5" fill="#1d4576" font-family="system-ui, sans-serif">elder suite (ground)</text>
+      <!-- pitched roof + eaves on block -->
+      <polygon points="292,150 375,112 458,150" fill="#cdbfa6" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="300" y1="150" x2="285" y2="158" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="450" y1="150" x2="465" y2="158" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="500" y="150" font-size="9" fill="#555" font-family="system-ui, sans-serif">deep eaves</text>
+      <!-- breeze upstairs -->
+      <line x1="285" y1="172" x2="468" y2="172" stroke="#2a8acb" stroke-width="2" stroke-dasharray="6 3"/>
+      <polygon points="468,172 458,167 458,177" fill="#2a8acb"/>
+      <text x="375" y="143" text-anchor="middle" font-size="9" fill="#2a8acb" font-family="system-ui, sans-serif">breeze — stronger up high</text>
+      <!-- roof vent -->
+      <line x1="375" y1="112" x2="375" y2="86" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+      <polygon points="375,86 370,96 380,96" fill="#c0392b"/>
+      <text x="375" y="80" text-anchor="middle" font-size="9" fill="#c0392b" font-family="system-ui, sans-serif">roof vents heat</text>
+    </svg>
+    <div class="figcap">Concept B: a tall single-storey living wing beside a two-storey sleeping block. Same rooms, far less ground covered — and the upstairs catches more breeze.</div>
+  </div>
+
+  <div class="why">
+    <strong>Why it works:</strong>
+    <ul>
+      <li><strong>Smaller footprint, thinner plan</strong> — fewer square metres on the ground means the plan can be one-room-deep, so every room cross-ventilates and gets daylight. The deep-block problem is gone by design.</li>
+      <li><strong>The breeze is better upstairs</strong> — air moves faster above ground-level walls, trees and fences, so first-floor bedrooms catch the SW monsoon more cleanly.</li>
+      <li><strong>More plot, less roof-baked floor</strong> — you free garden and setback, and stacking puts less floor directly under the hot roof.</li>
+      <li><strong>Varied heights add life</strong> — a tall, single-storey living wing against the two-storey block gives the ceiling-height variation and compression/release you met in Lessons 3 and 5.</li>
+    </ul>
+  </div>
+  <div class="watch">
+    <strong>Trade-offs to weigh:</strong> a stair costs floor on <em>both</em> levels and needs placing well; <strong>heat rises</strong>, so the upstairs bedrooms need real defences — a well-insulated, <em>ventilated</em> roof, high ceilings, deep eaves and cross-breeze. And keep the <strong>mother-in-law's suite (and ideally a guest room) on the ground floor</strong> for accessibility — stairs and elders don't mix.
+  </div>
+
+  <!-- ============ COMPARE ============ -->
+  <h2>Side by side</h2>
+  <table class="cmp">
+    <tr><th></th><th>A · Courtyard</th><th>B · Upper rooms</th></tr>
+    <tr><td class="lab">Mainly fixes</td><td>the dead core — light &amp; air to the middle</td><td>the deep footprint — thinner, breezier, smaller</td></tr>
+    <tr><td class="lab">Footprint</td><td>stays large (maybe a touch larger)</td><td>shrinks markedly</td></tr>
+    <tr><td class="lab">Storeys</td><td>single — easy, step-free</td><td>part two — needs a stair</td></tr>
+    <tr><td class="lab">Best if…</td><td>you want to keep one level and have plot to spare</td><td>you want to free the plot / cut roof &amp; foundation area</td></tr>
+    <tr><td class="lab">Main watch-out</td><td>rain drainage; uses land</td><td>upstairs heat; keep elders downstairs</td></tr>
+    <tr><td class="lab">Masters</td><td>Fathy (courtyard cooling), Bawa (veranda)</td><td>Le Corbusier (the section), Alexander (varied heights)</td></tr>
+  </table>
+
+  <p><strong>And they combine.</strong> The strongest answer for a hot climate is often <em>both</em> — a smaller, two-level plan wrapped around a courtyard: the court lights and cools the middle while the upper floor keeps the footprint tight. It's more to design and build, but it's exactly the lineage Fathy and Bawa worked in.</p>
+
+  <div class="source-box">
+    <strong>Where these come from</strong>
+    Hassan Fathy's courtyard-and-wind cooling and Geoffrey Bawa's veranda-wrapped, indoor–outdoor plans (Lesson 4); Alexander's <em>Light on Two Sides</em> (159) and varied ceiling heights (Lessons 1 &amp; 5); Le Corbusier's reading of a house in section (Lesson 3). Climate facts for Pokuase as in Lesson 4.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Next step</strong>
+    Pick the direction that fits your plot and budget and I'll help you turn it into a one-page brief for your architect — rooms, the courtyard or the stair, and the climate musts (two-sided light, the SW breeze, west shading). Or I can draft the email that puts these two options to them.
+  </div>
+
+  <footer>
+    Capstone &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0007-capstone.html">&larr; Capstone critique</a> &nbsp;·&nbsp;
+    <a href="0005-light-and-orientation.html">Lesson 4</a> &nbsp;·&nbsp;
+    <a href="../reference/glossary.html">Glossary</a>
+  </footer>
+
+</body>
+</html>
