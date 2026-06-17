@@ -20,6 +20,12 @@
 - [Le Corbusier — The Modulor](https://en.wikipedia.org/wiki/Modulor)
   His proportioning system built from the human body and the golden ratio, so rooms and furniture fit the human frame. Use for: Lesson 5 — the idea that a room's measure is the body, not a round number.
 
+- [Hassan Fathy — natural-cooling vernacular](https://en.wikipedia.org/wiki/Hassan_Fathy)
+  The Egyptian master of hot-climate design: orient and shade against the sun, draw air through with wind-catchers and shaded courtyards, cool with heavy or pale walls and planting — "work with nature." Use for: Lesson 4 — designing with a hot-climate sun.
+
+- [Geoffrey Bawa — Tropical Modernism](https://en.wikipedia.org/wiki/Tropical_Modernism)
+  Father of tropical modernism: deep verandas, courtyards, overhanging eaves and water dissolve inside and out. "Comfort in the tropics is mostly a question of shade, cross-ventilation and water." Use for: Lesson 4 — the tropical paradigm for a Pokuase home.
+
 - [Frank Lloyd Wright — Organic Architecture (Frank Lloyd Wright Foundation)](https://flwright.org/sites/default/files/ckfinder/userfiles/files/Wright-Organic-Architecture.pdf)
   Wright's own essay on his principles. Form and function as one; buildings growing from the inside out. Use for: questioning whether your floor plan starts from *how you live* or from an external shape imposed on the site.
 
@@ -63,6 +69,9 @@
 
 - [Measurements to Know: Furniture Layout & Ergonomics — Houzz](https://www.houzz.com.sg/magazine/measurements-to-know-a-guide-for-furniture-layout-and-ergonomics-stsetivw-vs~109239110)
   Practical residential clearances — walkways, dining pull-outs, bed and sofa gaps. Use for: Lesson 5 — the everyday clearance numbers.
+
+- [Passive Design in Tropical Zones — Housing for Health](https://www.housingforhealth.com/housing-guide/passive-design-in-tropical-zones/)
+  Orientation, shading (horizontal on north/south, vertical on east/west) and cross-ventilation for hot climates near the equator. Use for: Lesson 4 — the tropical orientation rules for Pokuase.
 
 ## Gaps
 
