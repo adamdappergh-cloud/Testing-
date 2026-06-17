@@ -1,0 +1,63 @@
+name: Deploy lessons to GitHub Pages
+
+on:
+  push:
+    branches: [claude/mattpocock-teach-skill-download-qgkt6p]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r lessons _site/lessons
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Residential Space Planning — Lessons</title>
+          <style>
+          body { font-family: system-ui, -apple-system, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.6; }
+          a { color: #0366d6; }
+          </style>
+          </head>
+          <body>
+          <h1>Residential Space Planning</h1>
+          <p>Lessons:</p>
+          <ul>
+          <li><a href="lessons/0001-reading-a-floor-plan.html">Lesson 1 — Reading a Floor Plan</a></li>
+          </ul>
+          </body>
+          </html>
+          HTML
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
