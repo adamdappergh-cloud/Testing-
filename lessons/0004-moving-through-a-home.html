@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3 — Moving Through a Home</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #2a5fa8; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #eef3fb, #faf9f7); border: 1px solid #dce4f0; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #f0f4fb; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 3 &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Moving Through a Home</h1>
+  <p class="subtitle">Circulation — from keeping the paths short to designing the journey</p>
+
+  <p>In <a href="0002-zoning-a-home.html">Lesson 2</a> you grouped the rooms into zones. <strong>Circulation</strong> is the connective tissue that threads them together — the entry, the halls, the stairs, and the routes you take across rooms. It's the most overlooked part of a plan and the easiest to get wrong. The <strong>Core</strong> gives you the practical rules; the <strong>Deeper</strong> tier shows how the masters turn the path itself into the best part of the house.</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">The rules of good circulation</span>
+    <span class="blurb">Short, generous, and never through a room it shouldn't be.</span>
+  </div>
+
+  <p>Circulation is the floor you travel but don't furnish — and it's easy to ignore precisely because nothing "happens" there. Yet you walk it every day, and you pay to build every square metre of it. Four rules catch most problems:</p>
+
+  <p><strong>1. Keep the daily routes short.</strong> The trips you make dozens of times a day — kitchen to dining, bed to bathroom, car to kitchen with the shopping — should be short and direct. A few extra steps on a daily route is a tax you pay forever.</p>
+  <p><strong>2. Don't spend floor on dead corridors.</strong> A long hall lined with doors is floor you pay for but never live in. The less plan you give to pure corridor, the more you give to rooms.</p>
+  <p><strong>3. Never route through a room to reach another.</strong> You met this in zoning: the path to a bedroom shouldn't cross the living room. Circulation should run <em>between</em> rooms, not <em>through</em> the ones people are using.</p>
+  <p><strong>4. Light and widen the paths you keep.</strong> A passage with a window at the end, or daylight along it, stops feeling like a tunnel.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A corridor plan that wastes floor on a central hall, beside a flow plan where rooms connect directly.">
+      <!-- Panel A: corridor -->
+      <g transform="translate(20,20)">
+        <rect x="0" y="0" width="250" height="180" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+        <rect x="110" y="20" width="30" height="160" fill="#dddddd"/>
+        <line x1="0" y1="95" x2="110" y2="95" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="140" y1="95" x2="250" y2="95" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="110" y1="20" x2="110" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="140" y1="20" x2="140" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="110" y1="20" x2="140" y2="20" stroke="#1a1a1a" stroke-width="2"/>
+        <text x="125" y="105" text-anchor="middle" font-size="10" fill="#777" font-family="system-ui, sans-serif" transform="rotate(-90 125 105)">hall</text>
+      </g>
+      <text x="145" y="232" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">Corridor plan — floor lost to the hall</text>
+      <!-- Panel B: flow -->
+      <g transform="translate(330,20)">
+        <rect x="0" y="0" width="250" height="180" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+        <line x1="125" y1="0" x2="125" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+        <line x1="0" y1="90" x2="250" y2="90" stroke="#1a1a1a" stroke-width="2"/>
+        <rect x="119" y="38" width="12" height="26" fill="#faf9f7"/>
+        <rect x="119" y="116" width="12" height="26" fill="#faf9f7"/>
+        <rect x="48" y="84" width="26" height="12" fill="#faf9f7"/>
+        <rect x="176" y="84" width="26" height="12" fill="#faf9f7"/>
+        <path d="M62,45 H188 V135 H62 Z" fill="none" stroke="#2a5fa8" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <polygon points="188,84 182,79 182,89" fill="#2a5fa8"/>
+      </g>
+      <text x="455" y="232" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">Flow plan — rooms connect directly</text>
+    </svg>
+    <div class="figcap">The grey hall on the left is floor you pay for but never live in. On the right, rooms open into one another and the path (blue) loops through the spaces you actually use.</div>
+  </div>
+
+  <div class="callout">
+    The classic warning sign, which you first met in Lesson 1: the <strong>corridor house</strong> — a long spine hallway with rooms off each side. It's efficient for a hotel, where strangers need private doors. In a home it feels institutional, and it quietly eats a tenth of your floor.
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> In a floor plan, "circulation" refers to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', true)">the paths you travel: halls, stairs, and routes</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the airflow and ventilation moving through rooms</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the plumbing and heating runs behind the walls</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the way the daylight is spread across the rooms</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> Why is a long central corridor with rooms off it usually a weak plan?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">It spreads the daylight too evenly between rooms</div>
+        <div class="option" onclick="answer(this, 'q2', true)">It is floor you pay for but never really live in</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It places the kitchen too close to the bedrooms</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It makes the exterior walls thicker than needed</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> Good circulation avoids&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">a staircase set against an exterior outside wall</div>
+        <div class="option" onclick="answer(this, 'q3', false)">windows placed along a hallway's open length</div>
+        <div class="option" onclick="answer(this, 'q3', true)">a route to a bedroom through a public room</div>
+        <div class="option" onclick="answer(this, 'q3', false)">a kitchen opening straight onto the dining room</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> On your plan, trace — with a pen — every route you'd walk in a normal day: door to kitchen, kitchen to dining, bed to bath, sofa to back garden. Then shade any stretch that is <em>pure corridor</em>, doing nothing but connecting. Ask your architect: can the shaded area shrink, and does any route cross a room it shouldn't?</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Short routes, little dead corridor, and no path through a room people are using — that's most of good circulation. When you want to see how the masters turn the path into the <em>best</em> part of the house, carry on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">The path is the architecture</span>
+    <span class="blurb">Alexander, Le Corbusier and Wright treat circulation not as leftover space, but as the journey the house is built around.</span>
+  </div>
+
+  <h2>Let the rooms be the route (Alexander)</h2>
+  <p>Christopher Alexander's Pattern 131, <a href="https://www.patternlanguageindex.com/patterns/the-flow-through-rooms" target="_blank"><strong>The Flow Through Rooms</strong></a>, goes further than "keep corridors short" — it says to avoid them almost entirely. Arrange the common rooms in a <em>chain</em> or <em>loop</em>, so you walk from room to room rather than down a hall. A loop that passes through all the main rooms, he writes, "establishes an enormous feeling of generosity."<sup><a href="#src">1</a></sup></p>
+
+  <p>And when a passage truly is unavoidable, Pattern 132, <strong>Short Passages</strong>, says don't make it a tunnel — make it a <em>room</em>: short, wide, daylit, even furnished, "with carpets, bookshelves, easy chairs." The ideal is a one-sided hall lined with windows. A corridor only feels grim when it's narrow, long, and dark; fix those three and it becomes a place, not a duct.</p>
+
+  <h2>Circulation as choreography (Le Corbusier)</h2>
+  <p>Le Corbusier gave the idea a name: the <a href="https://en.wikipedia.org/wiki/Promenade_architecturale" target="_blank"><em>promenade architecturale</em></a> — the architectural promenade. A building, he argued, is revealed by <strong>moving through it</strong> along a deliberately composed path, a sequence of framed views and shifting light. At his Villa Savoye a ramp uncoils through the house, turning the simple act of going upstairs into the building's main event. Circulation here isn't the space between the architecture — it <em>is</em> the architecture.</p>
+
+  <p>You won't have a Villa Savoye ramp, but the lesson scales down: a good path should <em>reveal</em> the home, not just deliver you to rooms. Where does your plan offer a view as you arrive? Does anything unfold as you move, or do you simply pop out into each room?</p>
+
+  <h2>Compression and release (Wright)</h2>
+  <p>Frank Lloyd Wright — whose "destruction of the box" you met in Lesson 1 — designed the <em>feeling</em> of the journey through <strong>compression and release</strong>: a low, narrow, dim entry that opens into a tall, bright living space.<sup><a href="#src">2</a></sup> The squeeze makes the release land; the living room feels larger and brighter than its dimensions alone, simply because of what you passed through to reach it. (His Unity Temple is the textbook case.)</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A section showing a low dark entry opening into a tall bright living space.">
+      <rect x="40" y="120" width="220" height="60" fill="#d9d6d0"/>
+      <rect x="260" y="48" width="300" height="132" fill="#fdf4dc"/>
+      <line x1="40" y1="180" x2="560" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="40" y1="120" x2="260" y2="120" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="40" y1="120" x2="40" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="260" y1="48" x2="560" y2="48" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="260" y1="48" x2="260" y2="120" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="560" y1="48" x2="560" y2="180" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- sun in the living space -->
+      <circle cx="500" cy="90" r="14" fill="none" stroke="#c79a3a" stroke-width="1.5"/>
+      <g stroke="#c79a3a" stroke-width="1.5">
+        <line x1="500" y1="66" x2="500" y2="72"/><line x1="500" y1="108" x2="500" y2="114"/>
+        <line x1="476" y1="90" x2="482" y2="90"/><line x1="518" y1="90" x2="524" y2="90"/>
+      </g>
+      <!-- movement arrow -->
+      <line x1="70" y1="165" x2="510" y2="165" stroke="#2a5fa8" stroke-width="2" stroke-dasharray="6 3"/>
+      <polygon points="512,165 502,160 502,170" fill="#2a5fa8"/>
+      <text x="150" y="150" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">compress · low · dim</text>
+      <text x="410" y="110" text-anchor="middle" font-size="12" fill="#7a5a16" font-family="system-ui, sans-serif">release · tall · bright</text>
+    </svg>
+    <div class="figcap">Section through an entry sequence: the low, dim threshold makes the tall, daylit room beyond feel like an arrival.</div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> Alexander's "Flow Through Rooms" recommends that, where possible, you&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', true)">connect the common rooms so you move room to room</div>
+        <div class="option" onclick="answer(this, 'q4', false)">gather all movement into one central, skylit corridor</div>
+        <div class="option" onclick="answer(this, 'q4', false)">give every bedroom its own separate private corridor</div>
+        <div class="option" onclick="answer(this, 'q4', false)">place the staircase at the very centre of the plan</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Le Corbusier's "architectural promenade" treats circulation as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">the leftover space between the important rooms</div>
+        <div class="option" onclick="answer(this, 'q5', true)">a choreographed journey through the building</div>
+        <div class="option" onclick="answer(this, 'q5', false)">the shortest possible line between two points</div>
+        <div class="option" onclick="answer(this, 'q5', false)">a service zone best hidden away from guests</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> Wright's "compression and release" is the feeling created when&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">two rooms are kept at the very same ceiling height</div>
+        <div class="option" onclick="answer(this, 'q6', false)">a long corridor is lined with windows throughout</div>
+        <div class="option" onclick="answer(this, 'q6', false)">the front door faces the same way as the garden</div>
+        <div class="option" onclick="answer(this, 'q6', true)">a low, dim space opens into a tall, bright one</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Walk your promenade</span>
+    <span class="blurb">Read your plan's main route as a designed journey.</span>
+  </div>
+
+  <p>Take your plan and walk its main route in your head — front door &rarr; living &rarr; kitchen &rarr; main bedroom — and annotate it:</p>
+  <ol>
+    <li><strong>Length</strong> — is the daily route short, or are you trekking? Any pure dead corridor?</li>
+    <li><strong>Flow</strong> — do rooms connect directly (Alexander), or are they beads on a hallway?</li>
+    <li><strong>Reveal</strong> — does anything unfold as you move — a view, a widening, more light (Le Corbusier)?</li>
+    <li><strong>Compression</strong> — is there a low, modest threshold that could open into the bright main space (Wright)?</li>
+  </ol>
+  <p>Bring the annotated walk to your architect. Talking about the <em>route</em>, not just the rooms, is exactly the move that separates an active client from a passive one.</p>
+
+  <div class="source-box" id="src">
+    <strong>Primary source for this lesson</strong>
+    <a href="https://www.patternlanguageindex.com/patterns/the-flow-through-rooms" target="_blank">A Pattern Language, Patterns 131 "The Flow Through Rooms" &amp; 132 "Short Passages" — Christopher Alexander</a><br>
+    The clearest argument for letting rooms — not corridors — carry the movement, and for treating any passage as a room.<br><br>
+    <strong>Also drawn on</strong>
+    Le Corbusier's <a href="https://en.wikipedia.org/wiki/Promenade_architecturale" target="_blank">promenade architecturale</a> (the <a href="https://www.villa-savoye.fr/en/discover/an-architectural-promenade" target="_blank">Villa Savoye</a> ramp); and Frank Lloyd Wright's <a href="https://www.livingetc.com/advice/compression-and-release-architecture" target="_blank">compression and release</a>.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — ask anything. Send me your plan's main route and we'll walk it together, hunting for dead corridors and places a little compression-and-release would lift the arrival. A future lesson will turn to <em>natural light and orientation</em> — how the sun should drive the whole layout.
+  </div>
+
+  <footer>
+    Lesson 3 &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0002-zoning-a-home.html">&larr; Lesson 2</a> &nbsp;·&nbsp;
+    <a href="../reference/glossary.html">Glossary</a> &nbsp;·&nbsp;
+    <a href="../reference/">Reference</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 0, explanation: "Circulation is the movement system — the entry, halls, stairs, doorways and routes across rooms. Not airflow, services, or daylight." },
+      q2: { correct: 1, explanation: "A spine corridor is floor you build and pay for but never furnish or live in — often around a tenth of the plan, given over purely to passing through." },
+      q3: { correct: 2, explanation: "Routing a private path through a public room (the bedroom route across the living room) is the circulation failure you first met in zoning." },
+      q4: { correct: 0, explanation: "Pattern 131 links the common rooms in a chain or loop so they carry the movement — 'an enormous feeling of generosity' — instead of a corridor." },
+      q5: { correct: 1, explanation: "The promenade architecturale makes circulation a composed journey of views and light — at Villa Savoye, the ramp is the building's main event." },
+      q6: { correct: 3, explanation: "Compression and release: a low, dim threshold opening into a tall, bright space makes the arrival feel larger and brighter than its size alone." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
