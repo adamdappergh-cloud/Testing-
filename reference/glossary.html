@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference — Glossary</title>
+  <style>
+    :root { --ink:#1a1a1a; --muted:#555; --rule:#ccc; --accent:#2a5fa8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff; color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px; line-height: 1.5;
+      max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem;
+    }
+    header { border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+    h1 { font-size: 1.5rem; font-weight: normal; }
+    .tag { font-family: system-ui, sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    p.intro { font-size: 0.92rem; color: #333; margin-bottom: 1.5rem; }
+    dl { margin: 0; }
+    dt {
+      font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.95rem;
+      margin-top: 1.1rem; color: var(--accent);
+    }
+    dd { margin: 0.15rem 0 0; font-size: 0.92rem; }
+    dd .src { font-family: system-ui, sans-serif; font-size: 0.75rem; color: var(--muted); }
+    .sym { font-family: system-ui, sans-serif; }
+    .yes { color:#2f6b40; font-weight:700; } .near { color:#7a5a16; font-weight:700; }
+    .no { color:#b03030; font-weight:700; } .na { color:#999; }
+    a { color: var(--accent); }
+    footer { margin-top: 2.5rem; border-top: 1px solid var(--rule); padding-top: 0.75rem; font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); }
+    @media print { body { padding: 0; font-size: 11pt; } a { color: var(--ink); text-decoration: none; } dt { color: #000; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="tag">Reference &middot; Residential Space Planning</div>
+    <h1>Glossary</h1>
+  </header>
+
+  <p class="intro">The shared vocabulary used across the lessons. When a lesson uses one of these terms, it means exactly what's defined here.</p>
+
+  <dl>
+    <dt>Adjacency matrix</dt>
+    <dd>A grid listing every room on both axes; each cell records how close two rooms should be: <span class="sym"><span class="yes">&#9679;</span> adjacent, <span class="near">&#9675;</span> nearby, <span class="na">&middot;</span> neutral, <span class="no">&#10005;</span> keep apart</span>. Turns vague layout preferences into a spec. <span class="src">(Lesson 2½)</span></dd>
+
+    <dt>Bubble diagram</dt>
+    <dd>A freehand sketch of a plan as labelled circles, sized by importance and joined by lines for the adjacencies that matter — drawn <em>before</em> any rooms, to test a layout. Workflow: program list &rarr; sizes &rarr; adjacency matrix &rarr; bubbles &rarr; floor plan. <span class="src">(Lesson 2½)</span></dd>
+
+    <dt>Buffer</dt>
+    <dd>A space — hall, stair, wardrobe, or service room — placed between a private room and a public one so noise and traffic don't spill across. A single rung on the privacy gradient. <span class="src">(Lessons 2, 2½)</span></dd>
+
+    <dt>Circulation</dt>
+    <dd>The paths people take to move through a home: halls, stairs, and routes across rooms. Good circulation is short and clear, and never forces you through one room to reach another. <span class="src">(Lessons 1–2; expanded in Lesson 3)</span></dd>
+
+    <dt>Door swing (arc)</dt>
+    <dd>The quarter-circle on a plan showing the path a door sweeps as it opens. The floor inside the arc must stay clear of furniture and people. <span class="src">(Lesson 1)</span></dd>
+
+    <dt>Floor plan</dt>
+    <dd>A horizontal "slice" through a building at about chest height, seen from straight above and drawn to scale. <span class="src">(Lesson 1)</span></dd>
+
+    <dt>North arrow</dt>
+    <dd>The symbol fixing the plan's orientation. Find it first: from it you work out where the sun falls and which rooms get daylight. <span class="src">(Lesson 1)</span></dd>
+
+    <dt>Privacy gradient <span style="font-weight:400;color:#555">(a.k.a. intimacy gradient)</span></dt>
+    <dd>Christopher Alexander's Pattern 127: arrange spaces in a sequence so privacy rises steadily from the entrance inward, letting each visitor stop at the depth that fits them. The principle beneath "buffering." <span class="src">(Lesson 2½)</span></dd>
+
+    <dt>Scale</dt>
+    <dd>The fixed ratio between a drawing and reality — e.g. <strong>1:50</strong> means 1&nbsp;cm on paper equals 50&nbsp;cm in the building. Always confirm it before reading dimensions. <span class="src">(Lesson 1)</span></dd>
+
+    <dt>Zones — public / private / service</dt>
+    <dd>The three functional groups of rooms. <strong>Public</strong>: gather &amp; receive (living, dining, kitchen, guest WC). <strong>Private</strong>: rest &amp; retreat (bedrooms, en-suites, study). <strong>Service</strong>: the working spaces (laundry, utility, pantry, garage, storage). <span class="src">(Lesson 2)</span></dd>
+  </dl>
+
+  <footer>
+    Lessons: <a href="../lessons/0001-reading-a-floor-plan.html">1</a> &middot;
+    <a href="../lessons/0002-zoning-a-home.html">2</a> &middot;
+    <a href="../lessons/0003-zoning-in-depth.html">2½</a> &nbsp;|&nbsp;
+    <a href="zoning-cheatsheet.html">Zoning cheat-sheet</a>
+  </footer>
+
+</body>
+</html>

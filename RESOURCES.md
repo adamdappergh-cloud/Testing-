@@ -34,6 +34,9 @@
 - [Architectural Zoning Diagrams Explained — Archisoup](https://www.archisoup.com/architecture-zoning-diagrams)
   How architects think about zoning before drawing a floor plan. Use for: understanding the logic behind layout decisions and asking better questions.
 
+- [Understanding Bubble Diagrams — Archisoup](https://www.archisoup.com/architecture-bubble-diagrams) and [Bubble Diagram Design Guide — illustrarch](https://illustrarch.com/articles/architectural-diagrams/75539-bubble-diagram-design-guide.html)
+  The architect's pre-plan tool: list spaces, size them, build an adjacency matrix, draw bubbles, then a floor plan. Use for: Lesson 2½ — designing and pressure-testing a layout before any rooms are drawn.
+
 - [_The Not So Big House_ — Sarah Susanka](https://susanka.com/not-so-big-house/)
   Bestselling book arguing for quality over size in residential design. Excellent for understanding what makes a home *feel* right vs. just look good on paper. Use for: grounding your instincts in real principles.
 
