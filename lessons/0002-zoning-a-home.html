@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2 — Zoning a Home</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #555;
+      --rule: #ddd;
+      --accent: #2a5fa8;
+      --bg: #faf9f7;
+      --card: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .lesson-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-family: system-ui, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    .callout {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    /* Zone diagram */
+    .diagram {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap {
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+    .zone-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      margin: 1rem 0 0.25rem;
+      justify-content: center;
+    }
+    .zone-legend span { display: flex; align-items: center; gap: 0.4rem; }
+    .swatch {
+      width: 14px; height: 14px; border-radius: 3px;
+      display: inline-block; border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    /* Zone breakdown */
+    .zone-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      align-items: start;
+    }
+    .zone-tag {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.35rem 0.4rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .zone-tag.public  { background: #dce9f7; color: #1d4576; }
+    .zone-tag.service { background: #f7ecd6; color: #7a5a16; }
+    .zone-tag.private { background: #dcefe0; color: #2f6b40; }
+    .zone-desc { font-size: 0.95rem; }
+    .zone-desc strong {
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    /* Quiz */
+    .quiz {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .quiz h3 {
+      font-family: system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: var(--bg);
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback {
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+      color: var(--muted);
+    }
+
+    .source-box {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+
+    a { color: var(--accent); }
+
+    .ask-teacher {
+      background: #f0f4fb;
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 2 of ? &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Zoning a Home</h1>
+  <p class="subtitle">Public, private, service — and why their arrangement makes or breaks a plan</p>
+
+  <h2>The core idea</h2>
+
+  <p>In <a href="0001-reading-a-floor-plan.html">Lesson 1</a> you learned to <em>read</em> a plan. Now you start to <em>judge</em> one. The first lens every architect uses is <strong>zoning</strong>: before worrying about any single room, they group rooms into three zones by how the rooms are <em>used</em>.</p>
+
+  <div class="zone-row">
+    <div class="zone-tag public">Public</div>
+    <div class="zone-desc"><strong>Where you gather and receive guests.</strong> Living room, dining room, kitchen, guest WC. Should sit close to the front entry and flow together. A kitchen is the in-between case — a working space that has become social — so it usually bridges public and service.</div>
+  </div>
+  <div class="zone-row">
+    <div class="zone-tag private">Private</div>
+    <div class="zone-desc"><strong>Where you rest and retreat.</strong> Bedrooms, en-suites, a study. These "should be placed away from high-traffic zones&hellip; in a quieter part of the home, providing a sense of security and seclusion."</div>
+  </div>
+  <div class="zone-row">
+    <div class="zone-tag service">Service</div>
+    <div class="zone-desc"><strong>Where the house does its work.</strong> Laundry, utility, pantry, mudroom, garage, storage. These support the other zones and are happiest tucked near where they're used — laundry near bedrooms, pantry and garage near the kitchen.</div>
+  </div>
+
+  <h2>What good zoning looks like</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A schematic home zoned into public, service, hall buffer, and private areas.">
+      <!-- entry -->
+      <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a" font-family="system-ui, sans-serif">ENTRY</text>
+      <polygon points="291,26 309,26 300,40" fill="#1a1a1a"/>
+      <!-- outer wall -->
+      <rect x="30" y="40" width="540" height="290" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+      <!-- public -->
+      <rect x="36" y="46" width="330" height="118" fill="#dce9f7" stroke="#2a5fa8" stroke-width="1.5"/>
+      <text x="52" y="80" font-size="15" font-weight="700" fill="#1d4576" font-family="system-ui, sans-serif">PUBLIC</text>
+      <text x="52" y="102" font-size="12" fill="#555" font-family="system-ui, sans-serif">living &middot; dining &middot; guest WC</text>
+      <!-- service -->
+      <rect x="372" y="46" width="192" height="118" fill="#f7ecd6" stroke="#b6862c" stroke-width="1.5"/>
+      <text x="388" y="80" font-size="15" font-weight="700" fill="#7a5a16" font-family="system-ui, sans-serif">SERVICE</text>
+      <text x="388" y="102" font-size="12" fill="#555" font-family="system-ui, sans-serif">kitchen &middot; laundry</text>
+      <!-- hall buffer -->
+      <rect x="36" y="170" width="528" height="34" fill="#ededed" stroke="#bbb" stroke-width="1.5"/>
+      <text x="300" y="192" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">HALL &mdash; buffers private from public</text>
+      <!-- private -->
+      <rect x="36" y="210" width="528" height="114" fill="#dcefe0" stroke="#4a9a5e" stroke-width="1.5"/>
+      <text x="52" y="246" font-size="15" font-weight="700" fill="#2f6b40" font-family="system-ui, sans-serif">PRIVATE</text>
+      <text x="52" y="268" font-size="12" fill="#555" font-family="system-ui, sans-serif">bedrooms &middot; en-suite &middot; study</text>
+    </svg>
+    <div class="zone-legend">
+      <span><i class="swatch" style="background:#dce9f7"></i>Public</span>
+      <span><i class="swatch" style="background:#f7ecd6"></i>Service</span>
+      <span><i class="swatch" style="background:#dcefe0"></i>Private</span>
+      <span><i class="swatch" style="background:#ededed"></i>Circulation / buffer</span>
+    </div>
+    <div class="figcap">Enter into the public zone. The kitchen (service) sits beside the dining (public). A hall buffers the private zone, which is the deepest and quietest part of the plan.</div>
+  </div>
+
+  <p>Here's the part beginners miss: zoning isn't really about <em>which</em> rooms exist — it's about <strong>how the zones relate</strong>. Three relationships do most of the work:</p>
+
+  <p><strong>1. Buffer the private zone.</strong> You should not open a bedroom door straight into the living room. Put a hall, a stair, or a service room between the noise and the rest.</p>
+
+  <p><strong>2. Keep traffic out of zones it doesn't belong in.</strong> You shouldn't have to walk through the dining room to reach a bedroom, or cut across the kitchen's work area to get to the garden.</p>
+
+  <p><strong>3. Place service where it serves.</strong> The pantry and garage want to be a few steps from the kitchen so groceries have a short carry; the laundry wants to be near the bedrooms it serves.</p>
+
+  <div class="callout">
+    The single test that catches most bad layouts: <strong>"At night, to get from my bed to the front door, what rooms do I cross?"</strong> If the answer routes you through a sleeping child's room or a guest's space, the zoning is wrong.
+  </div>
+
+  <h2>Three mistakes to watch for</h2>
+
+  <p>From the layout-essentials guidance, the most common residential zoning errors are: requiring people to <strong>pass through living areas to reach bedrooms</strong>, allowing <strong>excessive cross-traffic through the kitchen work zone</strong>, and <strong>dead-end hallways</strong> that waste space and circulation.<sup><a href="#src">1</a></sup> All three are easy to spot once you've coloured the zones in.</p>
+
+  <h2>Quick knowledge check</h2>
+
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> A plan puts the main bedroom door opening directly off the living room. Which zoning principle does this break?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">Service rooms should sit close to the kitchen</div>
+        <div class="option" onclick="answer(this, 'q1', true)">Private rooms should be buffered from public</div>
+        <div class="option" onclick="answer(this, 'q1', false)">Public rooms should sit close to the entrance</div>
+        <div class="option" onclick="answer(this, 'q1', false)">Natural light should be given to social rooms</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> To reach the bedrooms, the layout routes you straight through the dining room. Why is that a zoning problem?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">It pushes the kitchen too far from the dining</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It gives the bedrooms too much morning daylight</div>
+        <div class="option" onclick="answer(this, 'q2', true)">It runs private traffic through a public room</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It leaves the entrance hall feeling far smaller</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> Good zoning places the garage and pantry close to the kitchen mainly so that&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', true)">groceries travel a short, direct carrying path</div>
+        <div class="option" onclick="answer(this, 'q3', false)">bedrooms stay quiet and dark through the night</div>
+        <div class="option" onclick="answer(this, 'q3', false)">visitors arrive into a generous, open hallway</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the living room receives the best afternoon sun</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <h2>Your win from this lesson</h2>
+
+  <p>Take the latest plan from your architect and do this — literally, with three coloured pens or highlighters:</p>
+
+  <ol style="padding-left: 1.4rem; margin-bottom: 1.2rem;">
+    <li style="margin-bottom: 0.5rem">Colour every room: <span style="color:#1d4576;font-weight:600">public</span>, <span style="color:#2f6b40;font-weight:600">private</span>, or <span style="color:#7a5a16;font-weight:600">service</span></li>
+    <li style="margin-bottom: 0.5rem">Check the private zone is buffered — not opening onto public rooms</li>
+    <li style="margin-bottom: 0.5rem">Trace the path from the front door to each bedroom: does it cross a zone it shouldn't?</li>
+    <li>Note where service sits — is the laundry near the bedrooms, the pantry near the kitchen?</li>
+  </ol>
+
+  <p>If anything looks off, you now have the language to raise it: <em>"This bedroom isn't buffered from the living space — can we put the hall or wardrobe between them?"</em> That's a smart, specific question in an architect meeting — exactly the mission.</p>
+
+  <div class="source-box" id="src">
+    <strong>Primary source for this lesson</strong>
+    <a href="https://www.draftinganddesign.com/2024/10/floor-plan-layout-essentials-key.html" target="_blank">Floor Plan Layout Essentials — Drafting and Design</a><br>
+    Covers the public / private / service split, how the zones should relate, and the common layout mistakes above. Read it after the quiz.<br><br>
+    <strong>Go deeper (the architect's logic)</strong>
+    <a href="https://www.archisoup.com/architecture-zoning-diagrams" target="_blank">Architectural Zoning Diagrams Explained — Archisoup</a> — how architects sketch zones <em>before</em> drawing any rooms.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — ask anything. Best of all: send me a description of your actual plan, or which rooms sit where, and we'll zone it together and hunt for problems. The next lesson covers <em>circulation</em> — the paths that connect these zones, and how to tell a plan that flows from one that fights you.
+  </div>
+
+  <footer>
+    Lesson 2 of ? &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0001-reading-a-floor-plan.html">&larr; Lesson 1</a> &nbsp;·&nbsp;
+    <a href="../reference/">Reference documents</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "Bedrooms are private and must be buffered from public, high-traffic rooms — a door straight onto the living room breaks that separation." },
+      q2: { correct: 2, explanation: "Routing people through the dining room forces private traffic across a public zone — one of the most common zoning mistakes." },
+      q3: { correct: 0, explanation: "Service spaces should sit where they're used. Garage and pantry by the kitchen keep the grocery-carrying path short and direct." }
+    };
+
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) {
+        opts[answers[qid].correct].classList.add('correct');
+      }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
