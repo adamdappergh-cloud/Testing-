@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference — Zoning Cheat-Sheet</title>
+  <style>
+    :root { --ink:#1a1a1a; --muted:#555; --rule:#ccc; --accent:#2a5fa8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff; color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px; line-height: 1.5;
+      max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem;
+    }
+    header { border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+    h1 { font-size: 1.5rem; font-weight: normal; }
+    .tag { font-family: system-ui, sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    h2 {
+      font-family: system-ui, sans-serif; font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);
+      margin: 1.5rem 0 0.5rem;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+    p, li { font-size: 0.92rem; }
+    ul, ol { margin-left: 1.2rem; }
+    li { margin-bottom: 0.25rem; }
+    .z { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 3px; }
+    .z.pub { background:#dce9f7; color:#1d4576; }
+    .z.pri { background:#dcefe0; color:#2f6b40; }
+    .z.ser { background:#f7ecd6; color:#7a5a16; }
+
+    .gradient-bar {
+      height: 28px; border-radius: 4px; margin: 0.5rem 0 0.3rem;
+      background: linear-gradient(to right, #eaf2fb, #cfe0d6, #2f6b40);
+      border: 1px solid #ccc;
+    }
+    .gradient-labels { display: flex; justify-content: space-between; font-family: system-ui, sans-serif; font-size: 0.72rem; color: var(--muted); }
+
+    table.matrix { border-collapse: collapse; font-family: system-ui, sans-serif; font-size: 0.78rem; margin-top: 0.4rem; }
+    table.matrix th, table.matrix td { border: 1px solid var(--rule); width: 1.9rem; height: 1.7rem; text-align: center; }
+    table.matrix th { background: #f3f1ee; font-weight: 600; }
+    table.matrix td.lab { background: #f3f1ee; font-weight: 600; text-align: left; padding: 0 0.4rem; white-space: nowrap; width: auto; }
+    table.matrix td.x { background: #f7f7f7; }
+    .legend { font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+
+    .steps { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+    .steps b { color: var(--accent); }
+    a { color: var(--accent); }
+    footer { margin-top: 2rem; border-top: 1px solid var(--rule); padding-top: 0.75rem; font-family: system-ui, sans-serif; font-size: 0.78rem; color: var(--muted); }
+
+    @media print {
+      body { padding: 0; font-size: 11pt; }
+      a { color: var(--ink); text-decoration: none; }
+      h2 { color: #000; }
+      .gradient-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="tag">Reference &middot; Residential Space Planning</div>
+    <h1>Zoning Cheat-Sheet</h1>
+  </header>
+
+  <div class="grid">
+    <section>
+      <h2>The three zones</h2>
+      <ul>
+        <li><span class="z pub">PUBLIC</span> living, dining, kitchen, guest WC — gather &amp; receive</li>
+        <li><span class="z pri">PRIVATE</span> bedrooms, en-suites, study — rest &amp; retreat</li>
+        <li><span class="z ser">SERVICE</span> laundry, utility, pantry, garage, storage — the working spaces</li>
+      </ul>
+
+      <h2>Three relationships that matter</h2>
+      <ol>
+        <li><b>Buffer</b> the private zone — never open a bedroom onto a public room.</li>
+        <li><b>Keep traffic out</b> of zones it doesn't belong in — don't route through a room.</li>
+        <li><b>Place service where it serves</b> — pantry/garage by the kitchen, laundry by the bedrooms.</li>
+      </ol>
+
+      <h2>Two quick tests</h2>
+      <ul>
+        <li><b>Night-walk:</b> bed &rarr; front door — what rooms do you cross?</li>
+        <li><b>Colour the zones:</b> three pens on the plan; look for a private room touching a public one.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>The privacy gradient</h2>
+      <p>Sequence spaces so privacy rises steadily inward (Alexander, Pattern 127).</p>
+      <div class="gradient-bar"></div>
+      <div class="gradient-labels"><span>Entry</span><span>Living</span><span>Kitchen</span><span>Hall</span><span>Bedrooms</span></div>
+      <p style="margin-top:0.4rem;font-size:0.82rem;color:#555">courier &middot; guests &middot; friends &middot; buffer &middot; family only</p>
+      <p style="font-size:0.82rem">Privacy has three flavours — <b>visual</b>, <b>acoustic</b>, <b>circulatory</b>. Good plans stack all three.</p>
+
+      <h2>Bubble-diagram workflow</h2>
+      <p class="steps">program list &rarr; <b>sizes</b> &rarr; <b>adjacency matrix</b> &rarr; <b>bubbles</b> (iterate &times;3) &rarr; floor plan</p>
+
+      <h2>Blank adjacency matrix</h2>
+      <table class="matrix">
+        <tr><td class="x"></td><th>Kit</th><th>Din</th><th>Liv</th><th>Bed</th><th>Bath</th></tr>
+        <tr><td class="lab">Dining</td><td></td><td class="x"></td><td class="x"></td><td class="x"></td><td class="x"></td></tr>
+        <tr><td class="lab">Living</td><td></td><td></td><td class="x"></td><td class="x"></td><td class="x"></td></tr>
+        <tr><td class="lab">Bedroom</td><td></td><td></td><td></td><td class="x"></td><td class="x"></td></tr>
+        <tr><td class="lab">Bath</td><td></td><td></td><td></td><td></td><td class="x"></td></tr>
+        <tr><td class="lab">Garage</td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="legend">Fill cells: &#9679; adjacent &nbsp; &#9675; nearby &nbsp; &middot; neutral &nbsp; &#10005; keep apart</div>
+    </section>
+  </div>
+
+  <footer>
+    From <a href="../lessons/0002-zoning-a-home.html">Lesson 2</a> &amp; <a href="../lessons/0003-zoning-in-depth.html">Lesson 2&frac12;</a>.
+    Sources: Drafting &amp; Design (zones); C. Alexander, <em>A Pattern Language</em> P127 (gradient); Archisoup / illustrarch (bubble diagrams).
+  </footer>
+
+</body>
+</html>

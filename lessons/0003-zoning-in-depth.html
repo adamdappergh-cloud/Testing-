@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2½ — Zoning, in Depth</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #555;
+      --rule: #ddd;
+      --accent: #2a5fa8;
+      --bg: #faf9f7;
+      --card: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .lesson-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 2.5rem; }
+
+    h2 {
+      font-size: 1.1rem;
+      font-family: system-ui, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 1.5rem 0;
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      font-style: italic;
+      color: #333;
+    }
+
+    .callout {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .diagram {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap {
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+
+    /* Adjacency matrix */
+    .matrix-wrap { overflow-x: auto; margin: 1.5rem 0 0.5rem; }
+    table.matrix {
+      border-collapse: collapse;
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      margin: 0 auto;
+    }
+    table.matrix th, table.matrix td {
+      border: 1px solid var(--rule);
+      padding: 0.4rem 0.55rem;
+      text-align: center;
+      min-width: 2.2rem;
+    }
+    table.matrix th { background: #f3f1ee; font-weight: 600; }
+    table.matrix td.lab { background: #f3f1ee; font-weight: 600; text-align: left; white-space: nowrap; }
+    table.matrix td.blank { background: #faf9f7; }
+    .yes  { color: #2f6b40; font-weight: 700; }
+    .near { color: #7a5a16; font-weight: 700; }
+    .no   { color: #b03030; font-weight: 700; }
+    .na   { color: #bbb; }
+    .matrix-legend {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+      justify-content: center;
+      font-family: system-ui, sans-serif; font-size: 0.82rem;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+
+    /* Quiz */
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: system-ui, sans-serif; font-size: 0.9rem;
+      cursor: pointer; padding: 0.5rem 0.75rem;
+      border: 1px solid var(--rule); border-radius: 4px;
+      background: var(--bg); transition: background 0.15s; user-select: none;
+    }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+
+    .source-box {
+      background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+      padding: 1.25rem 1.5rem; margin: 2rem 0;
+      font-family: system-ui, sans-serif; font-size: 0.9rem;
+    }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+
+    a { color: var(--accent); }
+
+    .ask-teacher {
+      background: #f0f4fb; border-radius: 6px; padding: 1.25rem 1.5rem;
+      font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem;
+    }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+
+    footer {
+      margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+      font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 2&frac12; &nbsp;·&nbsp; Deeper Dive &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Zoning, in Depth</h1>
+  <p class="subtitle">The privacy gradient, and the diagram architects draw before any rooms</p>
+
+  <p>In <a href="0002-zoning-a-home.html">Lesson 2</a> you learned the three zones and three rules for arranging them. Architects don't really think in <em>rules</em>, though — they think with one underlying <strong>principle</strong> and one simple <strong>tool</strong>. Learn both and you can sketch a workable layout yourself, and say precisely why a plan feels right or wrong.</p>
+
+  <h2>The principle: a privacy gradient</h2>
+
+  <p>The deepest idea in residential zoning comes from Christopher Alexander's <em>A Pattern Language</em> — Pattern 127, the <strong>Intimacy Gradient</strong>. It says: don't merely <em>separate</em> public from private — arrange every space in a <strong>sequence</strong>, so that privacy increases gradually as you move deeper into the home.</p>
+
+  <blockquote>Unless the spaces&hellip; are arranged in a sequence which corresponds to their degrees of privateness, visits made by strangers, friends, guests, clients, family, will always be a little awkward.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— Christopher Alexander, Pattern 127</span></blockquote>
+
+  <p>Picture who travels how far in: a courier stops at the door; a guest settles in the living room; a close friend ends up leaning on the kitchen counter; only family crosses into the bedrooms. A good plan lets each person stop at the right depth without ever feeling they've trespassed — or been held at arm's length.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A gradient bar from public at the entry to private at the bedrooms.">
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"  stop-color="#eaf2fb"/>
+          <stop offset="50%" stop-color="#cfe0d6"/>
+          <stop offset="100%" stop-color="#2f6b40"/>
+        </linearGradient>
+      </defs>
+      <text x="20" y="24" font-size="12" font-weight="600" fill="#1d4576" font-family="system-ui, sans-serif">MORE PUBLIC</text>
+      <text x="580" y="24" text-anchor="end" font-size="12" font-weight="600" fill="#2f6b40" font-family="system-ui, sans-serif">MORE PRIVATE</text>
+      <rect x="20" y="40" width="560" height="54" rx="6" fill="url(#grad)" stroke="#ccc" stroke-width="1"/>
+      <!-- stops -->
+      <g font-family="system-ui, sans-serif">
+        <!-- Entry -->
+        <line x1="60" y1="40" x2="60" y2="94" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+        <text x="60" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Entry</text>
+        <text x="60" y="134" text-anchor="middle" font-size="11" fill="#666">courier</text>
+        <!-- Living -->
+        <line x1="190" y1="40" x2="190" y2="94" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+        <text x="190" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Living</text>
+        <text x="190" y="134" text-anchor="middle" font-size="11" fill="#666">guests</text>
+        <!-- Kitchen / family -->
+        <line x1="330" y1="40" x2="330" y2="94" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+        <text x="330" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Kitchen / family</text>
+        <text x="330" y="134" text-anchor="middle" font-size="11" fill="#666">close friends</text>
+        <!-- Hall -->
+        <line x1="450" y1="40" x2="450" y2="94" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+        <text x="450" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Hall</text>
+        <text x="450" y="134" text-anchor="middle" font-size="11" fill="#666">the buffer</text>
+        <!-- Bedrooms -->
+        <line x1="545" y1="40" x2="545" y2="94" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+        <text x="545" y="116" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Bedrooms</text>
+        <text x="545" y="134" text-anchor="middle" font-size="11" fill="#666">family only</text>
+      </g>
+      <line x1="20" y1="170" x2="560" y2="170" stroke="#bbb" stroke-width="1"/>
+      <polygon points="560,170 550,165 550,175" fill="#bbb"/>
+      <text x="20" y="190" font-size="11" fill="#888" font-family="system-ui, sans-serif">deeper into the home &rarr;</text>
+    </svg>
+    <div class="figcap">The intimacy gradient: each step inward is more private than the last, and each visitor stops at the depth that fits.</div>
+  </div>
+
+  <p>This reframes the <em>buffering</em> idea from last lesson. A buffer isn't just a wall between bedroom and lounge — it's a <strong>rung on the gradient</strong>. The entry hall, the stair, the family room: each one eases you a step further from public toward private.</p>
+
+  <div class="callout">
+    Privacy comes in three flavours, and good plans stack them: <strong>visual</strong> (can they see in?), <strong>acoustic</strong> (can they hear through?), and <strong>circulatory</strong> (does anyone pass through?). A closed door solves sight; only distance and a buffer room solve sound and traffic.
+  </div>
+
+  <h2>The tool: bubble &amp; adjacency diagrams</h2>
+
+  <p>Before a single room is drawn, architects sketch the whole plan as <strong>bubbles</strong>. It's how they apply the gradient without committing to walls. The workflow:<sup><a href="#src">1</a></sup></p>
+
+  <ol>
+    <li><strong>List every space</strong> — and be specific (a pantry is not a coat closet; they want different neighbours).</li>
+    <li><strong>Size each</strong> roughly: large, medium, or small.</li>
+    <li><strong>Build an adjacency matrix</strong> — for every pair of rooms, mark how close they want to be.</li>
+    <li><strong>Draw bubbles</strong> sized by importance, connect the ones that must be adjacent, and redraw it two or three times.</li>
+    <li><strong>Turn bubbles into rectangles</strong> on the site, and you have the beginnings of a floor plan.</li>
+  </ol>
+
+  <p>The <strong>adjacency matrix</strong> is the part you can use today. Read it like a distance chart: find two rooms, read the cell where they meet. Here is one for six common rooms:</p>
+
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <tr>
+        <td class="blank"></td>
+        <th>Kitchen</th><th>Dining</th><th>Living</th><th>Bedroom</th><th>Bath</th>
+      </tr>
+      <tr>
+        <td class="lab">Dining</td>
+        <td class="yes">&#9679;</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td>
+      </tr>
+      <tr>
+        <td class="lab">Living</td>
+        <td class="near">&#9675;</td><td class="yes">&#9679;</td><td class="blank"></td><td class="blank"></td><td class="blank"></td>
+      </tr>
+      <tr>
+        <td class="lab">Bedroom</td>
+        <td class="no">&#10005;</td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="blank"></td><td class="blank"></td>
+      </tr>
+      <tr>
+        <td class="lab">Bath</td>
+        <td class="na">&middot;</td><td class="na">&middot;</td><td class="na">&middot;</td><td class="yes">&#9679;</td><td class="blank"></td>
+      </tr>
+      <tr>
+        <td class="lab">Garage</td>
+        <td class="yes">&#9679;</td><td class="na">&middot;</td><td class="na">&middot;</td><td class="no">&#10005;</td><td class="na">&middot;</td>
+      </tr>
+    </table>
+  </div>
+  <div class="matrix-legend">
+    <span><b class="yes">&#9679;</b> adjacent</span>
+    <span><b class="near">&#9675;</b> nearby</span>
+    <span><b class="na">&middot;</b> neutral</span>
+    <span><b class="no">&#10005;</b> keep apart</span>
+  </div>
+
+  <p>Notice the matrix quietly <em>encodes the gradient</em>: kitchen touches dining, garage touches kitchen (groceries), the en-suite touches its bedroom — but the bedrooms are marked <span class="no">&#10005;</span> against kitchen, dining, <em>and</em> living. The private zone is held at a distance on every front.</p>
+
+  <h2>Quick knowledge check</h2>
+
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> The privacy gradient says a good home should arrange its spaces so that&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', true)">privacy increases as you move from the entry inward</div>
+        <div class="option" onclick="answer(this, 'q1', false)">every room sits the same distance from the front door</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the kitchen is always the deepest and quietest room</div>
+        <div class="option" onclick="answer(this, 'q1', false)">bedrooms open directly off the main entrance hallway</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> On an adjacency matrix, a "keep these apart" mark fits which pair best?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">the kitchen and the dining room beside it</div>
+        <div class="option" onclick="answer(this, 'q2', true)">the main bedroom and the family living room</div>
+        <div class="option" onclick="answer(this, 'q2', false)">the garage and the kitchen, for the groceries</div>
+        <div class="option" onclick="answer(this, 'q2', false)">the en-suite bathroom and its own bedroom</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> In the architect's workflow, the bubble diagram comes&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', true)">before the floor plan, after the adjacency matrix</div>
+        <div class="option" onclick="answer(this, 'q3', false)">after the floor plan, once the rooms are sized</div>
+        <div class="option" onclick="answer(this, 'q3', false)">before listing any of the home's needed spaces</div>
+        <div class="option" onclick="answer(this, 'q3', false)">only after the construction drawings are signed</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <h2>Your win from this lesson</h2>
+
+  <p>Do this for your own home, on paper — it's exactly what your architect did, and doing it yourself lets you check their work:</p>
+
+  <ol>
+    <li>List your rooms and size each one (large / medium / small).</li>
+    <li>Fill in a blank adjacency matrix — the <a href="../reference/zoning-cheatsheet.html">cheat-sheet</a> has one ready to print.</li>
+    <li>Sketch bubbles and draw a line between every <span class="yes">&#9679;</span> pair.</li>
+    <li>Walk the gradient: from the front door inward, does privacy rise steadily — or does a bedroom appear too early?</li>
+  </ol>
+
+  <p>Then bring the bubble sketch to your next meeting. <em>"Here's the adjacency I'm after"</em> is one of the most useful things a client can hand an architect — it turns vague preferences into a spec they can design against.</p>
+
+  <div class="source-box" id="src">
+    <strong>Primary source for this lesson</strong>
+    <a href="https://christopher-alexander-ces-archive.org/book/a-pattern-language/" target="_blank">A Pattern Language, Pattern 127 "Intimacy Gradient" — Christopher Alexander</a><br>
+    The authoritative statement of the privacy gradient. Dense but profound; read Pattern 127 and the patterns either side of it.<br><br>
+    <strong>Go deeper (the tool)</strong>
+    <a href="https://www.archisoup.com/architecture-bubble-diagrams" target="_blank">Understanding Bubble Diagrams — Archisoup</a> and a step-by-step <a href="https://illustrarch.com/articles/architectural-diagrams/75539-bubble-diagram-design-guide.html" target="_blank">bubble-diagram guide — illustrarch</a>.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — ask anything. Best next step: tell me your home's rooms and I'll help you build the adjacency matrix and a first bubble diagram together, then we'll pressure-test the gradient. When you're ready to move on, <em>Lesson 3</em> covers <strong>circulation</strong> — the paths that thread these bubbles together.
+  </div>
+
+  <footer>
+    Lesson 2&frac12; &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0002-zoning-a-home.html">&larr; Lesson 2</a> &nbsp;·&nbsp;
+    <a href="../reference/zoning-cheatsheet.html">Zoning cheat-sheet</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 0, explanation: "The intimacy gradient sequences spaces so they get steadily more private the deeper you go — not equal, and not with bedrooms near the door." },
+      q2: { correct: 1, explanation: "Bedrooms are the deep, private end of the gradient — they should be held apart from public rooms like the living room. The other pairs all want to be close." },
+      q3: { correct: 0, explanation: "Workflow: program list → sizes → adjacency matrix → bubble diagram → floor plan. The bubbles come after the matrix and before the plan." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>

@@ -28,6 +28,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r lessons _site/lessons
+          cp -r reference _site/reference
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <html lang="en">
@@ -46,6 +47,11 @@ jobs:
           <ul>
           <li><a href="lessons/0001-reading-a-floor-plan.html">Lesson 1 — Reading a Floor Plan</a></li>
           <li><a href="lessons/0002-zoning-a-home.html">Lesson 2 — Zoning a Home</a></li>
+          <li><a href="lessons/0003-zoning-in-depth.html">Lesson 2½ — Zoning, in Depth</a></li>
+          </ul>
+          <p>Reference:</p>
+          <ul>
+          <li><a href="reference/zoning-cheatsheet.html">Zoning cheat-sheet</a></li>
           </ul>
           </body>
           </html>
