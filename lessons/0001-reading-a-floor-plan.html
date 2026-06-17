@@ -158,7 +158,7 @@
     </div>
     <div class="symbol-desc">
       <strong>North arrow</strong>
-      Always find this first. It tells you which way the plan is oriented, so you can work out where the sun comes from. In the northern hemisphere, south-facing rooms get the most sun. A living room facing north will be permanently dim.<sup><a href="#src">1</a></sup>
+      Always find this first. It tells you which way the plan is oriented, so you can work out where the sun and the prevailing breeze reach each room. Near the equator — like Pokuase — the sun rides high overhead, so the real questions are heat, shade, and which rooms catch the cooling breeze rather than the harsh low sun from the east and west. You can only start asking them once you've found north (we go deep in Lesson 4).<sup><a href="#src">1</a></sup>
     </div>
 
   </div>
@@ -169,7 +169,7 @@
   <p>This mental walk surfaces problems that don't show up when you're just looking at shapes. Good layouts feel inevitable when you walk them. Bad ones have moments where you think "wait, that's strange."</p>
 
   <div class="callout">
-    The most common layout mistake in residential design: the <strong>corridor house</strong> — a long hallway with rooms off each side. It works in hotels. It feels institutional in a home. Ask your architect how circulation is handled.
+    The most common layout mistake in residential design: the <strong>corridor house</strong> — a long hallway with rooms off each side. It works in hotels; it feels institutional in a home — and in a hot climate a sealed central corridor also chokes the cross-breeze. Ask your architect how circulation is handled.
   </div>
 
   <h2>Checkpoint</h2>
@@ -199,12 +199,12 @@
     </div>
 
     <div class="question" id="q3">
-      <p><strong>3.</strong> You find the north arrow and see the main living area faces south. In the northern hemisphere, what does this tell you?</p>
+      <p><strong>3.</strong> You find the north arrow and see a bedroom faces due <em>west</em>. In a hot climate like Pokuase, that's worth flagging because&hellip;</p>
       <div class="options">
-        <div class="option" onclick="answer(this, 'q3', false)">It will be cold and shaded for most months</div>
-        <div class="option" onclick="answer(this, 'q3', false)">It faces the street rather than the back garden</div>
-        <div class="option" onclick="answer(this, 'q3', true)">It gets the most daylight through the whole day</div>
-        <div class="option" onclick="answer(this, 'q3', false)">Its light depends on how big the windows are</div>
+        <div class="option" onclick="answer(this, 'q3', false)">a west-facing room stays cold and dim all year</div>
+        <div class="option" onclick="answer(this, 'q3', true)">it will catch the hot, low afternoon sun</div>
+        <div class="option" onclick="answer(this, 'q3', false)">west-facing rooms are not allowed to have windows</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the north arrow also fixes the drawing's scale</div>
       </div>
       <div class="feedback" id="q3-feedback"></div>
     </div>
@@ -265,7 +265,7 @@
 
   <p>You can see the choice directly on a plan: are the rooms separate boxes joined by doors, or do living, dining and kitchen open into one continuous space? Each has a feel. Boxes give privacy and quiet; the open plan gives light, connection, and a sense of generosity. Neither is "right" — but now you can <em>name</em> what you're looking at, and say which you want where.</p>
 
-  <p>Wright also gave the home a centre: the <strong>hearth</strong>. The fireplace — "the heart of the home" — anchored his open plans, a fixed warm point the living spaces gathered around. So when you read a plan, look for its <em>anchor</em>. What does this home revolve around — a hearth, a kitchen island, a view, a stair? A home with no clear centre often feels restless to live in.</p>
+  <p>Wright also gave the home a centre. For him — in cold Wisconsin — it was the <strong>hearth</strong>: the fireplace, "the heart of the home," a fixed warm point his open plans gathered around. The <em>principle</em> travels even where the fireplace doesn't. Every home that feels settled has an <strong>anchor</strong> — but in a warm climate it's rarely a fire. It might be a shaded courtyard, a veranda, the kitchen, a big shared table, or a framed view. So when you read a plan, look for its anchor: what does this home revolve around? A home with no clear centre often feels restless to live in.</p>
 
   <div class="callout">
     <strong>The three-question read.</strong> At each main space on the plan, ask: <strong>Light</strong> — where does it come from, and which way does it face? <strong>Openness</strong> — is this a sealed box or does it flow into the next space? <strong>Anchor</strong> — what does the room gather around?
@@ -346,7 +346,7 @@
     const answers = {
       q1: { correct: 1, explanation: "At 1:100, multiply paper measurements by 100. 3cm × 100 = 300cm = 3m. A compact double bedroom." },
       q2: { correct: 2, explanation: "The arc shows the door's sweep path — nothing can be in that zone or the door won't open. One of the most commonly ignored details in plan review." },
-      q3: { correct: 2, explanation: "South-facing rooms in the northern hemisphere receive the most sun across the day. One of the first things experienced architects optimise for." },
+      q3: { correct: 1, explanation: "Near the equator the midday sun is high and easy to shade — it's the low east/west sun that bites, and a west-facing room takes the hot afternoon sun. Finding north is what lets you spot it (we go deep in Lesson 4)." },
       q4: { correct: 2, explanation: "Rasmussen taught architecture is experienced, not just seen — and what you experience are the cavities (the rooms), not the walls that mould them." },
       q5: { correct: 0, explanation: "Wright's 'destruction of the box' dissolved sealed rooms into flowing, open space — the open plan. On a drawing, look for spaces that open into one another." },
       q6: { correct: 3, explanation: "Wright anchored his open plans on the hearth — the home's centre. A plan's anchor tells you what the living spaces are organised to gather around." }

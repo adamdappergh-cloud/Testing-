@@ -3,6 +3,11 @@
 ## Why
 Building a new home and already working with an architect. Want to move from passive observer to active participant — able to read what the architect is showing, spot problems before they're built, and advocate for layout decisions that will matter in daily life.
 
+## Context
+- Building in **Pokuase, Greater Accra, Ghana** — hot, humid tropics, about 6° north of the equator.
+- This climate is the course's default: lessons treat heat, sun and humidity as the things to manage (shade + cross-ventilation), not cold to keep out.
+- Units are **metric (SI)** throughout.
+
 ## Success looks like
 - Read a floor plan and immediately understand what's good or bad about it
 - Sketch or describe a layout that works — right rooms in the right places, good flow
