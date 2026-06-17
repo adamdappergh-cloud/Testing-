@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5 — Room Sizes &amp; Clearances</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #2a5fa8; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #eef3fb, #faf9f7); border: 1px solid #dce4f0; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.clr { border-collapse: collapse; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; width: 100%; }
+    table.clr th, table.clr td { border: 1px solid var(--rule); padding: 0.5rem 0.7rem; text-align: left; }
+    table.clr th { background: #f3f1ee; font-weight: 600; }
+    table.clr td.dim { font-weight: 700; color: #1d4576; white-space: nowrap; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #f0f4fb; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 5 &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Room Sizes &amp; Clearances</h1>
+  <p class="subtitle">How big a room really needs to be — and why bigger isn't the answer</p>
+
+  <p>This is the last lesson in the toolkit before the capstone. You've learned to read, zone, move through, and light a plan; now — how big should the rooms actually be? The <strong>Core</strong> gives you the clearances that decide whether a room works. The <strong>Deeper</strong> tier brings in three masters with a surprising message: the right size is set by the human body and how you'll use the room — not by how many square metres you can afford.</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">A room is its furniture plus the space to move</span>
+    <span class="blurb">Usable size = the things in the room + the clearances around them.</span>
+  </div>
+
+  <p>Here's the shift that makes you dangerous in a meeting: a room's real size isn't a number you pick off a wish-list. It's the <strong>furniture you'll actually use, plus the clearances to move around it.</strong> A "big" room with a badly placed doorway can be unusable; a modest room with the right clearances works beautifully. So you don't ask "is 4×4 m enough?" — you draw the furniture and the gaps, and see.</p>
+
+  <p>The clearances worth memorising (everyday residential figures):<sup><a href="#src">1</a></sup></p>
+
+  <table class="clr">
+    <tr><th>Where</th><th>Clearance</th><th>Why</th></tr>
+    <tr><td>Main walkway / hall</td><td class="dim">≥ 900 mm</td><td>Pass comfortably; 1050&nbsp;mm+ is better</td></tr>
+    <tr><td>Behind a dining chair</td><td class="dim">700–900 mm</td><td>Pull the chair out and squeeze past</td></tr>
+    <tr><td>Side &amp; foot of a bed</td><td class="dim">~ 600 mm</td><td>Make the bed; walk around it</td></tr>
+    <tr><td>Kitchen work aisle</td><td class="dim">1000–1200 mm</td><td>Bend, open doors; 1200&nbsp;mm if two cooks</td></tr>
+    <tr><td>In front of a sofa</td><td class="dim">~ 450 mm</td><td>Reach the coffee table; step through</td></tr>
+  </table>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A dining room plan showing the table, chairs, and the pull-out clearance that sets the room size.">
+      <rect x="50" y="30" width="500" height="240" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+      <!-- pull-out clearance bands -->
+      <rect x="56" y="36" width="488" height="40" fill="#dce9f7" opacity="0.55"/>
+      <rect x="56" y="224" width="488" height="40" fill="#dce9f7" opacity="0.55"/>
+      <!-- table -->
+      <rect x="200" y="120" width="200" height="60" fill="#efe3cf" stroke="#b89b6a" stroke-width="1.5"/>
+      <text x="300" y="155" text-anchor="middle" font-size="13" fill="#7a5a16" font-family="system-ui, sans-serif">dining table</text>
+      <!-- chairs top -->
+      <g fill="#e7e3dc" stroke="#999" stroke-width="1">
+        <rect x="215" y="96" width="44" height="18"/><rect x="278" y="96" width="44" height="18"/><rect x="341" y="96" width="44" height="18"/>
+        <rect x="215" y="186" width="44" height="18"/><rect x="278" y="186" width="44" height="18"/><rect x="341" y="186" width="44" height="18"/>
+      </g>
+      <!-- dimension arrows for clearance -->
+      <line x1="110" y1="76" x2="110" y2="224" stroke="#2a5fa8" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="105" y1="186" x2="105" y2="224" stroke="#2a5fa8" stroke-width="1.5"/>
+      <polygon points="105,186 101,194 109,194" fill="#2a5fa8"/>
+      <polygon points="105,224 101,216 109,216" fill="#2a5fa8"/>
+      <text x="300" y="252" text-anchor="middle" font-size="12" fill="#1d4576" font-family="system-ui, sans-serif">≈ 700–900 mm: pull a chair out &amp; pass behind</text>
+      <text x="300" y="22" text-anchor="middle" font-size="11" fill="#888" font-family="system-ui, sans-serif">room width = table + chairs + clearance on every side</text>
+    </svg>
+    <div class="figcap">The room isn't "the size of the table." It's the table, the chairs, and a pull-out-and-pass band on every side. Shrink the band and the room stops working.</div>
+  </div>
+
+  <p>So the method is always the same: <strong>draw the real furniture to scale, then add the clearance around it.</strong> What's left over is the actual room you need — often smaller than people guess, sometimes larger.</p>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> What really sets a room's usable size?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', true)">the furniture plus the clearance to move around it</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the total floor area printed on the drawing</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the height of the ceiling above the floor</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the number of windows along its outer wall</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> Behind a dining chair you should leave roughly&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">no real gap at all if the wall is smooth</div>
+        <div class="option" onclick="answer(this, 'q2', true)">about 700–900 mm to pull out and pass</div>
+        <div class="option" onclick="answer(this, 'q2', false)">about 200 mm, just to slide the chair</div>
+        <div class="option" onclick="answer(this, 'q2', false)">a full two metres clear on every side</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> A main walkway or hallway should be at least about&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">300 mm, roughly one shoe-length across</div>
+        <div class="option" onclick="answer(this, 'q3', false)">600 mm, the width of one narrow person</div>
+        <div class="option" onclick="answer(this, 'q3', true)">900 mm (about 36 inches) for comfort</div>
+        <div class="option" onclick="answer(this, 'q3', false)">2000 mm, or the hall feels far too tight</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> Pick one room on your plan and draw its real furniture to scale — the actual bed, the actual table and chairs. Then add the clearance bands from the table above. Does it fit with room to move? Is it tight in one spot? Or is there a lake of dead floor you're paying to build and heat?</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Drawing furniture-plus-clearance is exactly how professionals size a room, and it will catch most "it looked big on the plan but we can't move in it" problems. When you want the masters' deeper take — that good size is matched to the body and the use, not maximised — read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">Size to the human, not to the number</span>
+    <span class="blurb">Le Corbusier, Alexander and Susanka: the right size is set by the body, a usable threshold, and what you'll actually live in.</span>
+  </div>
+
+  <h2>The measure is the body (Le Corbusier)</h2>
+  <p>Le Corbusier spent years building <a href="https://en.wikipedia.org/wiki/Modulor" target="_blank">the <strong>Modulor</strong></a> — a system of proportions derived from the human body (a standing figure, an arm raised) woven together with the golden ratio. His aim: rooms, doorways and furniture sized so they <em>fit the human frame</em> and feel harmonious, in the old Vitruvian tradition of giving architecture human measure. The takeaway for you: the yardstick for a room is the body that will use it — reach, stride, sightline, the height you raise a hand to — not a round number that sounds generous.</p>
+
+  <h2>Below a threshold, a space dies (Alexander)</h2>
+  <p>Christopher Alexander found that dimensions have <em>thresholds</em>. His Pattern 167, <a href="https://www.iwritewordsgood.com/apl/patterns/apl167.htm" target="_blank"><strong>Six-Foot Balcony</strong></a>, is blunt: <em>"Balconies and porches which are less than six feet deep are hardly ever used."</em><sup><a href="#src">2</a></sup> Below roughly 1.8&nbsp;m, you can't pull up two chairs and face each other — so nobody goes out there. The same logic haunts skinny "study nooks," token window seats, and 2.4&nbsp;m "dining" ends that no real table fits. When you see one, ask: <em>is this past the threshold where it will actually get used, or is it a line on a drawing?</em></p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A too-shallow balcony nobody uses beside a deep-enough balcony with table and chairs.">
+      <!-- shallow -->
+      <g transform="translate(40,40)">
+        <rect x="0" y="0" width="14" height="150" fill="#1a1a1a"/>
+        <rect x="14" y="100" width="70" height="14" fill="#ddd" stroke="#999" stroke-width="1"/>
+        <rect x="60" y="78" width="34" height="34" fill="none" stroke="#b86a6a" stroke-width="1.5"/>
+        <text x="55" y="135" text-anchor="middle" font-size="11" fill="#b03030" font-family="system-ui, sans-serif">chair won't fit</text>
+      </g>
+      <text x="120" y="212" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">Under ~1.8 m deep — unused</text>
+      <!-- deep enough -->
+      <g transform="translate(330,40)">
+        <rect x="0" y="0" width="14" height="150" fill="#1a1a1a"/>
+        <rect x="14" y="40" width="150" height="110" fill="#dcefe0" stroke="#4a9a5e" stroke-width="1.5"/>
+        <circle cx="95" cy="95" r="22" fill="none" stroke="#4a9a5e" stroke-width="1.5"/>
+        <rect x="58" y="84" width="20" height="20" fill="none" stroke="#4a9a5e" stroke-width="1.5"/>
+        <rect x="112" y="84" width="20" height="20" fill="none" stroke="#4a9a5e" stroke-width="1.5"/>
+      </g>
+      <text x="425" y="212" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">≈ 1.8 m+ — a room outside</text>
+    </svg>
+    <div class="figcap">Alexander 167: a balcony too shallow to seat two people facing each other never gets used. Dimension decides whether a space lives.</div>
+  </div>
+
+  <h2>Build better, not bigger (Susanka)</h2>
+  <p>Sarah Susanka's <em>The Not So Big House</em> turns the instinct to enlarge on its head. Most homes waste money and life on rooms that are too big and rarely used — the formal living room nobody sits in. Her argument: <em>reapportion</em> square footage out of unused size and into the rooms you use every day, and into quality — built-ins, good light, fine detail. A right-sized room you live in beats a grand one you don't.<sup><a href="#src">3</a></sup></p>
+
+  <blockquote>Not So Big living&hellip; leaves excess square footage behind in favour of rooms and spaces that are used every day.</blockquote>
+
+  <p>Put the three together and you have a sharp test for any room your architect proposes: is it sized to the <strong>body</strong> (Le Corbusier), past the <strong>threshold</strong> where it gets used (Alexander), and <strong>no bigger than it needs to be</strong>, with the savings spent where you live (Susanka)?</p>
+
+  <div class="callout">
+    A related Alexander note worth carrying: <strong>vary your ceiling heights</strong>. A home where every ceiling is the same height feels flat; lower ceilings over intimate spaces and higher ones over shared rooms give the compression-and-release you met in Lesson 3.
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> Le Corbusier's Modulor sizes spaces to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', true)">the proportions of the human body</div>
+        <div class="option" onclick="answer(this, 'q4', false)">the cheapest standard sheet of plywood</div>
+        <div class="option" onclick="answer(this, 'q4', false)">whatever size the largest room allows</div>
+        <div class="option" onclick="answer(this, 'q4', false)">a fixed grid of plain one-metre squares</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Alexander's "six-foot balcony" teaches that a space below a certain size&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">costs far more per square metre to build</div>
+        <div class="option" onclick="answer(this, 'q5', true)">simply won't get used, however nice it looks</div>
+        <div class="option" onclick="answer(this, 'q5', false)">will always feel grand and generous inside</div>
+        <div class="option" onclick="answer(this, 'q5', false)">must by code have a window on two walls</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> Susanka's "not so big" argues you should&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">make every single room as large as you can</div>
+        <div class="option" onclick="answer(this, 'q6', false)">add a formal living and a formal dining room</div>
+        <div class="option" onclick="answer(this, 'q6', false)">maximise the total square footage above all</div>
+        <div class="option" onclick="answer(this, 'q6', true)">spend on the rooms you use, not extra size</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Right-size a room</span>
+    <span class="blurb">Test one room against the body, the threshold, and "not so big."</span>
+  </div>
+
+  <p>Take a room on your plan and run the full test:</p>
+  <ol>
+    <li><strong>Fit</strong> — draw the real furniture to scale and add the clearances. Does it work, or is it tight?</li>
+    <li><strong>Threshold</strong> — any nook, balcony, or "second" space too small to actually be used (Alexander 167)?</li>
+    <li><strong>Shape</strong> — any odd leftover or pinched corner that will just collect clutter?</li>
+    <li><strong>Not so big</strong> — is there a room that's large but rarely used, whose space (and budget) could move into one you'll live in daily (Susanka)?</li>
+  </ol>
+  <p>That's the toolkit complete. Next, we put your actual floor plan through all five lessons at once — the capstone.</p>
+
+  <div class="source-box" id="src">
+    <strong>Primary sources for this lesson</strong>
+    Le Corbusier, <a href="https://en.wikipedia.org/wiki/Modulor" target="_blank">The Modulor</a> (proportion to the body); Christopher Alexander, <a href="https://www.iwritewordsgood.com/apl/patterns/apl167.htm" target="_blank">Pattern 167 "Six-Foot Balcony"</a>; and Sarah Susanka, <a href="https://susanka.com/not-so-big-house/" target="_blank"><em>The Not So Big House</em></a>.<br><br>
+    <strong>For the numbers</strong>
+    Ernst Neufert's <em>Architects' Data</em> and Mitton &amp; Nystuen's <em>Residential Interior Design</em> are the dimension references; a quick practical set is <a href="https://www.houzz.com.sg/magazine/measurements-to-know-a-guide-for-furniture-layout-and-ergonomics-stsetivw-vs~109239110" target="_blank">Houzz's "Measurements to Know."</a>
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — ask anything. Send me a room and its furniture and we'll size it together, clearance by clearance. This is the last toolkit lesson: when you're ready, the <strong>capstone</strong> puts your real floor plan through everything — reading, zoning, circulation, light, and size — in one pass.
+  </div>
+
+  <footer>
+    Lesson 5 &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0005-light-and-orientation.html">&larr; Lesson 4</a> &nbsp;·&nbsp;
+    <a href="../reference/glossary.html">Glossary</a> &nbsp;·&nbsp;
+    <a href="../reference/">Reference</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 0, explanation: "A room's usable size is the furniture you'll use plus the clearances to move around it — not raw floor area, ceiling height, or windows." },
+      q2: { correct: 1, explanation: "Leave roughly 700–900 mm behind a dining chair so it can be pulled out and someone can pass — a common reason 'big' dining rooms feel cramped." },
+      q3: { correct: 2, explanation: "Main walkways and halls want at least ~900 mm (about 36 inches); 1050 mm or more is noticeably more comfortable." },
+      q4: { correct: 0, explanation: "The Modulor derives its proportions from the human body (plus the golden ratio), so spaces and furniture fit the human frame." },
+      q5: { correct: 1, explanation: "Pattern 167: below about six feet (1.8 m) deep, a balcony can't seat people facing each other, so it goes unused. Dimension decides use." },
+      q6: { correct: 3, explanation: "Susanka argues for building better, not bigger — reapportioning square footage and budget into the rooms you actually use, and into quality." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>

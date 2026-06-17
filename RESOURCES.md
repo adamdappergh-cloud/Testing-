@@ -17,6 +17,9 @@
 - [Le Corbusier — Promenade Architecturale (Villa Savoye)](https://www.villa-savoye.fr/en/discover/an-architectural-promenade)
   Le Corbusier's idea of circulation as a composed journey through a building — at Villa Savoye the ramp turns moving through the house into its main event. Use for: treating the *route* through a home as something designed, not space left over. (Lesson 3.)
 
+- [Le Corbusier — The Modulor](https://en.wikipedia.org/wiki/Modulor)
+  His proportioning system built from the human body and the golden ratio, so rooms and furniture fit the human frame. Use for: Lesson 5 — the idea that a room's measure is the body, not a round number.
+
 - [Frank Lloyd Wright — Organic Architecture (Frank Lloyd Wright Foundation)](https://flwright.org/sites/default/files/ckfinder/userfiles/files/Wright-Organic-Architecture.pdf)
   Wright's own essay on his principles. Form and function as one; buildings growing from the inside out. Use for: questioning whether your floor plan starts from *how you live* or from an external shape imposed on the site.
 
@@ -54,6 +57,12 @@
 
 - [Passive Solar Design: Siting & Orientation — GreenSpec](http://www.greenspec.co.uk/building-design/solar-siting-orientation/)
   Clear, practical guide to orienting a house and its rooms to the sun (living spaces to the south, service spaces to the north). Use for: Lesson 4 — the orientation basics.
+
+- [_Architects' Data_ — Ernst Neufert](https://en.wikipedia.org/wiki/Architects%27_Data)
+  The standard reference for the dimensions of nearly everything — room sizes, furniture, fixtures, clearances. Use for: Lesson 5 — looking up how much space a thing actually needs.
+
+- [Measurements to Know: Furniture Layout & Ergonomics — Houzz](https://www.houzz.com.sg/magazine/measurements-to-know-a-guide-for-furniture-layout-and-ergonomics-stsetivw-vs~109239110)
+  Practical residential clearances — walkways, dining pull-outs, bed and sofa gaps. Use for: Lesson 5 — the everyday clearance numbers.
 
 ## Gaps
 
