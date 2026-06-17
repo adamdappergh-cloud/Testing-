@@ -1,5 +1,25 @@
 # Residential Space Planning Resources
 
+## Architectural Masters (Primary Sources)
+
+- [_The Natural House_ — Frank Lloyd Wright](https://www.goodreads.com/book/show/156266.The_Natural_House)
+  Wright's own words on residential design. Introduces the open plan, the hearth as centre, and rooms that flow into each other rather than being boxed off. Use for: understanding *why* open plans exist and what they sacrifice when done badly.
+
+- [_Experiencing Architecture_ — Steen Eiler Rasmussen](https://mitpress.mit.edu/9780262680028/experiencing-architecture/)
+  A Danish master's account of how spaces are *felt*, not just seen — daylight, rhythm, scale, texture. One of the most readable architecture books ever written. Use for: developing the instinct to evaluate how a room will actually feel to live in, not just how it looks on a plan.
+
+- [_A Pattern Language_ — Christopher Alexander](https://christopher-alexander-ces-archive.org/book/a-pattern-language/)
+  253 design patterns distilled from human experience — from community scale down to window seats and cooking layouts. Dense but authoritative. Use for: any layout decision that feels like "something is off but I can't say why."
+
+- [Louis Kahn — Served and Servant Spaces](https://allthingsarch.com/servant-and-served-spaces/)
+  Kahn's distinction between the spaces where life happens (served: living room, bedroom, study) and the spaces that support them (servant: corridor, bathroom, kitchen, storage). Use for: evaluating whether your architect has organised the plan with a clear hierarchy — or just filled in rooms.
+
+- [Frank Lloyd Wright — Organic Architecture (Frank Lloyd Wright Foundation)](https://flwright.org/sites/default/files/ckfinder/userfiles/files/Wright-Organic-Architecture.pdf)
+  Wright's own essay on his principles. Form and function as one; buildings growing from the inside out. Use for: questioning whether your floor plan starts from *how you live* or from an external shape imposed on the site.
+
+- [_The Not So Big House_ — Sarah Susanka](https://susanka.com/not-so-big-house/)
+  Bestselling book arguing for quality over size in residential design. Susanka was directly influenced by Alexander. Use for: grounding your instincts when an architect proposes something that feels oversized or underconsidered.
+
 ## Knowledge
 
 - [How to Read Floor Plans: A 9-Step Guide for Beginners — Foyr](https://foyr.com/learn/how-to-read-floor-plans/)
