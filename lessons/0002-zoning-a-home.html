@@ -122,7 +122,7 @@
 
   <div class="zone-row">
     <div class="zone-tag public">Public</div>
-    <div class="zone-desc"><strong>Where you gather and receive guests.</strong> Living room, dining room, kitchen, guest WC. Should sit close to the front entry and flow together. The kitchen is the in-between case — a working space gone social — so it usually bridges public and service.</div>
+    <div class="zone-desc"><strong>Where you gather and receive guests.</strong> Living, dining, kitchen, guest WC — and in a warm climate this zone often spills <em>outdoors</em> onto a veranda or shaded courtyard, which can become the real gathering space. Should sit close to the front entry and flow together. The kitchen is the in-between case — a working space gone social — so it usually bridges public and service.</div>
   </div>
   <div class="zone-row">
     <div class="zone-tag private">Private</div>
@@ -130,7 +130,7 @@
   </div>
   <div class="zone-row">
     <div class="zone-tag service">Service</div>
-    <div class="zone-desc"><strong>Where the house does its work.</strong> Laundry, utility, pantry, mudroom, garage, storage. They support the other zones and are happiest tucked near where they're used — laundry near bedrooms, pantry and garage near the kitchen.</div>
+    <div class="zone-desc"><strong>Where the house does its work.</strong> Laundry, utility, pantry, store, carport or garage. They support the other zones and are happiest tucked near where they're used — laundry near the bedrooms, pantry and store near the kitchen.</div>
   </div>
 
   <h2>What good zoning looks like</h2>
@@ -165,7 +165,7 @@
 
   <p><strong>1. Buffer the private zone.</strong> Never open a bedroom door straight into the living room. Put a hall, a stair, or a service room between the noise and the rest.</p>
   <p><strong>2. Keep traffic out of zones it doesn't belong in.</strong> You shouldn't walk through the dining room to reach a bedroom, or cut across the kitchen's work area to reach the garden.</p>
-  <p><strong>3. Place service where it serves.</strong> The pantry and garage want to be a few steps from the kitchen; the laundry wants to be near the bedrooms it serves.</p>
+  <p><strong>3. Place service where it serves.</strong> The pantry and store want to be a few steps from the kitchen; the laundry wants to be near the bedrooms it serves.</p>
 
   <div class="callout">
     The single test that catches most bad layouts: <strong>"At night, to get from my bed to the front door, what rooms do I cross?"</strong> If it routes you through a sleeping child's room or a guest's space, the zoning is wrong.
@@ -201,12 +201,12 @@
     </div>
 
     <div class="question" id="q3">
-      <p><strong>3.</strong> Good zoning places the garage and pantry close to the kitchen mainly so that&hellip;</p>
+      <p><strong>3.</strong> Good zoning places the pantry and store close to the kitchen mainly so that&hellip;</p>
       <div class="options">
         <div class="option" onclick="answer(this, 'q3', true)">groceries travel a short, direct carrying path</div>
         <div class="option" onclick="answer(this, 'q3', false)">bedrooms stay quiet and dark through the night</div>
         <div class="option" onclick="answer(this, 'q3', false)">visitors arrive into a generous, open hallway</div>
-        <div class="option" onclick="answer(this, 'q3', false)">the living room receives the best afternoon sun</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the bathrooms can share a single plumbing wall</div>
       </div>
       <div class="feedback" id="q3-feedback"></div>
     </div>
@@ -280,7 +280,7 @@
   <h2>The tool: bubble &amp; adjacency diagrams</h2>
   <p>Before a single room is drawn, architects sketch the plan as <strong>bubbles</strong>. It's how they apply the gradient and the served/servant split without committing to walls. The workflow:<sup><a href="#src">3</a></sup></p>
   <ol>
-    <li><strong>List every space</strong> — be specific (a pantry is not a coat closet).</li>
+    <li><strong>List every space</strong> — be specific (a pantry is not a storeroom).</li>
     <li><strong>Size each</strong> roughly: large, medium, or small.</li>
     <li><strong>Build an adjacency matrix</strong> — for every pair of rooms, mark how close they want to be.</li>
     <li><strong>Draw bubbles</strong> sized by importance, connect the ones that must be adjacent, and redraw it two or three times.</li>
@@ -299,7 +299,7 @@
       <tr><td class="lab">Living</td><td class="near">&#9675;</td><td class="yes">&#9679;</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
       <tr><td class="lab">Bedroom</td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="blank"></td><td class="blank"></td></tr>
       <tr><td class="lab">Bath</td><td class="na">&middot;</td><td class="na">&middot;</td><td class="na">&middot;</td><td class="yes">&#9679;</td><td class="blank"></td></tr>
-      <tr><td class="lab">Garage</td><td class="yes">&#9679;</td><td class="na">&middot;</td><td class="na">&middot;</td><td class="no">&#10005;</td><td class="na">&middot;</td></tr>
+      <tr><td class="lab">Veranda</td><td class="near">&#9675;</td><td class="yes">&#9679;</td><td class="yes">&#9679;</td><td class="na">&middot;</td><td class="na">&middot;</td></tr>
     </table>
   </div>
   <div class="matrix-legend">
@@ -309,7 +309,7 @@
     <span><b class="no">&#10005;</b> keep apart</span>
   </div>
 
-  <p>Notice the matrix quietly <em>encodes the gradient</em>: kitchen touches dining, garage touches kitchen, the en-suite touches its bedroom — but the bedrooms are <span class="no">&#10005;</span> against kitchen, dining, <em>and</em> living. The private zone is held at a distance on every front.</p>
+  <p>Notice the matrix quietly <em>encodes the gradient</em>: kitchen touches dining, the veranda extends the living and dining <em>outdoors</em>, the en-suite touches its bedroom — but the bedrooms are <span class="no">&#10005;</span> against kitchen, dining, <em>and</em> living. The private zone is held at a distance on every front.</p>
 
   <h2>Checkpoint</h2>
   <div class="quiz">
@@ -389,7 +389,7 @@
     const answers = {
       q1: { correct: 1, explanation: "Bedrooms are private and must be buffered from public, high-traffic rooms — a door straight onto the living room breaks that separation." },
       q2: { correct: 2, explanation: "Routing people through the dining room forces private traffic across a public zone — one of the most common zoning mistakes." },
-      q3: { correct: 0, explanation: "Service spaces should sit where they're used. Garage and pantry by the kitchen keep the grocery-carrying path short and direct." },
+      q3: { correct: 0, explanation: "Service spaces should sit where they're used. A pantry and store by the kitchen keep the grocery-carrying path short and direct." },
       q4: { correct: 0, explanation: "The intimacy gradient sequences spaces so they get steadily more private the deeper you go — not equal, and not with bedrooms near the door." },
       q5: { correct: 1, explanation: "Servant spaces support the life of the house — stairs, halls, storage, bathrooms. Living rooms, bedrooms and studies are the served spaces." },
       q6: { correct: 0, explanation: "Workflow: program list → sizes → adjacency matrix → bubble diagram → floor plan. The bubbles come after the matrix and before the plan." }
