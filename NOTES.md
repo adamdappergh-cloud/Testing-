@@ -14,3 +14,7 @@
   4. *(optional)* **Tier 3 · Apply** — run it against the user's real plan.
   5. Primary source (a master), glossary links, ask-the-teacher, next lesson.
 - Tiers are visually signposted as "chapters" so working memory always knows where it is, and each depth tier is gated behind a checkpoint quiz.
+
+## Course arc
+
+- The "put your own floor plan through everything you've learned" session is the **capstone**, saved for the **end of the series** — not interleaved between lessons. The user wants to learn the full toolkit first, then apply it to their real plan in one pass.

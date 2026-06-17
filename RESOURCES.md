@@ -49,6 +49,12 @@
 - [_Residential Interior Design: A Guide to Planning Spaces_ — Mitton & Nystuen](https://www.goodreads.com/book/show/30125294)
   Industry-standard reference with hundreds of drawings and dimensions for every room type. Use for: specific room sizing questions (how big should a bedroom be? how much clearance around a dining table?).
 
+- [Light on Two Sides of Every Room (Pattern 159) — Christopher Alexander](https://www.patternlanguage.com/apl/aplsample/apl159/apl159.htm)
+  The full text of Alexander's most decisive room pattern: light on two sides, or the room goes unused. Use for: Lesson 4 — the single most testable rule for whether a room will work.
+
+- [Passive Solar Design: Siting & Orientation — GreenSpec](http://www.greenspec.co.uk/building-design/solar-siting-orientation/)
+  Clear, practical guide to orienting a house and its rooms to the sun (living spaces to the south, service spaces to the north). Use for: Lesson 4 — the orientation basics.
+
 ## Gaps
 
 - Circulation is now grounded in the masters — Alexander (Patterns 131 *The Flow Through Rooms* & 132 *Short Passages*), Le Corbusier (*promenade architecturale*), and Wright (compression & release) — used in Lesson 3. A single free, *visual* beginner resource dedicated to residential circulation would still be a welcome addition if one surfaces.

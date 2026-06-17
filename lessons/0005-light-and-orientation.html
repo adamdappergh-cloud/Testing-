@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 4 — Light &amp; Orientation</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #2a5fa8; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #eef3fb, #faf9f7); border: 1px solid #dce4f0; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #f0f4fb; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Lesson 4 &nbsp;·&nbsp; Residential Space Planning</div>
+
+  <h1>Light &amp; Orientation</h1>
+  <p class="subtitle">Letting the sun set the plan</p>
+
+  <p>You can read a plan, zone it, and move through it. Now the factor that should arguably drive all of those: <strong>the sun</strong>. Where light falls decides which rooms belong where — and it's the one thing about your site you cannot change later. The <strong>Core</strong> gives you the orientation rules; the <strong>Deeper</strong> tier shows how the masters treated light not as a feature but as the very material of architecture.</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">Orient to the sun</span>
+    <span class="blurb">Put each room where the light it needs actually falls.</span>
+  </div>
+
+  <p>In Lesson 1 you learned to find the north arrow. Here's why it's the most important mark on the drawing. In the northern hemisphere the sun rises in the <strong>east</strong>, swings across the <strong>south</strong>, and sets in the <strong>west</strong> — it is never in the north. Each direction gives a different light:<sup><a href="#src">1</a></sup></p>
+
+  <ul>
+    <li><strong>South — the prize.</strong> Sun all day, and the most consistent. Reserve it for the rooms you live in by day: living, kitchen, dining.</li>
+    <li><strong>East — morning.</strong> Gentle early light. Good for breakfast spaces and bedrooms, where waking with light is a pleasure.</li>
+    <li><strong>West — evening, with care.</strong> Low, hot, glaring afternoon sun. Fine for rooms used in the evening, but a big west window cooks a room and dazzles you. Shade it.</li>
+    <li><strong>North — even and cool.</strong> No direct sun, but soft, steady, shadowless light. Perfect for the spaces that don't need warmth: garage, laundry, utility, bathrooms, stairs — and, prized by artists, studios.</li>
+  </ul>
+
+  <p>So the rule is simple: <strong>place rooms by when you use them and the light they want.</strong> Living spaces chase the sun; service and circulation can take the north and the shade. One free bonus — a house whose <em>long axis runs east–west</em> presents a big face to the south, which makes good orientation almost automatic.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The sun's daily path with rooms placed by orientation; south at the top toward the sun.">
+      <!-- sun arc -->
+      <path d="M70,180 Q300,40 530,180" fill="none" stroke="#e3b94e" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <!-- suns -->
+      <g stroke="#e3b94e" stroke-width="1.5" fill="none">
+        <circle cx="70" cy="180" r="11" fill="#f5e6c0"/><circle cx="300" cy="62" r="15" fill="#f6d873"/><circle cx="530" cy="180" r="11" fill="#eebf86"/>
+      </g>
+      <text x="70" y="205" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">EAST · morning</text>
+      <text x="300" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a1e" font-family="system-ui, sans-serif">SOUTH · midday — strongest</text>
+      <text x="530" y="205" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">WEST · evening</text>
+      <!-- house -->
+      <rect x="222" y="222" width="156" height="150" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+      <rect x="226" y="226" width="148" height="48" fill="#fdf4dc"/>
+      <text x="300" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a1e" font-family="system-ui, sans-serif">SOUTH</text>
+      <text x="300" y="264" text-anchor="middle" font-size="11" fill="#7a5a16" font-family="system-ui, sans-serif">living · kitchen · dining</text>
+      <rect x="226" y="324" width="148" height="44" fill="#e8eef5"/>
+      <text x="300" y="344" text-anchor="middle" font-size="11" font-weight="700" fill="#3a5b86" font-family="system-ui, sans-serif">NORTH</text>
+      <text x="300" y="361" text-anchor="middle" font-size="11" fill="#3a5b86" font-family="system-ui, sans-serif">garage · laundry · bath</text>
+      <text x="300" y="302" text-anchor="middle" font-size="11" fill="#555" font-family="system-ui, sans-serif">bedrooms (E) &nbsp;|&nbsp; evening rooms (W)</text>
+      <!-- compass letters -->
+      <text x="205" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="#888" font-family="system-ui, sans-serif">E</text>
+      <text x="395" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="#888" font-family="system-ui, sans-serif">W</text>
+      <text x="300" y="392" text-anchor="middle" font-size="10" fill="#999" font-family="system-ui, sans-serif">(south drawn at the top, toward the sun)</text>
+    </svg>
+    <div class="figcap">Give the sunny south to the rooms you use by day; send the service spaces to the cool north.</div>
+  </div>
+
+  <div class="callout">
+    This is where two ideas can collide. The <strong>privacy gradient</strong> (Lesson 2) may want bedrooms at the quiet back of the house — but the sun may be at the front. A good plan resolves the clash deliberately; a weak one just picks one and forgets the other. Spotting that tension is a sharp question for your architect.
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> In the northern hemisphere, which rooms most want the south side?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', true)">the daytime rooms — living, kitchen, dining</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the garage, the laundry and the storage</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the rooms used only after dark each day</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the cold buffer spaces and the long halls</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> Why treat a big west-facing window with caution?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">It never receives any direct sun at all</div>
+        <div class="option" onclick="answer(this, 'q2', true)">Low evening sun brings glare and overheating</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It makes the room colder right through winter</div>
+        <div class="option" onclick="answer(this, 'q2', false)">It only lets light in early in the morning</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> North-facing rooms (northern hemisphere) suit&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">the main living room used right through the day</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the breakfast room that wants warm morning sun</div>
+        <div class="option" onclick="answer(this, 'q3', true)">service spaces and studios wanting steady light</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the warmest, sunniest gathering spot in the home</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> On your plan, find north and sketch the sun's path — east, up over the south, down to the west. Then check: do the rooms you use by day sit on the sunny side? Do bedrooms catch the morning? Is there a wall of west-facing glass about to cook the living room of an afternoon? Three questions, and you'll already be ahead of most clients.</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Orienting rooms to the sun by when you use them is most of the win. When you want to treat light the way the masters did — as the material the architecture is actually made of — carry on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">Light is the material</span>
+    <span class="blurb">Kahn, Le Corbusier, Alexander and Rasmussen on light as the thing architecture is made of — and one rule that makes or breaks a room.</span>
+  </div>
+
+  <h2>A room needs light to be a room (Kahn)</h2>
+  <p>No one put it more starkly than Louis Kahn: <em>"A room is not a room without natural light."</em><sup><a href="#src">2</a></sup> For Kahn, daylight wasn't lighting — it was what gave a space life and mood, and that mood is never still: a room "is a different room every second of the day" as the light moves. His most quoted line captures the awe: <em>"The sun never knew how great it was until it hit the side of a building."</em></p>
+  <p>The lesson for a client: don't just ask <em>"is there a window?"</em> Ask what the light <em>does</em> — which direction it comes from, what surfaces it grazes, how it will change from morning to evening and summer to winter.</p>
+
+  <h2>Light reveals form (Le Corbusier)</h2>
+  <p>Le Corbusier opened <em>Towards a New Architecture</em> with it: <em>"Architecture is the masterly, correct and magnificent play of masses brought together in light. Our eyes are made to see forms in light; light and shade reveal these forms."</em><sup><a href="#src">2</a></sup> Flat, even, shadowless light flattens a space; light raking across a wall or pouring from one side gives a room depth and shape. Shadow is not the enemy of light — it's the half that makes light visible.</p>
+
+  <h2>The rule that makes or breaks a room (Alexander)</h2>
+  <p>Christopher Alexander's Pattern 159, <a href="https://www.patternlanguage.com/apl/aplsample/apl159/apl159.htm" target="_blank"><strong>Light on Two Sides of Every Room</strong></a>, is blunt: this pattern, he writes, "perhaps more than any other single pattern, determines the success or failure of a room." People <em>gravitate</em> to rooms lit from two sides and quietly abandon rooms lit from one. A single-sided room fights you with glare by the window and gloom across from it; light from two sides softens the shadows, so you can even read the expressions on people's faces.<sup><a href="#src">2</a></sup></p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A room lit from one side, glare to gloom, beside a room lit from two sides, balanced.">
+      <defs>
+        <linearGradient id="oneSide" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fdf4dc"/><stop offset="100%" stop-color="#cdc7bd"/>
+        </linearGradient>
+        <linearGradient id="twoSideA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fdf4dc"/><stop offset="100%" stop-color="#f4ecd8"/>
+        </linearGradient>
+      </defs>
+      <!-- one side -->
+      <g transform="translate(40,30)">
+        <rect x="0" y="0" width="210" height="150" fill="url(#oneSide)" stroke="#1a1a1a" stroke-width="3"/>
+        <rect x="70" y="-4" width="70" height="8" fill="#bfe0f2" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="105" y1="6" x2="95" y2="40" stroke="#e3b94e" stroke-width="1"/>
+        <line x1="105" y1="6" x2="115" y2="40" stroke="#e3b94e" stroke-width="1"/>
+      </g>
+      <text x="145" y="210" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">Lit from one side — glare, then gloom</text>
+      <!-- two sides -->
+      <g transform="translate(350,30)">
+        <rect x="0" y="0" width="210" height="150" fill="url(#twoSideA)" stroke="#1a1a1a" stroke-width="3"/>
+        <rect x="70" y="-4" width="70" height="8" fill="#bfe0f2" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="-4" y="55" width="8" height="60" fill="#bfe0f2" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="105" y1="6" x2="105" y2="34" stroke="#e3b94e" stroke-width="1"/>
+        <line x1="6" y1="85" x2="34" y2="85" stroke="#e3b94e" stroke-width="1"/>
+      </g>
+      <text x="455" y="210" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">Lit from two sides — balanced, used</text>
+    </svg>
+    <div class="figcap">Alexander 159: windows on two sides of a room wash out the harsh shadows of a single-sided room — and people feel the difference.</div>
+  </div>
+
+  <p>Steen Eiler Rasmussen (whose <em>cavities</em> you met in Lesson 1) devotes whole chapters of <em>Experiencing Architecture</em> to exactly this — how the <em>quality</em> of light, direct or reflected, the play of light and shade, is what you actually feel in a room. The through-line from all four masters: light isn't poured into finished rooms. The rooms are <em>shaped around</em> the light.</p>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> Kahn's "a room is not a room without natural light" means&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', false)">every room needs electric lighting to function</div>
+        <div class="option" onclick="answer(this, 'q4', true)">natural light is essential to a room's life</div>
+        <div class="option" onclick="answer(this, 'q4', false)">windows should always face toward true south</div>
+        <div class="option" onclick="answer(this, 'q4', false)">a dark room can never be used for anything</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Alexander says the single thing that most makes or breaks a room is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">the height of its ceiling above the floor</div>
+        <div class="option" onclick="answer(this, 'q5', false)">the thickness of its surrounding solid walls</div>
+        <div class="option" onclick="answer(this, 'q5', true)">having natural light on two of its sides</div>
+        <div class="option" onclick="answer(this, 'q5', false)">the way its main doorway happens to open</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> A room lit from only one side tends to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">feel balanced, with soft and even shadows</div>
+        <div class="option" onclick="answer(this, 'q6', false)">draw people in and stay the most used</div>
+        <div class="option" onclick="answer(this, 'q6', false)">save much of the home's daytime heating</div>
+        <div class="option" onclick="answer(this, 'q6', true)">suffer glare then gloom, and go unused</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Trace the sun on your plan</span>
+    <span class="blurb">Read your home for light, room by room.</span>
+  </div>
+
+  <p>Take your plan, find north, and draw the sun's arc (E &rarr; S &rarr; W). Then, for each main room, note:</p>
+  <ol>
+    <li><strong>Aspect</strong> — which way does it face, and is that right for when you use it?</li>
+    <li><strong>Two sides</strong> — how many walls have windows? Mark every room lit from only one side (Alexander 159).</li>
+    <li><strong>Trouble</strong> — any west wall of glass to shade, or any key room left in the north gloom?</li>
+    <li><strong>Clash</strong> — where do the sun and the privacy gradient pull against each other, and how does the plan settle it?</li>
+  </ol>
+  <p>That annotated plan is a genuinely expert thing to bring to a meeting — you'll be discussing the one site condition the architect can't undo.</p>
+
+  <div class="source-box" id="src">
+    <strong>Primary sources for this lesson</strong>
+    Louis Kahn on natural light (<a href="https://www.azquotes.com/author/7694-Louis_Kahn" target="_blank">collected quotes</a>); Christopher Alexander, <a href="https://www.patternlanguage.com/apl/aplsample/apl159/apl159.htm" target="_blank">Pattern 159 "Light on Two Sides of Every Room"</a>; Le Corbusier, <a href="https://en.wikiquote.org/wiki/Le_Corbusier" target="_blank"><em>Towards a New Architecture</em></a>; and Rasmussen, <a href="https://mitpress.mit.edu/9780262680028/experiencing-architecture/" target="_blank"><em>Experiencing Architecture</em></a> (the chapters on light).<br><br>
+    <strong>For the orientation basics</strong>
+    <a href="http://www.greenspec.co.uk/building-design/solar-siting-orientation/" target="_blank">Passive Solar Design: Siting &amp; Orientation — GreenSpec</a>.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — ask anything. Send me your plan with the north arrow and we'll trace the sun across it together, flagging single-sided rooms and any sun-vs-privacy clashes. A future lesson will look at <em>room sizes and the clearances</em> that make rooms actually work — and then the series finishes with a capstone where we put your real floor plan through everything you've learned.
+  </div>
+
+  <footer>
+    Lesson 4 &nbsp;·&nbsp; Residential Space Planning &nbsp;·&nbsp;
+    <a href="0004-moving-through-a-home.html">&larr; Lesson 3</a> &nbsp;·&nbsp;
+    <a href="../reference/glossary.html">Glossary</a> &nbsp;·&nbsp;
+    <a href="../reference/">Reference</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 0, explanation: "South gets sun all day in the northern hemisphere — give it to the rooms you live in by day: living, kitchen, dining." },
+      q2: { correct: 1, explanation: "Low west sun in the afternoon causes glare and overheating; a big unshaded west window cooks the room. Shade it or keep it small." },
+      q3: { correct: 2, explanation: "North light is soft, even and shadowless — ideal for service spaces and studios, and fine for rooms that don't need warmth." },
+      q4: { correct: 1, explanation: "Kahn meant natural light is essential to a room's life and mood — not that electric light is enough, and not that dark rooms have no use." },
+      q5: { correct: 2, explanation: "Pattern 159: light on two sides 'more than any other single pattern, determines the success or failure of a room.'" },
+      q6: { correct: 3, explanation: "One-sided light gives glare at the window and gloom across from it — Alexander found people abandon such rooms for two-sided ones." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
