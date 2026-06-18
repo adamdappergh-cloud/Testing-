@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form-Making · Lesson 2 — The Roof as Primary Form</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #146b54; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.sub { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #e7f3ee, #faf9f7); border: 1px solid #cfe6dc; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .make { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; }
+    .make strong { color: #8a5a12; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.force { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; }
+    table.force th, table.force td { border: 1px solid var(--rule); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    table.force th { background: #eef3f1; font-weight: 600; }
+    table.force td.f { font-weight: 600; white-space: nowrap; color: #146b54; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #eef5f2; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Form-Making &nbsp;·&nbsp; Lesson 2</div>
+
+  <h1>The Roof as Primary Form</h1>
+  <p class="subtitle">In the tropics, the roof <em>is</em> the building — shade, shelter and breath in one shape</p>
+
+  <p>In Lesson 1 you made a <strong>site-force map</strong>. Look at it: the biggest, first move it asks for is almost always the <strong>roof</strong>. In a hot, wet climate the roof is not a lid you add at the end — it is the <strong>primary form</strong>, the single element that does the most climate work. So we tackle it first. This lesson turns the roof into real, comparable form options, and by the end you'll have made your second artefact: <strong>three roof studies in section</strong>. (Still exploring freely from the site — no concept plan in sight.)</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">The roof does three jobs</span>
+    <span class="blurb">Shade, shed, breathe — and its shape is the answer to all three.</span>
+  </div>
+
+  <p>On the Pokuase site the roof meets three forces at once. Each one pushes its shape:</p>
+
+  <table class="force">
+    <tr><th>The job</th><th>What it pushes the roof to do</th></tr>
+    <tr><td class="f">Shade (sun)</td><td><strong>Deep overhangs / wide eaves</strong> (think ~1&nbsp;m or more) and a <strong>broad, spreading form</strong> — even a "parasol" that floats over everything — so the walls and openings sit in shadow all day.</td></tr>
+    <tr><td class="f">Shed (rain)</td><td>A <strong>generous pitch</strong> plus those overhangs <strong>throw the heavy water clear</strong> of the walls and the raised plinth, so nothing splashes back or rots the base.</td></tr>
+    <tr><td class="f">Breathe (heat)</td><td>A <strong>vented or raised ridge</strong>, a <strong>double (ventilated) roof</strong>, or a tall internal volume lets hot air <strong>escape at the top</strong> — the stack effect — pulling cooler air in low.</td></tr>
+  </table>
+
+  <p>Because <em>one shape</em> must do all three, the roof becomes the dominant gesture of a tropical building — often larger than the walls, reaching well past them, and lifted to breathe. When you generate roofs, work from four families:</p>
+  <ul>
+    <li><strong>The broad pitched / hip roof with deep eaves</strong> — the reliable workhorse.</li>
+    <li><strong>The parasol</strong> — one large roof detached and floating above the rooms, shading the whole thing, with an air gap that vents.</li>
+    <li><strong>The double / ventilated roof</strong> — a second skin or raised ridge whose job is to let heat out.</li>
+    <li><strong>The twin-ridge / butterfly</strong> — to steer breeze, light or water (use with care where rain is heavy).</li>
+  </ul>
+
+  <p>The roof is also where Lesson 1's <em>tensions</em> get resolved: the same overhang that defends the wall from the west sun can frame the opening you turn to the SW breeze, and the same pitch that sheds the rain can be lifted at the ridge to vent the heat. <strong>One form, doing several jobs at once — that is good tropical form-making.</strong></p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Section through a tropical building: a broad parasol roof with deep overhangs and a vented ridge shades the wall, sheds rain clear of a raised plinth, and lets hot air escape while the breeze enters low.">
+      <!-- sun + ray onto the eave -->
+      <circle cx="545" cy="74" r="12" fill="#f6d873" stroke="#e3b94e"/>
+      <text x="545" y="56" text-anchor="middle" font-size="9.5" fill="#9a7a1e" font-family="system-ui, sans-serif">hot sun</text>
+      <line x1="537" y1="84" x2="463" y2="180" stroke="#e3b94e" stroke-width="2"/>
+      <!-- ground -->
+      <line x1="28" y1="330" x2="572" y2="330" stroke="#1a1a1a" stroke-width="1.5"/>
+      <!-- raised plinth -->
+      <rect x="178" y="306" width="224" height="24" fill="#e8e2d8" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="338" y="322" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">raised plinth</text>
+      <!-- room volume -->
+      <rect x="208" y="232" width="164" height="74" fill="#f4f7f6" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="262" y="299" text-anchor="middle" font-size="9.5" fill="#999" font-family="system-ui, sans-serif">living space</text>
+      <!-- thin posts: the parasol floats, gap = ventilation -->
+      <line x1="208" y1="232" x2="208" y2="148" stroke="#aaa" stroke-width="2"/>
+      <line x1="372" y1="232" x2="372" y2="148" stroke="#aaa" stroke-width="2"/>
+      <!-- low breeze opening -->
+      <rect x="203" y="262" width="10" height="40" fill="#dceaf3" stroke="#2a8acb" stroke-width="1.5"/>
+      <!-- shaded window -->
+      <rect x="367" y="250" width="10" height="42" fill="#fbe9dc" stroke="#c0392b" stroke-width="1.5"/>
+      <!-- eave-shadow edge: wall & window sit in shade -->
+      <line x1="462" y1="182" x2="376" y2="296" stroke="#c0392b" stroke-width="1" stroke-dasharray="4 4"/>
+      <!-- PARASOL ROOF: deep overhangs + vented ridge -->
+      <g stroke="#5a4632" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M118,182 L278,120"/>
+        <path d="M302,120 L462,182"/>
+        <path d="M266,104 L314,104"/>
+      </g>
+      <!-- hot air rising out the ridge -->
+      <line x1="290" y1="300" x2="290" y2="134" stroke="#b5651d" stroke-width="2" stroke-dasharray="6 5"/>
+      <polygon points="290,124 284,139 296,139" fill="#b5651d"/>
+      <!-- breeze in low -->
+      <line x1="120" y1="316" x2="200" y2="280" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="200,280 189,281 195,290" fill="#2a8acb"/>
+      <!-- rain onto roof + runoff clear of plinth -->
+      <g stroke="#5a8fb0" stroke-width="2">
+        <line x1="150" y1="118" x2="143" y2="134"/><line x1="172" y1="110" x2="165" y2="126"/><line x1="194" y1="118" x2="187" y2="134"/>
+      </g>
+      <line x1="118" y1="182" x2="111" y2="326" stroke="#5a8fb0" stroke-width="2" stroke-dasharray="3 5"/>
+      <!-- labels -->
+      <text x="290" y="92" text-anchor="middle" font-size="9.5" fill="#146b54" font-family="system-ui, sans-serif">vented ridge — hot air escapes</text>
+      <text x="486" y="236" font-size="9.5" fill="#c0392b" font-family="system-ui, sans-serif">deep eave</text>
+      <text x="486" y="249" font-size="9.5" fill="#c0392b" font-family="system-ui, sans-serif">shades the wall</text>
+      <text x="40" y="198" font-size="9.5" fill="#5a8fb0" font-family="system-ui, sans-serif">rain sheds</text>
+      <text x="40" y="211" font-size="9.5" fill="#5a8fb0" font-family="system-ui, sans-serif">clear of plinth</text>
+      <text x="34" y="300" font-size="9.5" fill="#2a8acb" font-family="system-ui, sans-serif">breeze in low</text>
+    </svg>
+    <div class="figcap">A tropical section: the roof is the primary form. A broad parasol with deep overhangs shades the walls, a pitch throws the rain clear of a raised plinth, and a vented ridge lets hot air out while the breeze enters low. <em>Three climate jobs, one big shape.</em></div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> In a hot, wet climate the roof is best understood as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">a decorative cap, added at the very end</div>
+        <div class="option" onclick="answer(this, 'q1', true)">the building's primary form — it does the most climate work</div>
+        <div class="option" onclick="answer(this, 'q1', false)">only a rain cover, with no role in shade or heat</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the cheapest part, to value-engineer away first</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> A "parasol" roof is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', true)">one large roof floating over the rooms with an air gap, shading the whole building</div>
+        <div class="option" onclick="answer(this, 'q2', false)">a flat slab sealed directly onto the walls</div>
+        <div class="option" onclick="answer(this, 'q2', false)">a small porch roof over the front door only</div>
+        <div class="option" onclick="answer(this, 'q2', false)">a roof built below ground for thermal mass</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> A vented or raised ridge helps because&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">it seals the air inside so none is lost</div>
+        <div class="option" onclick="answer(this, 'q3', false)">it blocks the incoming breeze</div>
+        <div class="option" onclick="answer(this, 'q3', true)">hot air rises and escapes at the top, drawing cooler air in low</div>
+        <div class="option" onclick="answer(this, 'q3', false)">it adds heavy thermal mass to the ridge</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> You can now treat the roof as the building's first and biggest form decision, and name the three jobs its shape must do at once. Most tropical form ideas begin right here.</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Three jobs — shade, shed, breathe — and four roof families to draw from is enough to start generating real shapes. When you want to see how the masters made the roof the <em>whole</em> idea, read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">The roof as the whole idea</span>
+    <span class="blurb">Bawa, Fathy and Murcutt built their architecture around the roof.</span>
+  </div>
+
+  <p>For these three masters the roof isn't one element among many — it's the move the whole building hangs from.</p>
+
+  <h3 class="sub">Bawa — the sheltering roof (Sri Lanka)</h3>
+  <p>Geoffrey Bawa's tropical modernism makes the broad, deep-eaved roof the <strong>defining gesture</strong>. Under it the walls relax into verandas, loggias and shaded courtyards: you live <em>under the roof</em> as much as inside the walls. The roof manufactures cool, in-between outdoor rooms — exactly the spaces a hot-humid climate wants.</p>
+
+  <h3 class="sub">Fathy — the roof that vents heat (Egypt)</h3>
+  <p>Hassan Fathy's domes and vaults are roofs working as <strong>thermal devices</strong>. Their height and curved surface let the hottest air collect and escape <em>high above</em> the occupants, and — paired with low openings — they drive air through the room. The shape itself does the cooling; nothing is bolted on.</p>
+
+  <h3 class="sub">Murcutt — the roof that reads sun and wind (Australia)</h3>
+  <p>Glenn Murcutt's curved, winged metal roofs are tuned like an instrument: they <strong>scoop the breeze</strong> and vent heat at a raised ridge or "letterbox" slot, while long eaves <strong>track the sun</strong> across the day. The section — the cut through the roof — carries almost the whole design.</p>
+
+  <p>(The floating <em>parasol</em> roof has a modernist pedigree too — Le&nbsp;Corbusier used a giant umbrella roof for shade in his Indian work. We'll pick up the screens and brise-soleil <em>under</em> these roofs in Lesson&nbsp;4.)</p>
+
+  <blockquote>In the wet tropics you don't put a roof on a house — you put a house under a roof.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— the tropical-modern principle (the spirit of Bawa, Fathy and Murcutt)</span></blockquote>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> In Geoffrey Bawa's tropical work, the broad sheltering roof&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', true)">creates shaded verandas and courtyards you live under, blurring inside and out</div>
+        <div class="option" onclick="answer(this, 'q4', false)">is hidden behind a flat parapet so it can't be seen</div>
+        <div class="option" onclick="answer(this, 'q4', false)">matters less than the mechanical cooling</div>
+        <div class="option" onclick="answer(this, 'q4', false)">is purely structural, with no climate role</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Fathy's domes and vaults act as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">solid decoration with no thermal purpose</div>
+        <div class="option" onclick="answer(this, 'q5', true)">roofs that let hot air collect and escape high above the occupants</div>
+        <div class="option" onclick="answer(this, 'q5', false)">a way to seal heat tightly inside the room</div>
+        <div class="option" onclick="answer(this, 'q5', false)">cold-climate forms imported unchanged</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> Murcutt's winged metal roofs are shaped to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">maximise the area of west-facing glass</div>
+        <div class="option" onclick="answer(this, 'q6', false)">copy the rooflines of the neighbours</div>
+        <div class="option" onclick="answer(this, 'q6', false)">meet a fixed square-metre target</div>
+        <div class="option" onclick="answer(this, 'q6', true)">scoop the breeze and vent heat at a raised ridge while tracking the sun</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Make your roof studies</span>
+    <span class="blurb">Your second artefact — three roofs in section.</span>
+  </div>
+
+  <p>Hands-on. Take your Lesson 1 site-force map. On a single sheet, draw your plot in <strong>section</strong> (a vertical cut through it) <strong>three times</strong>, and put a different roof on each:</p>
+  <ol>
+    <li><strong>Broad pitched roof, deep eaves</strong> — the workhorse. Push the eaves ~1&nbsp;m or more past the walls.</li>
+    <li><strong>Parasol</strong> — one big roof floating above the rooms with an air gap; let the gap breathe.</li>
+    <li><strong>Double / vented ridge</strong> — raise or split the ridge so hot air escapes at the very top.</li>
+  </ol>
+  <p>On each section, draw the three forces exactly as in the diagram: a <strong>sun ray</strong> meeting the eave (does the wall fall into shade?), a <strong>rain line</strong> (does the water land clear of the plinth?), and the <strong>hot-air path</strong> (where does it leave?). Add the <strong>SW breeze</strong> entering low. Under each, write one line: which force it handles best, and where it struggles.</p>
+  <p>Then <strong>circle the option</strong> that best resolves your Lesson 1 tension — <em>open to the SW breeze, defend the west sun, shed the rain.</em> That's your lead roof going forward.</p>
+
+  <div class="make">
+    <strong>What you've made:</strong> three roof studies in section — real, comparable form options, each judged by sun, rain and air rather than by looks. Keep your favourite; <strong>Lesson 3</strong> grows the volumes beneath it into massing.
+  </div>
+
+  <div class="source-box">
+    <strong>Primary sources for this lesson</strong>
+    <a href="https://en.wikipedia.org/wiki/Geoffrey_Bawa" target="_blank">Geoffrey Bawa</a> (tropical modernism, the sheltering roof); Hassan Fathy, <a href="https://en.wikipedia.org/wiki/Hassan_Fathy" target="_blank"><em>Architecture for the Poor</em></a> (the roof as thermal device); Glenn Murcutt, <a href="https://www.pritzkerprize.com/laureates/2002" target="_blank">roof tuned to sun and wind</a> (Pritzker, 2002).<br><br>
+    <strong>To go further</strong>
+    Koenigsberger et al., <em>Manual of Tropical Housing and Building</em> — roofs, overhangs and ventilation in numbers; and look up Bawa's own house and Lunuganga for the roof-as-room idea.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — send me your three roof sections (a phone photo of the sketches is perfect) and we'll compare how each handles sun, rain and air, then pick your lead roof. Next: <strong>Lesson 3 — Massing for breeze and shade</strong>, where we grow the volumes beneath the roof.
+  </div>
+
+  <footer>
+    Form-Making &nbsp;·&nbsp; Lesson 2 &nbsp;·&nbsp;
+    <a href="../../index.html">All series</a> &nbsp;·&nbsp;
+    <a href="0001-climate-as-the-first-move.html">&larr; Lesson 1 — Climate as the First Move</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "In a hot, wet climate the roof does the most climate work — shade, rain and ventilation — so it's the primary form, not a lid added last." },
+      q2: { correct: 0, explanation: "A parasol is one big roof floating over the rooms with an air gap — it shades the whole building and lets the gap breathe." },
+      q3: { correct: 2, explanation: "A vented or raised ridge uses the stack effect: hot air rises and leaves at the top, pulling cooler air in through low openings." },
+      q4: { correct: 0, explanation: "Bawa's sheltering roof makes shaded verandas and courtyards you live under — the roof blurs inside and out." },
+      q5: { correct: 1, explanation: "Fathy's domes and vaults are thermal devices: their height lets the hottest air collect and escape well above the occupants." },
+      q6: { correct: 3, explanation: "Murcutt shapes his winged roofs to scoop the breeze and vent at a raised ridge, with long eaves tuned to the sun." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
