@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form-Making · Lesson 4 — Dissolving Inside and Out</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #146b54; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.sub { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #e7f3ee, #faf9f7); border: 1px solid #cfe6dc; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .make { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; }
+    .make strong { color: #8a5a12; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.force { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; }
+    table.force th, table.force td { border: 1px solid var(--rule); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    table.force th { background: #eef3f1; font-weight: 600; }
+    table.force td.f { font-weight: 600; white-space: nowrap; color: #146b54; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #eef5f2; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Form-Making &nbsp;·&nbsp; Lesson 4</div>
+
+  <h1>Dissolving Inside and Out</h1>
+  <p class="subtitle">Turning the wall into a gradient of enclosure — veranda, screen, courtyard</p>
+
+  <p>You have a massing from Lesson 3. Now we work its <strong>edge</strong>. In a cool climate the wall is a hard line: warm in, cold out, sealed tight. In the hot-humid tropics that line is the wrong idea — you <em>want</em> the air, the shade and the outdoors close. So the edge <strong>dissolves into a gradient</strong>: garden → veranda → screen → room → courtyard, each layer doing a climate job, and the best rooms are often the in-between ones. By the end you'll have made your fourth artefact: <strong>your building's edge drawn as a gradient of enclosure</strong>.</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">The wall becomes a gradient</span>
+    <span class="blurb">Not inside-or-outside, but a series of half-steps you live in.</span>
+  </div>
+
+  <p>Replace the single wall with a sequence of <strong>thresholds</strong>. Each layer filters the climate a little more, and each is a form you can draw:</p>
+
+  <table class="force">
+    <tr><th>Edge layer</th><th>What it does for the climate</th></tr>
+    <tr><td class="f">Veranda / loggia</td><td>A roofed but open edge-room: <strong>shades the wall</strong>, catches the breeze, sheds rain off the glass, and becomes the <strong>most-used room</strong> — outdoor living in the shade.</td></tr>
+    <tr><td class="f">Screen / brise-soleil (jali, mashrabiya, louvres)</td><td>A <strong>permeable skin</strong>: cuts the sun and gives privacy while still <strong>passing air and filtered light</strong>. A wall you can see and breathe through.</td></tr>
+    <tr><td class="f">Breezeway / covered link</td><td>A roofed open passage that <strong>channels the breeze</strong> between parts and connects pavilions in shade.</td></tr>
+    <tr><td class="f">Operable edge (shutters, louvres, sliding/folding walls)</td><td>Lets you <strong>tune the openness</strong> hour by hour and season by season — wide open to the breeze, shut against the storm or the Harmattan.</td></tr>
+    <tr><td class="f">Courtyard / garden</td><td>The outside drawn <em>in</em>: a shaded, breathing void the rooms open onto from the protected side.</td></tr>
+  </table>
+
+  <p>Read across a tropical section and you don't cross a wall — you pass through layers, from open to filtered to enclosed and back to open. That is <strong>form as a gradient of enclosure</strong>:</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A section through a tropical edge, from open to enclosed and back to open: garden, then a roofed open veranda, then a permeable screen or brise-soleil, then the enclosed room, then a courtyard. The deep eave catches the sun and the screen filters it; the breeze passes through every layer.">
+      <!-- ground -->
+      <line x1="24" y1="250" x2="576" y2="250" stroke="#1a1a1a" stroke-width="1.5"/>
+      <!-- plinth -->
+      <rect x="116" y="238" width="362" height="14" fill="#e8e2d8" stroke="#1a1a1a" stroke-width="1.2"/>
+      <!-- sun + rays -->
+      <circle cx="66" cy="58" r="11" fill="#f6d873" stroke="#e3b94e"/>
+      <text x="66" y="40" text-anchor="middle" font-size="9" fill="#9a7a1e" font-family="system-ui, sans-serif">sun</text>
+      <line x1="74" y1="66" x2="104" y2="108" stroke="#e3b94e" stroke-width="2"/>
+      <line x1="92" y1="70" x2="248" y2="166" stroke="#e3b94e" stroke-width="2"/>
+      <line x1="248" y1="166" x2="290" y2="192" stroke="#e3b94e" stroke-width="1.4" stroke-dasharray="3 4"/>
+      <!-- roof (deep eave over veranda + room) -->
+      <path d="M104,108 L476,150" fill="none" stroke="#5a4632" stroke-width="5" stroke-linecap="round"/>
+      <!-- veranda columns -->
+      <line x1="132" y1="238" x2="132" y2="118" stroke="#aaa" stroke-width="2"/>
+      <line x1="244" y1="238" x2="244" y2="143" stroke="#aaa" stroke-width="2"/>
+      <!-- enclosed room -->
+      <rect x="256" y="160" width="164" height="78" fill="#f4f7f6" stroke="#1a1a1a" stroke-width="1.6"/>
+      <!-- screen / brise-soleil (louvres) -->
+      <rect x="244" y="152" width="14" height="86" fill="none" stroke="#8a7a5a" stroke-width="1.2"/>
+      <g stroke="#8a7a5a" stroke-width="1.4">
+        <line x1="244" y1="160" x2="258" y2="160"/><line x1="244" y1="170" x2="258" y2="170"/><line x1="244" y1="180" x2="258" y2="180"/><line x1="244" y1="190" x2="258" y2="190"/><line x1="244" y1="200" x2="258" y2="200"/><line x1="244" y1="210" x2="258" y2="210"/><line x1="244" y1="220" x2="258" y2="220"/><line x1="244" y1="230" x2="258" y2="230"/>
+      </g>
+      <!-- inner wall to court, with a low opening -->
+      <line x1="420" y1="150" x2="420" y2="202" stroke="#1a1a1a" stroke-width="1.6"/>
+      <!-- court + tree -->
+      <line x1="502" y1="238" x2="502" y2="214" stroke="#6b5436" stroke-width="2"/>
+      <circle cx="502" cy="206" r="13" fill="#bcd6b0" stroke="#7aa56e"/>
+      <!-- breeze through every layer -->
+      <line x1="34" y1="206" x2="520" y2="206" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="520,206 508,201 508,211" fill="#2a8acb"/>
+      <text x="150" y="224" font-size="9.5" fill="#2a8acb" font-family="system-ui, sans-serif">breeze passes through every layer</text>
+      <!-- zone labels -->
+      <text x="62" y="98" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">garden</text>
+      <text x="186" y="112" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">veranda</text>
+      <text x="251" y="146" text-anchor="middle" font-size="8.5" fill="#8a7a5a" font-family="system-ui, sans-serif">screen</text>
+      <text x="338" y="146" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">room</text>
+      <text x="502" y="120" text-anchor="middle" font-size="9.5" fill="#4a7a4a" font-family="system-ui, sans-serif">court</text>
+      <text x="300" y="278" text-anchor="middle" font-size="9.5" fill="#888" font-family="system-ui, sans-serif">open &nbsp;→&nbsp; roofed-open &nbsp;→&nbsp; filtered &nbsp;→&nbsp; enclosed &nbsp;→&nbsp; open (court)</text>
+    </svg>
+    <div class="figcap">A tropical edge in section: you don't cross a wall, you move through layers. The deep eave catches the sun and the screen filters what's left, while the breeze passes through every layer — <em>inside and outside dissolve into a gradient.</em></div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> In a hot-humid climate, the edge between inside and outside is best treated as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">one sealed, airtight line</div>
+        <div class="option" onclick="answer(this, 'q1', true)">a gradient of layered thresholds you live in</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the thickest possible single barrier</div>
+        <div class="option" onclick="answer(this, 'q1', false)">an afterthought added at the very end</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> A veranda — a roofed but open edge-room — mainly&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">traps heat against the glass</div>
+        <div class="option" onclick="answer(this, 'q2', false)">seals the house off from the air</div>
+        <div class="option" onclick="answer(this, 'q2', true)">shades the wall, catches the breeze, and becomes an outdoor room</div>
+        <div class="option" onclick="answer(this, 'q2', false)">is wasted, unusable space</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> A permeable screen or brise-soleil lets you&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', true)">cut the sun while still passing air and filtered light</div>
+        <div class="option" onclick="answer(this, 'q3', false)">block the air completely for comfort</div>
+        <div class="option" onclick="answer(this, 'q3', false)">maximise unshaded west-facing glass</div>
+        <div class="option" onclick="answer(this, 'q3', false)">add heavy thermal mass to the wall</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> You can now design the edge as a sequence — veranda, screen, operable wall, court — instead of a single line. That alone unlocks the most comfortable, most loved spaces in a tropical building: the shaded in-between rooms.</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> The gradient — open, roofed-open, filtered, enclosed — is enough to transform any edge. When you want to see the masters who built whole architectures on the blurred edge, read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">Masters of the blurred edge</span>
+    <span class="blurb">Bawa's veranda, Le Corbusier's brise-soleil, and the screen the vernacular perfected.</span>
+  </div>
+
+  <p>Three traditions made the dissolved edge into architecture.</p>
+
+  <h3 class="sub">Bawa — you are never sure if you're in or out (Sri Lanka)</h3>
+  <p>Geoffrey Bawa's houses are a <strong>promenade through thresholds</strong>: courtyards, verandas and loggias chained together so you move continuously between sheltered and open, shaded and bright. The "rooms" you remember are usually the half-open ones. The edge isn't a wall — it's the whole experience of the house.</p>
+
+  <h3 class="sub">Le Corbusier — the brise-soleil (the sun-breaker)</h3>
+  <p>Working in hot climates (India, North Africa), Le Corbusier turned the facade into a deep, permeable <strong>brise-soleil</strong> — a built-in sun-breaker of fins and recesses that shades the wall while air and light still pass. It's the modern, architectural version of the screen: shading made into the building's very form, not bolted on.</p>
+
+  <h3 class="sub">The vernacular screen — mashrabiya &amp; jali</h3>
+  <p>Long before either, hot-climate builders perfected the permeable wall: the Arab <strong>mashrabiya</strong> and the Indian <strong>jali</strong> — carved lattices that cut glare, give privacy, and cool the air that passes through them. The lesson: a wall doesn't have to choose between open and closed. It can be <em>both at once</em>.</p>
+
+  <blockquote>In the tropics the best room in the house is often the one that is only half a room — roofed, but open to the air.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— the veranda principle (the spirit of Bawa)</span></blockquote>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> Le Corbusier's brise-soleil is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', false)">a sealed glass curtain wall</div>
+        <div class="option" onclick="answer(this, 'q4', true)">a deep, permeable sun-breaker that shades the wall while air and light pass</div>
+        <div class="option" onclick="answer(this, 'q4', false)">a thick insulated wall with no openings</div>
+        <div class="option" onclick="answer(this, 'q4', false)">a type of air-conditioning unit</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> A mashrabiya or jali screen works by&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">blocking all air and all light</div>
+        <div class="option" onclick="answer(this, 'q5', true)">filtering sun and giving privacy while letting air and view through</div>
+        <div class="option" onclick="answer(this, 'q5', false)">being purely structural, with no climate role</div>
+        <div class="option" onclick="answer(this, 'q5', false)">sealing the room airtight</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> In Bawa's tropical houses, the veranda and courtyard make the inside&ndash;outside edge&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">a single hard, sealed line</div>
+        <div class="option" onclick="answer(this, 'q6', true)">a soft gradient of layered thresholds you live in</div>
+        <div class="option" onclick="answer(this, 'q6', false)">irrelevant once the doors are shut</div>
+        <div class="option" onclick="answer(this, 'q6', false)">purely decorative, with no use</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Layer your edge</span>
+    <span class="blurb">Your fourth artefact — one edge of your massing drawn as a gradient.</span>
+  </div>
+
+  <p>Hands-on. Take your chosen massing (Lesson 3) and pick its <strong>most important edge</strong> — usually the SW breeze face or the hot west face. Draw it in <strong>section</strong> (with a little plan) as a gradient of enclosure, naming every layer:</p>
+  <ol>
+    <li>Start <strong>outside</strong> — garden or court.</li>
+    <li>Add a <strong>veranda / loggia</strong> under the roof's overhang (depth ~2&nbsp;m or more).</li>
+    <li>Add a <strong>screen / brise-soleil / louvre</strong> layer where you must cut sun or want privacy — especially on the <strong>west</strong>.</li>
+    <li>Then the <strong>enclosed room</strong>.</li>
+    <li>On the far side, open again to a <strong>courtyard</strong> or a second veranda.</li>
+  </ol>
+  <p>For each layer, mark what it does to <strong>sun</strong> (caught? filtered?), <strong>breeze</strong> (passes through?), <strong>rain</strong> (kept off?) and <strong>privacy</strong>. Make at least one layer <strong>operable</strong> (shutters or louvres) so the edge can be tuned. Then show how the gradient <strong>resolves the old tension</strong>: the breeze face stays open and screened, while the west face gets a deeper veranda plus brise-soleil.</p>
+
+  <div class="make">
+    <strong>What you've made:</strong> your building's edge drawn as a gradient of enclosure — verandas, screens and courts doing the climate work the wall used to do alone. You now hold all four moves: <em>climate &rarr; roof &rarr; massing &rarr; edge.</em> <strong>Lesson 5</strong> pulls them into one or two whole-form <em>parti</em> concepts.
+  </div>
+
+  <div class="source-box">
+    <strong>Primary sources for this lesson</strong>
+    Geoffrey Bawa (the veranda-and-courtyard promenade); Le Corbusier, the <a href="https://en.wikipedia.org/wiki/Brise_soleil" target="_blank">brise-soleil</a> (sun-breaker facade); the vernacular permeable screen — the <a href="https://en.wikipedia.org/wiki/Mashrabiya" target="_blank">mashrabiya</a> and the <a href="https://en.wikipedia.org/wiki/Jali" target="_blank">jali</a>.<br><br>
+    <strong>To go further</strong>
+    Look at Bawa's own house and Lunuganga for the threshold sequence, and Le Corbusier's Mill Owners' Association Building and Chandigarh for brise-soleil as form.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — send me your layered edge (a phone photo of the section is perfect) and we'll check that each threshold earns its place against sun, breeze, rain and privacy. Next: <strong>Lesson 5 — From Forces to a Parti</strong>, where we fuse climate, roof, massing and edge into one or two whole-form concepts for the site.
+  </div>
+
+  <footer>
+    Form-Making &nbsp;·&nbsp; Lesson 4 &nbsp;·&nbsp;
+    <a href="../../index.html">All series</a> &nbsp;·&nbsp;
+    <a href="0003-massing-for-breeze-and-shade.html">&larr; Lesson 3 — Massing for Breeze and Shade</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "In the hot-humid tropics you want air and shade close, so the edge becomes a gradient of thresholds — veranda, screen, court — not one sealed line." },
+      q2: { correct: 2, explanation: "A veranda shades the wall, catches the breeze and sheds rain off the glass — and becomes the most-used room: outdoor living in the shade." },
+      q3: { correct: 0, explanation: "A screen or brise-soleil is permeable: it cuts the sun and gives privacy while still letting air and filtered light through." },
+      q4: { correct: 1, explanation: "The brise-soleil (sun-breaker) is a deep, permeable shading facade — shading built into the form, with air and light still passing." },
+      q5: { correct: 1, explanation: "The mashrabiya and jali filter sun, give privacy and cool the air that passes through — a wall that is open and closed at once." },
+      q6: { correct: 1, explanation: "Bawa chains courtyards and verandas so the edge is a soft gradient of thresholds you move through and live in, not a hard wall." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
