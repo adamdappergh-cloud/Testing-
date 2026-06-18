@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form-Making · Lesson 3 — Massing for Breeze and Shade</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #146b54; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.sub { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #e7f3ee, #faf9f7); border: 1px solid #cfe6dc; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .make { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; }
+    .make strong { color: #8a5a12; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.force { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; }
+    table.force th, table.force td { border: 1px solid var(--rule); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    table.force th { background: #eef3f1; font-weight: 600; }
+    table.force td.f { font-weight: 600; white-space: nowrap; color: #146b54; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #eef5f2; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Form-Making &nbsp;·&nbsp; Lesson 3</div>
+
+  <h1>Massing for Breeze and Shade</h1>
+  <p class="subtitle">Shaping the bulk under the roof so air moves through and the building shades itself</p>
+
+  <p>You have a lead roof from Lesson 2. Now we grow the <strong>massing</strong> beneath it — the overall arrangement and bulk of the building. In the tropics, massing answers two desires at once: <strong>let the breeze through</strong>, and <strong>make the building shade itself</strong>. A fat, sealed block fails both. This lesson explores the massing moves that succeed, and by the end you'll have made your third artefact: <strong>three massing options</strong> for the Pokuase site. (Still generating freely from the forces — no concept plan.)</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">Thin, broken, and lifted</span>
+    <span class="blurb">Keep it thin for breeze; break and lift it for air and shade.</span>
+  </div>
+
+  <p>A compact, deep block is the worst tropical massing: air can't cross it and heat sits in its core. The winning moves are the opposite — and each is a shape you can draw:</p>
+
+  <table class="force">
+    <tr><th>Massing move</th><th>What it does for the climate</th></tr>
+    <tr><td class="f">Thin bar (one room deep)</td><td><strong>Cross-ventilation:</strong> the SW breeze crosses straight through, and every room gets air and daylight from two sides. Run the long axis roughly <strong>E&ndash;W</strong> so the short faces meet the low east/west sun.</td></tr>
+    <tr><td class="f">Pavilions / fingers with gaps</td><td>Break the bulk into smaller parts so <strong>air flows between them</strong> and they <strong>shade each other</strong>; the gaps become breezeways and courtyards.</td></tr>
+    <tr><td class="f">Lifted on stilts / a plinth</td><td>Air moves <strong>under the floor</strong>; flood, damp and ground heat are kept out; the breeze reaches the underside.</td></tr>
+    <tr><td class="f">Courtyard / void (carved)</td><td>A <strong>self-shading void</strong> the building breathes <em>inward</em> to — cooler, sheltered, drawing air through the rooms around it.</td></tr>
+    <tr><td class="f">Verandas / wraps (added)</td><td>Shade the walls and openings, throw the sun off, and make <strong>outdoor rooms</strong> on the breeze side.</td></tr>
+  </table>
+
+  <p>Two of these are <strong>additive</strong> (you join parts — wings, pavilions, verandas) and two are <strong>subtractive</strong> (you carve the volume — courtyards, light-wells, notches). Massing is simply deciding <em>what to add and what to carve</em> so the result breathes and shades itself. Watch the contrast:</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two massing strategies in plan compared. North is up, so west is on the left. Left: a compact deep block — the breeze slides around it and heat is trapped in the core. Right: a thin, broken massing with a carved courtyard and a west veranda — air passes between and through the parts, which shade each other.">
+      <!-- N arrow -->
+      <g transform="translate(562,42)"><polygon points="0,-14 5,4 0,-1 -5,4" fill="#1a1a1a"/><text x="0" y="-18" text-anchor="middle" font-size="9" font-weight="700" font-family="system-ui, sans-serif">N</text></g>
+      <!-- divider -->
+      <line x1="300" y1="78" x2="300" y2="278" stroke="#e3e0db" stroke-width="1" stroke-dasharray="3 5"/>
+
+      <!-- ===== LEFT: compact block ===== -->
+      <rect x="120" y="120" width="96" height="96" fill="#f1ddd6" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="148" y="148" width="40" height="40" fill="#e3a99f"/>
+      <text x="168" y="172" text-anchor="middle" font-size="9" fill="#8a3324" font-family="system-ui, sans-serif">heat</text>
+      <!-- incoming SW breeze -->
+      <line x1="48" y1="252" x2="112" y2="210" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="112,210 100,209 105,219" fill="#2a8acb"/>
+      <text x="34" y="268" font-size="9.5" fill="#2a8acb" font-family="system-ui, sans-serif">SW breeze</text>
+      <!-- deflected around -->
+      <path d="M120,222 Q188,240 244,232" fill="none" stroke="#9cbdd4" stroke-width="2" stroke-dasharray="5 4"/>
+      <polygon points="244,232 233,229 235,239" fill="#9cbdd4"/>
+      <path d="M114,206 Q116,150 156,112" fill="none" stroke="#9cbdd4" stroke-width="2" stroke-dasharray="5 4"/>
+      <polygon points="156,112 149,121 159,122" fill="#9cbdd4"/>
+      <text x="168" y="300" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">compact block:</text>
+      <text x="168" y="313" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">air goes around, heat trapped</text>
+
+      <!-- ===== RIGHT: thin + broken ===== -->
+      <!-- west shade veranda strip -->
+      <rect x="366" y="120" width="14" height="96" fill="#e7d0c8" stroke="#c9a89e" stroke-width="1"/>
+      <text x="373" y="232" text-anchor="middle" font-size="8.5" fill="#a6584a" font-family="system-ui, sans-serif">W veranda</text>
+      <!-- thin bars -->
+      <rect x="380" y="120" width="140" height="28" fill="#eef3f1" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="380" y="188" width="140" height="28" fill="#eef3f1" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- courtyard (carved void) -->
+      <rect x="380" y="148" width="140" height="40" fill="#e6f0e4" stroke="#7aa56e" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="450" y="172" text-anchor="middle" font-size="9" fill="#4a7a4a" font-family="system-ui, sans-serif">court</text>
+      <!-- breeze through the court -->
+      <line x1="332" y1="238" x2="544" y2="150" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="544,150 532,151 535,161" fill="#2a8acb"/>
+      <!-- cross-vent through a thin bar -->
+      <line x1="402" y1="224" x2="430" y2="184" stroke="#2a8acb" stroke-width="2" stroke-dasharray="5 3"/>
+      <polygon points="430,184 421,189 428,192" fill="#2a8acb"/>
+      <text x="450" y="300" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">thin + broken:</text>
+      <text x="450" y="313" text-anchor="middle" font-size="9.5" fill="#555" font-family="system-ui, sans-serif">air passes through, parts self-shade</text>
+    </svg>
+    <div class="figcap">Two massings in plan (north up, so west is on the left). <em>Left:</em> a compact, deep block — the breeze slides around it and heat sits in the core. <em>Right:</em> thin bars with a carved courtyard and a west veranda — air passes between and through, and the parts shade each other.</div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> A compact, deep block is poor massing in the wet tropics mainly because&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">it uses too little material</div>
+        <div class="option" onclick="answer(this, 'q1', true)">it blocks the cross-breeze and traps heat in its core</div>
+        <div class="option" onclick="answer(this, 'q1', false)">it is too easy to shade</div>
+        <div class="option" onclick="answer(this, 'q1', false)">it has too many windows</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> To get cross-ventilation, the key massing move is to keep the building&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">as deep and compact as possible</div>
+        <div class="option" onclick="answer(this, 'q2', false)">sealed on all sides</div>
+        <div class="option" onclick="answer(this, 'q2', true)">thin — about one room deep — so air crosses through</div>
+        <div class="option" onclick="answer(this, 'q2', false)">buried in the ground for thermal mass</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> Lifting the massing on stilts or a plinth helps by&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', true)">letting air move underneath and keeping flood and damp out</div>
+        <div class="option" onclick="answer(this, 'q3', false)">trapping warm air below the floor</div>
+        <div class="option" onclick="answer(this, 'q3', false)">blocking the breeze entirely</div>
+        <div class="option" onclick="answer(this, 'q3', false)">adding thermal mass to the roof</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> You can now shape the building's bulk on purpose: thin for breeze, broken for air and mutual shade, lifted off the wet ground, carved or wrapped to shade itself. That is massing as a climate act, not just a footprint.</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Thin, broken, lifted, and the add-or-carve choice is enough to generate strong massing. When you want the formal vocabulary behind it — and the courtyard's deep tropical pedigree, including right here in Ghana — read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">Add, subtract, and let it breathe</span>
+    <span class="blurb">Ching's grammar of form in service of the courtyard and the pavilion.</span>
+  </div>
+
+  <p>Massing has a neutral vocabulary and a tropical purpose. Hold both.</p>
+
+  <h3 class="sub">The grammar (Ching)</h3>
+  <p>Francis D.&nbsp;K. Ching, in <em>Architecture: Form, Space &amp; Order</em>, names the two ways to make form. <strong>Additive form</strong> joins parts — in a line, a cluster, around a centre. <strong>Subtractive form</strong> carves a volume away. Every massing you draw is some mix of the two: you <em>add</em> pavilions, wings and verandas, and you <em>subtract</em> courtyards, light-wells and notches. That's the whole grammar.</p>
+
+  <h3 class="sub">The courtyard — the great carve (Fathy &amp; the vernacular)</h3>
+  <p>The courtyard is the classic <strong>subtractive</strong> move of hot-climate architecture. Hassan Fathy showed how a carved central void shades itself, collects cool night air, and lets the house breathe <em>inward</em> away from the harsh outside. It needs no view to work — the void <em>is</em> the amenity.</p>
+
+  <h3 class="sub">The pavilion — the great addition (Bawa, Murcutt, vernacular)</h3>
+  <p>The opposite instinct: break the program into thin, separate <strong>pavilions</strong> linked by breezeways and verandas, so each catches air and they shade one another. Bawa's and Murcutt's houses are often less "a building" than a <em>loose cluster of roofed parts</em> with the climate moving between them.</p>
+
+  <h3 class="sub">Close to home — the Akan compound</h3>
+  <p>You don't have to look far for the courtyard. The traditional <strong>Akan / Asante compound house</strong> of southern Ghana is exactly this: rooms (and roofed porches) arranged around an open central court that organises life and lets the building breathe. It is local, climate-tested precedent for your own Pokuase massing.</p>
+
+  <blockquote>Architecture is the masterly, correct and magnificent play of masses brought together in light.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— Le Corbusier, <em>Towards a New Architecture</em></span></blockquote>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> In Ching's vocabulary, carving a courtyard out of a volume is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', false)">additive form</div>
+        <div class="option" onclick="answer(this, 'q4', true)">subtractive form</div>
+        <div class="option" onclick="answer(this, 'q4', false)">structural bracing</div>
+        <div class="option" onclick="answer(this, 'q4', false)">a load-bearing decision only</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Breaking a building into thin pavilions linked by breezeways mainly helps by&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">trapping heat in a single deep core</div>
+        <div class="option" onclick="answer(this, 'q5', true)">letting air pass between the parts while they shade each other</div>
+        <div class="option" onclick="answer(this, 'q5', false)">reducing every opening to a minimum</div>
+        <div class="option" onclick="answer(this, 'q5', false)">making each room as deep as possible</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> The Akan / Asante compound house shows that, near Pokuase, the courtyard is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">a foreign idea with no local roots</div>
+        <div class="option" onclick="answer(this, 'q6', false)">purely decorative, with no climate role</div>
+        <div class="option" onclick="answer(this, 'q6', true)">local, climate-tested precedent for breathing massing</div>
+        <div class="option" onclick="answer(this, 'q6', false)">only ever used in cold climates</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Make your massing options</span>
+    <span class="blurb">Your third artefact — three massings under your lead roof.</span>
+  </div>
+
+  <p>Hands-on. Take your lead roof (Lesson 2) and your site-force map. Sketch the building's bulk <strong>three ways</strong> — a rough plan plus a quick 3D (axonometric) for each — using a different strategy:</p>
+  <ol>
+    <li><strong>Thin bar</strong> — one room deep, long axis E&ndash;W, under a single sheltering roof; the breeze crosses straight through.</li>
+    <li><strong>Pavilions + breezeway</strong> — break the program into two or three thin parts with gaps and covered links; air flows between, and they shade each other.</li>
+    <li><strong>Courtyard</strong> — wrap the rooms around a carved central court; the void shades and breathes (your Akan-compound option).</li>
+  </ol>
+  <p>On each, draw the forces: the <strong>SW breeze</strong> (does it pass <em>through</em>, not around?), the <strong>sun on the E/W short faces</strong> (is the west shaded by a veranda?), and <strong>lift it</strong> on a plinth or stilts. Note for each which forces it serves best and what it costs (a courtyard needs more enclosure; a long thin bar eats site length; pavilions multiply roofs).</p>
+  <p>Then <strong>circle the massing</strong> that best carries your lead roof and resolves the Lesson 1 tension — <em>open to the SW breeze, defend the west sun, shed the rain, breathe out the heat.</em></p>
+
+  <div class="make">
+    <strong>What you've made:</strong> three massing options — the building's bulk explored three ways, each tested for breeze, shade and damp rather than for looks. Keep your strongest; <strong>Lesson 4</strong> dissolves its edges with verandas, screens and courtyards — the gradient between inside and out.
+  </div>
+
+  <div class="source-box">
+    <strong>Primary sources for this lesson</strong>
+    Francis D.&nbsp;K. Ching, <a href="https://en.wikipedia.org/wiki/Architecture:_Form,_Space_and_Order" target="_blank"><em>Architecture: Form, Space &amp; Order</em></a> (additive &amp; subtractive form); Hassan Fathy, <a href="https://en.wikipedia.org/wiki/Hassan_Fathy" target="_blank">the courtyard house</a>; thin-pavilion massing in Geoffrey Bawa and Glenn Murcutt.<br><br>
+    <strong>To go further</strong>
+    Look up the <a href="https://en.wikipedia.org/wiki/Ashanti_traditional_buildings" target="_blank">Asante traditional courtyard buildings</a> of southern Ghana — local courtyard massing — and compare them with Bawa's pavilion-and-court plans.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — send me your three massing sketches (a phone photo is perfect) and we'll weigh how each handles breeze, shade and damp, then pick your strongest. Next: <strong>Lesson 4 — Dissolving inside and out</strong>, where verandas, screens and courtyards soften the edges into a gradient of enclosure.
+  </div>
+
+  <footer>
+    Form-Making &nbsp;·&nbsp; Lesson 3 &nbsp;·&nbsp;
+    <a href="../../index.html">All series</a> &nbsp;·&nbsp;
+    <a href="0002-the-roof-as-primary-form.html">&larr; Lesson 2 — The Roof as Primary Form</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "A deep, compact block stops air crossing it and lets heat build in the middle — the two things a hot-humid climate most needs to avoid." },
+      q2: { correct: 2, explanation: "Keep it thin — about one room deep — so the breeze enters one side and leaves the other, and every room gets air and light from two sides." },
+      q3: { correct: 0, explanation: "Lifting the mass lets air move under the floor and keeps flood, damp and ground heat out — a classic stilt/plinth move." },
+      q4: { correct: 1, explanation: "Carving a void out of a volume is subtractive form; joining parts together is additive. Massing mixes both." },
+      q5: { correct: 1, explanation: "Splitting into thin pavilions lets air flow between the parts and lets them shade one another — the opposite of a single deep core." },
+      q6: { correct: 2, explanation: "The Asante/Akan compound is a courtyard house — local, climate-tested precedent that the breathing courtyard belongs right here in southern Ghana." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
