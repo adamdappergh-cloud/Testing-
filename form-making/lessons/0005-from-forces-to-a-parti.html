@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form-Making · Lesson 5 — From Forces to a Parti</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #146b54; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.sub { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #e7f3ee, #faf9f7); border: 1px solid #cfe6dc; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .make { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; }
+    .make strong { color: #8a5a12; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.force { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; }
+    table.force th, table.force td { border: 1px solid var(--rule); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    table.force th { background: #eef3f1; font-weight: 600; }
+    table.force td.f { font-weight: 600; white-space: nowrap; color: #146b54; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #eef5f2; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Form-Making &nbsp;·&nbsp; Lesson 5</div>
+
+  <h1>From Forces to a Parti</h1>
+  <p class="subtitle">Fusing climate, roof, massing and edge into one whole-form idea</p>
+
+  <p>You now hold four artefacts: a <strong>force-map</strong>, a <strong>roof</strong>, a <strong>massing</strong> and a <strong>layered edge</strong>. This lesson fuses them. A <strong>parti</strong> (from the French <em>parti pris</em>) is the single organizing idea of a building — the diagram you can draw in a few strokes that captures the whole concept. Without one, a design is a pile of good moves; with one, the building reads as a single thought. By the end you'll have made your fifth artefact: <strong>one or two named parti concepts</strong> for the Pokuase site, each tested against the forces.</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">One idea that holds it all</span>
+    <span class="blurb">A parti bundles every move under a single, drawable concept.</span>
+  </div>
+
+  <p>A parti is not more detail — it's <em>less</em>. It's the essential move that organizes everything else. You build one in five steps:</p>
+
+  <table class="force">
+    <tr><th>Step</th><th>What you do</th></tr>
+    <tr><td class="f">1 · Name the tension</td><td>Restate the site's core conflict in one line — usually <em>"open to the SW breeze, defend the hot west sun, shed the rain, vent the heat."</em></td></tr>
+    <tr><td class="f">2 · Choose the dominant move</td><td>Pick the <strong>one move that resolves most of it</strong> — often the roof or the courtyard. That becomes the spine of the idea.</td></tr>
+    <tr><td class="f">3 · Bundle the rest under it</td><td>Hang the massing and the layered edge off that move so they all serve <strong>one concept</strong>.</td></tr>
+    <tr><td class="f">4 · Name it &amp; draw it</td><td>Give it a short name and a <strong>five-stroke diagram</strong> — the parti. If you can't draw it small and simple, it isn't a parti yet.</td></tr>
+    <tr><td class="f">5 · Test it</td><td>Trace the <strong>sun and breeze</strong> over the diagram. Where does it win? Where does it strain? Refine, or try a second parti.</td></tr>
+  </table>
+
+  <p>For the same Pokuase site, different dominant moves give different partis — and exploring <strong>one or two</strong> is exactly the point:</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two parti concepts for the same site, drawn as simple diagrams. North is up, so west is on the left. A, The Parasol: one big roof floats over thin pavilions and vents at the top, open to the SW breeze and screened on the west. B, The Breathing Court: rooms wrap a shaded central courtyard that vents heat, with the SW breeze drawn in and the west screened.">
+      <!-- N arrow -->
+      <g transform="translate(566,40)"><polygon points="0,-14 5,4 0,-1 -5,4" fill="#1a1a1a"/><text x="0" y="-18" text-anchor="middle" font-size="9" font-weight="700" font-family="system-ui, sans-serif">N</text></g>
+      <!-- divider -->
+      <line x1="300" y1="78" x2="300" y2="262" stroke="#e3e0db" stroke-width="1" stroke-dasharray="3 5"/>
+
+      <!-- ===== A: THE PARASOL ===== -->
+      <rect x="72" y="96" width="166" height="140" rx="12" fill="#fbf7f1" stroke="#5a4632" stroke-width="2" stroke-dasharray="7 5"/>
+      <rect x="74" y="98" width="8" height="136" fill="#e7b6b0"/>
+      <rect x="96" y="126" width="54" height="30" fill="#eef3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="164" y="126" width="50" height="30" fill="#eef3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="110" y="178" width="92" height="30" fill="#eef3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+      <!-- vent -->
+      <line x1="155" y1="116" x2="155" y2="82" stroke="#b5651d" stroke-width="2"/>
+      <polygon points="155,74 150,86 160,86" fill="#b5651d"/>
+      <text x="182" y="84" font-size="8.5" fill="#b5651d" font-family="system-ui, sans-serif">vents</text>
+      <!-- breeze -->
+      <line x1="50" y1="250" x2="110" y2="212" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="110,212 98,211 103,221" fill="#2a8acb"/>
+      <text x="34" y="266" font-size="9" fill="#2a8acb" font-family="system-ui, sans-serif">SW breeze</text>
+      <text x="64" y="150" font-size="8.5" fill="#a6584a" font-family="system-ui, sans-serif" transform="rotate(-90 64,150)">screen W</text>
+      <text x="155" y="282" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a" font-family="system-ui, sans-serif">A · The Parasol</text>
+      <text x="155" y="297" text-anchor="middle" font-size="9" fill="#777" font-family="system-ui, sans-serif">one roof over everything</text>
+
+      <!-- ===== B: THE BREATHING COURT ===== -->
+      <rect x="352" y="86" width="192" height="160" rx="8" fill="#fbf7f1" stroke="#5a4632" stroke-width="2" stroke-dasharray="7 5"/>
+      <rect x="362" y="96" width="172" height="140" fill="#eef3f1" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="364" y="98" width="8" height="136" fill="#e7b6b0"/>
+      <rect x="410" y="138" width="78" height="58" fill="#e6f0e4" stroke="#7aa56e" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="449" y="171" text-anchor="middle" font-size="9" fill="#4a7a4a" font-family="system-ui, sans-serif">court</text>
+      <!-- vent from court -->
+      <line x1="449" y1="138" x2="449" y2="102" stroke="#b5651d" stroke-width="2"/>
+      <polygon points="449,94 444,106 454,106" fill="#b5651d"/>
+      <text x="470" y="104" font-size="8.5" fill="#b5651d" font-family="system-ui, sans-serif">heat out</text>
+      <!-- breeze into court -->
+      <line x1="356" y1="248" x2="430" y2="196" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="430,196 418,196 423,206" fill="#2a8acb"/>
+      <text x="350" y="264" font-size="9" fill="#2a8acb" font-family="system-ui, sans-serif">SW breeze</text>
+      <text x="354" y="150" font-size="8.5" fill="#a6584a" font-family="system-ui, sans-serif" transform="rotate(-90 354,150)">screen W</text>
+      <text x="449" y="282" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a1a" font-family="system-ui, sans-serif">B · The Breathing Court</text>
+      <text x="449" y="297" text-anchor="middle" font-size="9" fill="#777" font-family="system-ui, sans-serif">rooms wrap a shaded void</text>
+    </svg>
+    <div class="figcap">Two partis for one site (north up, so west is on the left), each a whole-form idea you can say in a sentence and draw in a few strokes. <em>A:</em> one great parasol roof floats over thin pavilions and vents at the top. <em>B:</em> rooms wrap a shaded, breathing courtyard. Both open to the SW breeze and screen the hot west.</div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> A parti is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', true)">the central organizing idea of a building, captured in a simple diagram</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the detailed material schedule</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the layout of a single room</div>
+        <div class="option" onclick="answer(this, 'q1', false)">the structural calculations</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> To form a parti you should first&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">choose the floor finishes</div>
+        <div class="option" onclick="answer(this, 'q2', true)">name the site's core tension and pick the dominant move that resolves it</div>
+        <div class="option" onclick="answer(this, 'q2', false)">copy the neighbour's house</div>
+        <div class="option" onclick="answer(this, 'q2', false)">size the air-conditioning</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> "The Breathing Court" — rooms wrapped around a shaded central void — is a parti led by&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', false)">the paint colour</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the door hardware</div>
+        <div class="option" onclick="answer(this, 'q3', true)">the massing — a courtyard move organizing the whole</div>
+        <div class="option" onclick="answer(this, 'q3', false)">the cheapest possible structure</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> You can now take a kit of climate moves and fuse them into a single, namable idea — and draw it small. That is the leap from "good features" to "a design."</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> One clear parti, drawn in five strokes and tested against sun and breeze, is a real design concept. When you want the thinking behind the parti — Kahn's search for what a building <em>wants to be</em> — read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">What does the building want to be?</span>
+    <span class="blurb">Kahn's search for the essential order, and the discipline of the parti.</span>
+  </div>
+
+  <p>The parti is old discipline and deep thinking at once.</p>
+
+  <h3 class="sub">Kahn — the essential idea</h3>
+  <p>Louis Kahn famously asked of every project, <em>"what does the building want to be?"</em> — searching past fashion and convenience for the building's <strong>essential order</strong>, the one idea everything else should serve. His buildings are organized by a clear concept (served spaces and the "servant" spaces that support them). A parti is exactly that: the order found first, then honoured throughout.</p>
+
+  <h3 class="sub">The parti pris — decide the scheme first</h3>
+  <p>The word comes from the Beaux-Arts tradition of the <em>parti pris</em> — "the stand taken." Before any detail, you commit to one organizing scheme in a quick diagram. The discipline is the point: a building with a clear parti makes every later decision easier, because they all answer to one idea.</p>
+
+  <h3 class="sub">One or two, then test</h3>
+  <p>Good designers rarely marry their first idea. They sketch <strong>a couple of partis</strong>, each led by a different dominant move, and <strong>test each against the real forces</strong> — here, the sun path and the SW breeze. You keep the one that resolves the most tension with the least strain. That comparison <em>is</em> the design thinking.</p>
+
+  <blockquote>Architecture is the thoughtful making of spaces.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— Louis Kahn</span></blockquote>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> A parti is best described as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', false)">the final construction drawings</div>
+        <div class="option" onclick="answer(this, 'q4', true)">the single organizing idea, drawable in a few strokes</div>
+        <div class="option" onclick="answer(this, 'q4', false)">the material and colour palette</div>
+        <div class="option" onclick="answer(this, 'q4', false)">the cost estimate</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Kahn's question "what does the building want to be?" pushes you to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', false)">copy a fashionable style</div>
+        <div class="option" onclick="answer(this, 'q5', false)">start from the furniture</div>
+        <div class="option" onclick="answer(this, 'q5', true)">find the essential organizing idea before the details</div>
+        <div class="option" onclick="answer(this, 'q5', false)">decide the paint colours first</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> Why generate one or two partis and test each against sun and breeze?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">to make the drawings look busier</div>
+        <div class="option" onclick="answer(this, 'q6', true)">to compare whole-form ideas and keep the most coherent, not marry the first</div>
+        <div class="option" onclick="answer(this, 'q6', false)">because more options always cost less</div>
+        <div class="option" onclick="answer(this, 'q6', false)">to avoid ever having to decide</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Draw your parti — one or two</span>
+    <span class="blurb">Your fifth artefact — the whole form in a sentence and a sketch.</span>
+  </div>
+
+  <p>Hands-on. Lay out your four artefacts (force-map, roof, massing, edge) and fuse them:</p>
+  <ol>
+    <li>Write the site's <strong>core tension</strong> in one line.</li>
+    <li>Choose the <strong>dominant move</strong> that resolves most of it — roof, court or bar.</li>
+    <li><strong>Bundle</strong> roof + massing + edge under it as one idea.</li>
+    <li><strong>Name it</strong> (e.g. <em>The Parasol</em>, <em>The Breathing Court</em>, <em>The Verandah Bar</em>) and draw it in <strong>five strokes</strong> — your parti diagram.</li>
+    <li>Do a <strong>second parti</strong> with a different dominant move.</li>
+    <li><strong>Test both:</strong> trace the sun (is the west defended?), the SW breeze (does it pass through?), the rain (does the roof shed it?), the heat (where does it vent?). Mark each parti's wins and strains.</li>
+  </ol>
+  <p>Pick your <strong>lead parti</strong> — and keep the runner-up. The capstone shows both.</p>
+
+  <div class="make">
+    <strong>What you've made:</strong> one or two named parti concepts — whole-form ideas for the Pokuase site, each a sentence and a sketch, each tested against the forces. That is form-making: the climate, made into a single shape you can stand behind. <strong>Next, the capstone</strong> gathers your five artefacts into a small portfolio.
+  </div>
+
+  <div class="source-box">
+    <strong>Primary sources for this lesson</strong>
+    Louis Kahn — <a href="https://en.wikipedia.org/wiki/Louis_Kahn" target="_blank">"what does the building want to be?"</a> and served/servant order; the Beaux-Arts <a href="https://en.wikipedia.org/wiki/Parti_pris" target="_blank">parti pris</a> tradition; synthesising the tropical masters of Lessons&nbsp;1&ndash;4.<br><br>
+    <strong>To go further</strong>
+    Roger Clark &amp; Michael Pause, <em>Precedents in Architecture</em> — parti diagrams of famous buildings, the best way to train your eye for the organizing idea.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — send me your one or two parti sketches (a phone photo is perfect) and we'll test each against the sun path and the SW breeze, then choose your lead concept. Next: the <strong>Capstone</strong> — we gather your five artefacts into a small portfolio of climate-driven form concepts for the Pokuase site.
+  </div>
+
+  <footer>
+    Form-Making &nbsp;·&nbsp; Lesson 5 &nbsp;·&nbsp;
+    <a href="../../index.html">All series</a> &nbsp;·&nbsp;
+    <a href="0004-dissolving-inside-and-out.html">&larr; Lesson 4 — Dissolving Inside and Out</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 0, explanation: "A parti is the central organizing idea — the simple diagram that captures the whole concept, not the detail." },
+      q2: { correct: 1, explanation: "Start by naming the site's core tension, then pick the one dominant move that resolves most of it — that becomes the parti's spine." },
+      q3: { correct: 2, explanation: "Wrapping rooms around a shaded central void is a massing/courtyard-led parti — the court organizes the whole building." },
+      q4: { correct: 1, explanation: "A parti is the single organizing idea, drawable in a few strokes — less detail, not more." },
+      q5: { correct: 2, explanation: "Kahn's question pushes you past fashion to the building's essential order — the one idea found first and honoured throughout." },
+      q6: { correct: 1, explanation: "You sketch a couple of partis and test each against the real forces so you can keep the most coherent idea, instead of marrying your first." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
