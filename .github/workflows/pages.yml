@@ -29,21 +29,22 @@ jobs:
           mkdir -p _site
           cp -r lessons _site/lessons
           cp -r reference _site/reference
+          cp -r form-making _site/form-making
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <html lang="en">
           <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>Residential Space Planning — Lessons</title>
+          <title>Architecture — Teaching Series</title>
           <style>
           body { font-family: system-ui, -apple-system, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.6; }
           a { color: #0366d6; }
           </style>
           </head>
           <body>
-          <h1>Residential Space Planning</h1>
-          <p>Lessons:</p>
+          <h1>Architecture — Teaching Series</h1>
+          <h2>Residential Space Planning</h2>
           <ul>
           <li><a href="lessons/0001-reading-a-floor-plan.html">Lesson 1 — Reading a Floor Plan</a></li>
           <li><a href="lessons/0002-zoning-a-home.html">Lesson 2 — Zoning a Home</a></li>
@@ -53,7 +54,11 @@ jobs:
           <li><a href="lessons/0007-capstone.html"><strong>Capstone — your plan through the toolkit</strong></a></li>
           <li><a href="lessons/0008-capstone-concepts.html">Capstone concepts — courtyard &amp; upper-floor sketches</a></li>
           </ul>
-          <p>Reference:</p>
+          <h2>Form-Making for the Pokuase Climate <span style="font-weight:normal;color:#888">(new)</span></h2>
+          <ul>
+          <li><a href="form-making/lessons/0001-climate-as-the-first-move.html">Lesson 1 — Climate as the First Move</a></li>
+          </ul>
+          <h2>Reference</h2>
           <ul>
           <li><a href="reference/zoning-cheatsheet.html">Zoning cheat-sheet</a></li>
           <li><a href="reference/glossary.html">Glossary</a></li>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form-Making · Lesson 1 — Climate as the First Move</title>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --rule: #ddd; --accent: #146b54; --bg: #faf9f7; --card: #fff; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.7; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .lesson-meta { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2.5rem; }
+    h1 { font-size: 2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    h3.sub { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+    blockquote { border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.25rem; font-style: italic; color: #333; }
+    .tier { margin: 3.5rem 0 1rem; padding: 1rem 1.25rem; border-radius: 8px; background: linear-gradient(90deg, #e7f3ee, #faf9f7); border: 1px solid #cfe6dc; }
+    .tier .num { font-family: system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.2rem 0.55rem; border-radius: 3px; }
+    .tier .name { display: block; margin-top: 0.5rem; font-size: 1.4rem; line-height: 1.2; }
+    .tier .blurb { font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .stop-here { background: #eef6ee; border: 1px dashed #5aab6a; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.88rem; margin: 1.75rem 0; }
+    .stop-here strong { color: #2f6b40; }
+    .make { background: #fff6e9; border-left: 3px solid #d9952b; border-radius: 6px; padding: 0.9rem 1.2rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; }
+    .make strong { color: #8a5a12; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+    .diagram { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; margin: 1.5rem 0; }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .figcap { font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+    ol, ul { margin: 0 0 1.2rem 1.4rem; }
+    ol li, ul li { margin-bottom: 0.5rem; }
+    table.force { border-collapse: collapse; width: 100%; font-family: system-ui, sans-serif; font-size: 0.86rem; margin: 1.25rem 0; }
+    table.force th, table.force td { border: 1px solid var(--rule); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    table.force th { background: #eef3f1; font-weight: 600; }
+    table.force td.f { font-weight: 600; white-space: nowrap; color: #146b54; }
+    .quiz { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+    .quiz h3 { font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; }
+    .question { margin-bottom: 1.5rem; }
+    .question p { margin-bottom: 0.6rem; font-size: 0.97rem; }
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .option { display: flex; align-items: center; gap: 0.6rem; font-family: system-ui, sans-serif; font-size: 0.9rem; cursor: pointer; padding: 0.5rem 0.75rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); transition: background 0.15s; user-select: none; }
+    .option:hover { background: #f0efed; }
+    .option.correct { background: #e6f4ea; border-color: #5aab6a; }
+    .option.wrong { background: #fce8e8; border-color: #d96060; }
+    .feedback { font-family: system-ui, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; color: var(--muted); }
+    .source-box { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+    .source-box strong { display: block; margin-bottom: 0.3rem; }
+    a { color: var(--accent); }
+    .ask-teacher { background: #eef5f2; border-radius: 6px; padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 0.9rem; margin-top: 3rem; }
+    .ask-teacher strong { display: block; margin-bottom: 0.3rem; }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: system-ui, sans-serif; font-size: 0.82rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-meta">Form-Making &nbsp;·&nbsp; Lesson 1</div>
+
+  <h1>Climate as the First Move</h1>
+  <p class="subtitle">Turning sun, wind and rain into the start of a form</p>
+
+  <p>The Space Planning series taught you to read and organise a <em>plan</em>. This series is about the building's <strong>form</strong> — its three-dimensional shape — and it's <strong>hands-on</strong>: you'll <em>generate</em> form ideas, not just judge them. We start somewhere specific. In a hot climate, the most honest place a form can come from is <strong>the climate itself</strong>. Before any shape, you map the forces on your Pokuase site — where the sun goes, where the breeze comes from, where the rain falls — and let them push the form into being. By the end you'll have made your first artefact: a <strong>site-force map</strong>. (We're deliberately setting the existing concept plan aside — this is exploration.)</p>
+
+  <div class="tier">
+    <span class="num">Tier 1 · Core</span>
+    <span class="name">Four forces, four form-moves</span>
+    <span class="blurb">Each fact of the climate is the start of a shape.</span>
+  </div>
+
+  <p>A form isn't a style you pick — in this approach it's the visible answer to a set of forces. For Pokuase (~6°N), four forces dominate, and each one suggests a clear opening move:</p>
+
+  <table class="force">
+    <tr><th>The force (Pokuase)</th><th>What it pushes the form to do</th></tr>
+    <tr><td class="f">Sun — high overhead; hot, low sun at east &amp; <em>west</em> (west worst)</td><td>A <strong>broad shading roof with deep overhangs</strong>; turn the <strong>short faces to east/west</strong> (long axis roughly E–W) so little wall takes the low sun; screen or buffer the west.</td></tr>
+    <tr><td class="f">Breeze — the SW monsoon, most of the year</td><td>Open and <strong>face the form to the south-west</strong>; keep it <strong>thin or porous</strong> (and maybe raised) so air passes through rather than around.</td></tr>
+    <tr><td class="f">Rain — heavy seasonal downpours</td><td><strong>Big pitched, overhanging roofs</strong>; a <strong>raised floor / plinth</strong>; covered links between parts; somewhere for the water to go.</td></tr>
+    <tr><td class="f">Heat &amp; humidity</td><td><strong>Shade everything; let air move</strong>: tall rooms that vent at the top (hot air rises out), lightweight shaded walls, generous openings.</td></tr>
+  </table>
+
+  <p>Notice these forces sometimes <em>agree</em> (a big roof answers both sun and rain) and sometimes <em>pull against each other</em> (you want to open to the SW breeze, but the low afternoon sun also comes from the west). <strong>Form-making is the act of resolving those pulls into one shape.</strong> That tension is the work — and the fun.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A site-force map: the sun's arc over the plot, the hot west, the SW breeze, and the rain — each labelled with a form move.">
+      <!-- plot -->
+      <rect x="170" y="150" width="260" height="170" fill="#eef3f1" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="300" y="245" text-anchor="middle" font-size="12" fill="#555" font-family="system-ui, sans-serif">your site</text>
+      <!-- north arrow -->
+      <g transform="translate(300,128)"><polygon points="0,-22 7,4 0,-2 -7,4" fill="#1a1a1a"/><text x="0" y="-28" text-anchor="middle" font-size="11" font-weight="700" font-family="system-ui, sans-serif">N</text></g>
+      <!-- sun arc E -> overhead -> W -->
+      <path d="M120,300 A 220 220 0 0 1 480,300" fill="none" stroke="#e3b94e" stroke-width="2" stroke-dasharray="6 4"/>
+      <circle cx="135" cy="262" r="9" fill="#f6d873" stroke="#e3b94e"/>
+      <text x="120" y="248" font-size="9.5" fill="#9a7a1e" font-family="system-ui, sans-serif">E sunrise</text>
+      <circle cx="300" cy="98" r="11" fill="#f6d873" stroke="#e3b94e"/>
+      <text x="300" y="80" text-anchor="middle" font-size="9.5" fill="#9a7a1e" font-family="system-ui, sans-serif">high overhead</text>
+      <circle cx="465" cy="262" r="11" fill="#eebf86" stroke="#c0392b"/>
+      <text x="487" y="258" font-size="9.5" fill="#c0392b" font-family="system-ui, sans-serif">W: hot PM sun</text>
+      <!-- hot west edge -->
+      <rect x="162" y="150" width="8" height="170" fill="#e7b6b0"/>
+      <text x="120" y="338" font-size="9.5" fill="#c0392b" font-family="system-ui, sans-serif">→ short face + shade west</text>
+      <!-- SW breeze -->
+      <line x1="95" y1="360" x2="205" y2="295" stroke="#2a8acb" stroke-width="2.5" stroke-dasharray="7 4"/>
+      <polygon points="205,295 194,296 199,305" fill="#2a8acb"/>
+      <text x="80" y="372" font-size="9.5" fill="#2a8acb" font-family="system-ui, sans-serif">SW breeze → open to it</text>
+      <!-- rain -->
+      <g stroke="#5a8fb0" stroke-width="2">
+        <line x1="360" y1="60" x2="354" y2="74"/><line x1="385" y1="58" x2="379" y2="72"/><line x1="410" y1="62" x2="404" y2="76"/>
+      </g>
+      <text x="500" y="70" text-anchor="middle" font-size="9.5" fill="#5a8fb0" font-family="system-ui, sans-serif">rain → big roof</text>
+    </svg>
+    <div class="figcap">A site-force map: draw the forces <em>onto</em> the plot, and the first form-moves write themselves. This is the artefact you'll make at the end of the lesson.</div>
+  </div>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q1">
+      <p><strong>1.</strong> In this series, where does form-making start?</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q1', false)">with the cheapest structural grid</div>
+        <div class="option" onclick="answer(this, 'q1', true)">with the forces of the site and its climate</div>
+        <div class="option" onclick="answer(this, 'q1', false)">with the existing concept plan's room list</div>
+        <div class="option" onclick="answer(this, 'q1', false)">with the architect's preferred house style</div>
+      </div>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <div class="question" id="q2">
+      <p><strong>2.</strong> For the Pokuase sun, a sound opening form-move is to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q2', false)">give the building its longest walls facing east and west</div>
+        <div class="option" onclick="answer(this, 'q2', false)">wrap the whole west wall in floor-to-ceiling glass</div>
+        <div class="option" onclick="answer(this, 'q2', true)">present short faces to east/west and shade with a broad roof</div>
+        <div class="option" onclick="answer(this, 'q2', false)">make the roof flat with no overhang at all</div>
+      </div>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <div class="question" id="q3">
+      <p><strong>3.</strong> The SW monsoon breeze suggests a form that is&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q3', true)">open and porous toward the south-west</div>
+        <div class="option" onclick="answer(this, 'q3', false)">sealed tight and compact against the wind</div>
+        <div class="option" onclick="answer(this, 'q3', false)">a deep solid block facing the north-east</div>
+        <div class="option" onclick="answer(this, 'q3', false)">buried into the ground for its thermal mass</div>
+      </div>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+  </div>
+
+  <p><strong>Your Core win.</strong> You can now look at a bare site and name the moves the climate is asking for, before any room is drawn. That alone reframes the whole design: form isn't decoration added at the end — it's the climate answer made visible.</p>
+
+  <div class="stop-here">
+    <strong>You can stop here and already be ahead.</strong> Four forces, four moves, and the habit of drawing them on the site is enough to start generating shapes. When you want to see <em>why</em> the masters trust climate to generate form — and how they built whole careers on it — read on.
+  </div>
+
+  <div class="tier" id="deeper">
+    <span class="num">Tier 2 · Deeper</span>
+    <span class="name">Form follows forces</span>
+    <span class="blurb">Olgyay, Fathy and Murcutt: in a hot climate, the climate is a legitimate generator of form.</span>
+  </div>
+
+  <p>You've heard "form follows function" (Louis Sullivan). In a hot climate there's an older, deeper driver: <strong>form follows forces</strong> — the sun, the wind, the rain. Three masters make the case.</p>
+
+  <h3 class="sub">Design <em>with</em> climate (Olgyay)</h3>
+  <p>Victor Olgyay's <a href="https://press.princeton.edu/books/paperback/9780691169736/design-with-climate" target="_blank"><em>Design with Climate</em></a> (1963) founded the <strong>bioclimatic</strong> approach: the building's <em>shape and orientation</em> are the <strong>first and cheapest environmental control</strong> you have — long before insulation, glazing or machinery. Get the form right and you do most of the cooling for free. Get it wrong and you spend the building's life fighting the climate with energy.</p>
+
+  <h3 class="sub">The vernacular already solved it (Fathy)</h3>
+  <p>Hassan Fathy looked at hot-climate villages and saw that their <strong>forms <em>are</em> their climate answers</strong>: the courtyard, the wind-catcher (malqaf), the thick shaded wall, the domed roof. None of it is decoration — every shape does a thermal job. The lesson for you: you're not inventing from nothing; you're rejoining a long tradition of letting climate shape the building.</p>
+
+  <h3 class="sub">Touch this earth lightly (Murcutt)</h3>
+  <p>The Australian master Glenn Murcutt — who works alone, by hand — tunes every house to <strong>the sun, wind and rain of its exact site</strong>, summed up in his motto "<em>touch this earth lightly</em>." His houses are long, thin, roof-led and full of adjustable openings: pure climate-form. He's proof that this method produces not just comfortable buildings but beautiful, distinctive ones.</p>
+
+  <blockquote>The sun does not realise how wonderful it is until after a room is made.<br><span style="font-style:normal;font-size:0.85rem;color:#777">— Louis Kahn (the spirit of the whole series)</span></blockquote>
+
+  <h2>Checkpoint</h2>
+  <div class="quiz">
+    <h3>Three questions — answer from memory</h3>
+
+    <div class="question" id="q4">
+      <p><strong>4.</strong> Olgyay's "design with climate" treats a building's form as&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q4', false)">a purely artistic shape, with climate left to machines</div>
+        <div class="option" onclick="answer(this, 'q4', true)">the first and cheapest environmental control you have</div>
+        <div class="option" onclick="answer(this, 'q4', false)">something fixed entirely by the structural engineer</div>
+        <div class="option" onclick="answer(this, 'q4', false)">irrelevant once air-conditioning has been installed</div>
+      </div>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <div class="question" id="q5">
+      <p><strong>5.</strong> Fathy's courtyards and wind-catchers show that&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q5', true)">climate gives rise to form — the shape <em>is</em> the answer</div>
+        <div class="option" onclick="answer(this, 'q5', false)">vernacular form is only decorative tradition</div>
+        <div class="option" onclick="answer(this, 'q5', false)">hot climates must import cool-climate forms</div>
+        <div class="option" onclick="answer(this, 'q5', false)">form and climate are unrelated concerns</div>
+      </div>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="question" id="q6">
+      <p><strong>6.</strong> Glenn Murcutt's "touch this earth lightly" tunes a house's form to&hellip;</p>
+      <div class="options">
+        <div class="option" onclick="answer(this, 'q6', false)">the resale value of the property</div>
+        <div class="option" onclick="answer(this, 'q6', false)">a strict square-metre target</div>
+        <div class="option" onclick="answer(this, 'q6', false)">the floor plans of the neighbours</div>
+        <div class="option" onclick="answer(this, 'q6', true)">the sun, wind and rain of its exact site</div>
+      </div>
+      <div class="feedback" id="q6-feedback"></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <span class="num">Tier 3 · Apply</span>
+    <span class="name">Make your site-force map</span>
+    <span class="blurb">The first artefact of the series.</span>
+  </div>
+
+  <p>Hands-on. On a single sheet, draw your Pokuase plot as a simple outline (a rectangle is fine for now) and lay the forces over it:</p>
+  <ol>
+    <li><strong>North</strong> — mark it, then draw the <strong>sun's arc</strong> (rises E, high overhead, sets W) and shade the <strong>hot west</strong> edge.</li>
+    <li><strong>Breeze</strong> — a fat arrow from the <strong>south-west</strong>.</li>
+    <li><strong>Rain</strong> — note it over the top; and any <strong>slope / views / road</strong> on your actual plot.</li>
+    <li>Beside each force, write the <strong>form-move</strong> it asks for (from the table above).</li>
+    <li>Finally, circle the <strong>one tension</strong> you'll have to resolve — almost always: <em>open to the SW breeze, but defend against the west sun.</em></li>
+  </ol>
+
+  <div class="make">
+    <strong>What you've made:</strong> a one-page site-force map — the generative seed for every shape we explore next. Keep it; Lesson 2 turns the first and biggest move (the roof) into real form options.
+  </div>
+
+  <div class="source-box">
+    <strong>Primary sources for this lesson</strong>
+    Victor Olgyay, <a href="https://press.princeton.edu/books/paperback/9780691169736/design-with-climate" target="_blank"><em>Design with Climate</em></a> (the bioclimatic method); Hassan Fathy, <a href="https://en.wikipedia.org/wiki/Hassan_Fathy" target="_blank">natural-energy vernacular</a>; Glenn Murcutt, <a href="https://www.pritzkerprize.com/laureates/2002" target="_blank">"touch this earth lightly"</a> (Pritzker, 2002).<br><br>
+    <strong>To go further</strong>
+    Koenigsberger et al., <em>Manual of Tropical Housing and Building</em> — the technical companion for turning climate into building form.
+  </div>
+
+  <div class="ask-teacher">
+    <strong>Questions?</strong>
+    I'm your teacher — send me your site-force map (even a phone photo of a rough sketch) and we'll pressure-test it together, then start generating shapes from it. Next: <strong>Lesson 2 — the roof as primary form</strong>, the biggest single move in a tropical building.
+  </div>
+
+  <footer>
+    Form-Making &nbsp;·&nbsp; Lesson 1 &nbsp;·&nbsp;
+    <a href="../../index.html">All series</a> &nbsp;·&nbsp;
+    <a href="../../lessons/0005-light-and-orientation.html">Space Planning: Light &amp; Orientation</a>
+  </footer>
+
+  <script>
+    const answers = {
+      q1: { correct: 1, explanation: "The whole method starts from the site's forces — sun, breeze, rain, heat — not a style, a grid, or the existing plan." },
+      q2: { correct: 2, explanation: "Turn the short faces to the low east/west sun and let a broad, deep-eaved roof do the shading. Long E/W walls or west glazing bake the house." },
+      q3: { correct: 0, explanation: "To use the SW monsoon you open and orient the form toward it, and keep it thin/porous so air flows through — not sealed or blocked." },
+      q4: { correct: 1, explanation: "Olgyay's point: form and orientation are the cheapest environmental control there is — they do the work before any machinery." },
+      q5: { correct: 0, explanation: "Fathy showed the vernacular form IS the climate answer — courtyard, wind-catcher, shaded wall each do a thermal job, not a decorative one." },
+      q6: { correct: 3, explanation: "Murcutt tunes form to the sun, wind and rain of the exact site — climate-form that is also beautiful and distinctive." }
+    };
+    function answer(el, qid, isCorrect) {
+      const q = document.getElementById(qid);
+      const opts = q.querySelectorAll('.option');
+      const fb = document.getElementById(qid + '-feedback');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) { opts[answers[qid].correct].classList.add('correct'); }
+      fb.textContent = answers[qid].explanation;
+    }
+  </script>
+
+</body>
+</html>
