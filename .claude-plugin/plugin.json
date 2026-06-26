@@ -1,6 +1,7 @@
 {
   "name": "mattpocock-skills",
   "skills": [
-    "./skills/productivity/teach"
+    "./skills/productivity/teach",
+    "./skills/productivity/teach-intensive"
   ]
 }
