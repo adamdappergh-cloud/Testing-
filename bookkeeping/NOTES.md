@@ -10,8 +10,12 @@
 ## Teaching preferences
 _(none captured yet — will update after first lesson session)_
 
-## Open questions (to resolve before or during Module 7)
-- Is the church registered as a Company Limited by Guarantee under Ghana Companies Act 2019
-  (Act 992)? Or does it operate under the Ghana Baptist Convention's legal umbrella?
-- Is any accounting tool currently in use (paper ledger, spreadsheet, software)?
-- Does the church already have a chart of accounts or any prior bookkeeping records?
+## Known context (updated 2026-06-26)
+- **Legal status:** Registered as a Company Limited by Guarantee under Ghana Companies Act 2019
+  (Act 992). Full Module 7 applies — annual returns to Companies Registry and GRA are real
+  obligations, not hypothetical.
+- **Current tool:** A basic cash book — single-entry income and expenses recording.
+  This means the learner already understands the idea of writing transactions down, but has not
+  yet done double-entry. Module 1 should build from the cash book as the familiar anchor before
+  introducing the second entry.
+- No chart of accounts in use yet; no prior ledger beyond the cash book.
