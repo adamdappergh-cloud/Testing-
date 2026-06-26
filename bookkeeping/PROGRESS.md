@@ -1,14 +1,13 @@
 # Progress: Church Bookkeeping
 
-**Curriculum:** CURRICULUM.md (pending approval)
-**Last session:** 2026-06-26 — Needs analysis completed; MISSION, RESOURCES, CONCEPT-MAP, and
-CURRICULUM produced. Awaiting user approval of curriculum before any lessons begin.
-**Up next:** User approves (or revises) CURRICULUM.md → Lesson 0001
+**Curriculum:** CURRICULUM.md (Approved 2026-06-26)
+**Last session:** 2026-06-26 — Curriculum approved; Lesson 0001 built and delivered.
+**Up next:** Lesson 0001 quiz completion → Lesson 0002 (The Accounting Equation)
 
 ## Lessons
 | Lesson | Module | Taught | Practised | Mastered | Last review | Next review | Notes |
 |--------|--------|--------|-----------|----------|-------------|-------------|-------|
-| _(none yet)_ | | | | | | | |
+| 0001 — Why Church Bookkeeping Matters | M1 | 2026-06-26 | — | — | — | — | Quiz in lesson HTML |
 
 ## Mastery checkpoints
 | Module | Checkpoint | Attempted | Passed | Evidence |

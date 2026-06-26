@@ -1,6 +1,6 @@
 # Curriculum: Church Bookkeeping
 
-**Status:** Draft — awaiting approval
+**Status:** Approved 2026-06-26
 **Target capability:** Keep accurate, transparent financial records for a small reformed Baptist
 church in Accra, Ghana — weekly recording, monthly reconciliation, monthly elder reports, and an
 annual congregational financial statement.

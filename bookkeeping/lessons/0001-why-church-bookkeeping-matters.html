@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 0001 — Why Church Bookkeeping Matters</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #faf9f6;
+      --surface:   #ffffff;
+      --text:      #1a1a1a;
+      --muted:     #6b7280;
+      --accent:    #1e3a5f;
+      --gold:      #92400e;
+      --green:     #065f46;
+      --green-bg:  #d1fae5;
+      --red:       #991b1b;
+      --red-bg:    #fee2e2;
+      --border:    #e5e7eb;
+      --win-bg:    #eff6ff;
+      --win-border:#1e3a5f;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 1.05rem;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* ── Nav ── */
+    .breadcrumb {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--accent);
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .win-box {
+      background: var(--win-bg);
+      border-left: 4px solid var(--win-border);
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1.25rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
+    .win-box strong { color: var(--accent); }
+
+    .meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Body ── */
+    h2 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin: 2.5rem 0 0.75rem;
+      font-weight: normal;
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin: 1.5rem 0 0.4rem;
+      color: var(--text);
+    }
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .cite {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      vertical-align: super;
+    }
+    .cite a { color: var(--muted); }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.25rem 0;
+      font-family: system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
+    .callout-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .reason-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .reason-card .num {
+      font-family: system-ui, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .reason-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .reason-card p {
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .comparison-col {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .comparison-col .col-title {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .comparison-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .comparison-col li {
+      font-family: system-ui, sans-serif;
+      font-size: 0.88rem;
+      padding: 0.25rem 0;
+      color: var(--text);
+    }
+    .comparison-col li::before { content: "→ "; color: var(--muted); }
+
+    .stop-marker {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 3rem 0 2rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    .stop-marker strong { color: var(--green); display: block; font-size: 1rem; margin-bottom: 0.25rem; }
+
+    /* ── Quiz ── */
+    .quiz-section { margin: 2.5rem 0; }
+    .quiz-header {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .question-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .question-text {
+      font-family: system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .q-num {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: normal;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .options { display: flex; flex-direction: column; gap: 0.5rem; }
+    .option-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-family: system-ui, sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .option-btn:hover:not(:disabled) {
+      background: #f0f4ff;
+      border-color: var(--accent);
+    }
+    .option-btn.correct {
+      background: var(--green-bg);
+      border-color: var(--green);
+      color: var(--green);
+      font-weight: 600;
+    }
+    .option-btn.wrong {
+      background: var(--red-bg);
+      border-color: var(--red);
+      color: var(--red);
+    }
+    .option-btn:disabled { cursor: default; }
+    .feedback {
+      font-family: system-ui, sans-serif;
+      font-size: 0.84rem;
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 4px;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: var(--green-bg); color: var(--green); }
+    .feedback.wrong-fb { background: var(--red-bg); color: var(--red); }
+
+    .score-box {
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-family: system-ui, sans-serif;
+      display: none;
+    }
+    .score-box.show { display: block; }
+    .score-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .score-label { font-size: 0.88rem; color: var(--muted); margin-top: 0.3rem; }
+    .score-message { margin-top: 0.75rem; font-size: 0.95rem; }
+
+    /* ── Source & footer ── */
+    .primary-source {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.25rem;
+      margin: 2rem 0;
+    }
+    .primary-source .ps-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .primary-source a {
+      color: var(--accent);
+      font-style: italic;
+    }
+    .primary-source p {
+      font-family: system-ui, sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .ask-teacher {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 6px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-family: system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+    .ask-teacher .at-label {
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .next-lesson {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: system-ui, sans-serif;
+    }
+    .next-lesson .nl-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .next-lesson a {
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .next-lesson a:hover { text-decoration: underline; }
+    .next-lesson p { font-size: 0.88rem; color: var(--muted); margin-top: 0.25rem; }
+
+    @media (max-width: 500px) {
+      .comparison { grid-template-columns: 1fr; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    Church Bookkeeping &rsaquo; Module 1: Foundations &rsaquo; Lesson 0001
+  </nav>
+
+  <!-- Header -->
+  <h1>Why Church Bookkeeping Matters</h1>
+  <p class="subtitle">Before counting a single cedi, it helps to know why you&rsquo;re counting.</p>
+
+  <div class="win-box">
+    <strong>Your win today:</strong> You can explain to any elder or member why accurate records
+    are an act of stewardship, and why church bookkeeping is different from keeping a shop&rsquo;s
+    cash book.
+  </div>
+
+  <div class="meta">
+    <span>Concepts: C1, C2</span>
+    <span>~15 minutes</span>
+    <span>Quiz: 5 questions</span>
+    <span>Module 1 of 7</span>
+  </div>
+
+  <!-- Section 1 -->
+  <h2>The Deacon&rsquo;s Question</h2>
+
+  <p>
+    When the early church in Jerusalem found that some widows were being overlooked in the daily
+    distribution of food, the apostles did something interesting. They did not simply fix the problem
+    themselves — they appointed seven men of good reputation, full of the Spirit and wisdom, to
+    manage the practical and financial affairs of the community.
+    <a class="cite" href="https://www.shepherdthoughts.com/baptistchurchny/deacons-in-the-church-financial-stewardship-and-voluntary-activity/" title="Shepherd Thoughts — Deacons: Financial Stewardship">[1]</a>
+  </p>
+
+  <p>
+    That is the origin of the deacon&rsquo;s financial role. The congregation brings its gifts in faith,
+    trusting that they will reach the right purpose. Your job as the keeper of those records is not
+    primarily a technical one — it is a trust. The ledger is where that trust is either honoured or
+    broken.
+  </p>
+
+  <p>
+    So before we talk about debits and credits, let us be clear about <em>why</em> any of this matters.
+  </p>
+
+  <!-- Section 2 -->
+  <h2>Three Reasons Church Records Matter</h2>
+
+  <div class="three-col">
+    <div class="reason-card">
+      <div class="num">1</div>
+      <h4>Stewardship</h4>
+      <p>The money is not yours, the pastor&rsquo;s, or the elders&rsquo;. It belongs to the
+      congregation&rsquo;s mission. Your records prove it was used that way.</p>
+    </div>
+    <div class="reason-card">
+      <div class="num">2</div>
+      <h4>Accountability</h4>
+      <p>The elders cannot lead wisely without accurate numbers. Members cannot give in faith
+      without trusting that the numbers are real.</p>
+    </div>
+    <div class="reason-card">
+      <div class="num">3</div>
+      <h4>Protection</h4>
+      <p>A missing receipt or unrecorded expense leaves <em>you</em> exposed to accusation.
+      Good records protect the innocent — including the bookkeeper.</p>
+    </div>
+  </div>
+
+  <p>
+    A study of financial accountability in Ghanaian churches found that the most common weaknesses
+    were <em>blind trust</em> (relying on individuals without systems), limited financial literacy,
+    and weak receipt controls — and that these weaknesses eroded community trust over time.
+    <a class="cite" href="https://www.researchgate.net/publication/305816575_Accountability_and_internal_control_in_religious_organisations_a_study_of_Methodist_church_Ghana" title="Accountability and Internal Control in Religious Organisations — Methodist Church Ghana">[2]</a>
+    Systems, not character alone, are what protect a church and its people.
+  </p>
+
+  <!-- Section 3 -->
+  <h2>Church Accounting vs. a Shop&rsquo;s Cash Book</h2>
+
+  <p>
+    You already keep a basic cash book — income in, expenses out. That is exactly how a small
+    shop keeps its records too. But a church and a shop have different goals, and those different
+    goals change how the books must be kept.
+    <a class="cite" href="https://www.freechurchaccounting.com/accounting-for-churches.html" title="Free Church Accounting">[3]</a>
+  </p>
+
+  <div class="comparison">
+    <div class="comparison-col">
+      <div class="col-title">A shop&rsquo;s goal</div>
+      <ul>
+        <li>Income &minus; Expenses = <strong>Profit</strong></li>
+        <li>Profit goes to the owner</li>
+        <li>All money is interchangeable</li>
+        <li>Success = surplus to the owner</li>
+      </ul>
+    </div>
+    <div class="comparison-col">
+      <div class="col-title">A church&rsquo;s goal</div>
+      <ul>
+        <li>Income &minus; Expenses = <strong>Surplus</strong></li>
+        <li>Surplus returns to the mission</li>
+        <li>Money is designated by purpose</li>
+        <li>Success = faithful use of gifts</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    The biggest difference is the phrase <strong>designated by purpose</strong>. When a member
+    gives GHS 200 to the Building Fund, that money can only be spent on the building. It cannot
+    quietly become next month&rsquo;s electricity payment, even if the church is short. The donor
+    trusted that their gift would go to the building — and the records must show that it did.
+    <a class="cite" href="https://www.churchtrac.com/blog/fund-accounting-for-churches" title="ChurchTrac — Fund Accounting for Churches">[4]</a>
+  </p>
+
+  <p>
+    This is called <strong>fund accounting</strong> — the practice of separating money into
+    distinct pools (funds) based on their intended purpose. We will go deep into it in Module 2.
+    For now, just hold the idea: in a church, not all money is the same.
+  </p>
+
+  <!-- Section 4 -->
+  <h2>Your Cash Book — and What It Cannot Do</h2>
+
+  <p>
+    The cash book you are already using is genuinely useful. You know which Sunday brought in how
+    much, and you can see what went out last month. That foundation is worth building on.
+  </p>
+
+  <p>But a single-column cash book has three limits that will matter:</p>
+
+  <div class="callout">
+    <div class="callout-label">Limit 1 — No second check</div>
+    A cash book records each transaction once. An error — a wrong figure, a forgotten entry —
+    can sit undetected for months. Double-entry bookkeeping (the method this course teaches)
+    records each transaction twice, in a way that forces the books to balance. Errors are caught
+    before they compound.
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Limit 2 — Funds are invisible</div>
+    Your cash book probably shows one running total. If GHS 3,000 came in last month — how
+    much went to the General Fund, how much to the Building Fund, how much to Missions? A
+    single-column cash book cannot answer that question cleanly.
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Limit 3 — No picture of what the church owns</div>
+    The cash book shows what happened this month. It cannot tell you: what is in the bank
+    account right now? What does the church owe? What does it own? That requires a
+    <em>balance sheet</em> — which we build in Module 5.
+  </div>
+
+  <p>
+    This course will teach you to keep records that answer all three questions. You will still
+    write down income and expenses — the cash book instinct is correct — but you will add the
+    second entry that keeps everything balanced, and the fund columns that keep designated money
+    safe.
+  </p>
+
+  <!-- Stop marker -->
+  <div class="stop-marker">
+    <strong>✓ First win reached</strong>
+    You now know <em>why</em> church bookkeeping exists, how it differs from a shop&rsquo;s cash book,
+    and what your current cash book cannot do. That is Concepts C1 and C2 covered.<br><br>
+    You can stop here for today and already be ahead. Or continue to the quiz to lock it in.
+  </div>
+
+  <!-- Quiz -->
+  <div class="quiz-section">
+    <div class="quiz-header">Quiz — 5 questions &nbsp;&middot;&nbsp; Test yourself without notes</div>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q1">
+      <div class="question-text">
+        <span class="q-num">Question 1 of 5</span>
+        A member gives GHS 500 specifically for the new church building. Using that money
+        to pay the electricity bill instead would be:
+      </div>
+      <div class="options">
+        <button class="option-btn" data-q="1" data-i="0"
+          onclick="answer(this, 1, 0)">Acceptable if the church has no other money available</button>
+        <button class="option-btn" data-q="1" data-i="1"
+          onclick="answer(this, 1, 1)">A necessary decision during a period of real hardship</button>
+        <button class="option-btn" data-q="1" data-i="2"
+          onclick="answer(this, 1, 2)">A violation of the trust given to the church by that member</button>
+        <button class="option-btn" data-q="1" data-i="3"
+          onclick="answer(this, 1, 3)">Something the elders must first approve before it happens</button>
+      </div>
+      <div class="feedback" id="fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q2">
+      <div class="question-text">
+        <span class="q-num">Question 2 of 5</span>
+        The primary reason a church keeps accurate financial records is to:
+      </div>
+      <div class="options">
+        <button class="option-btn" data-q="2" data-i="0"
+          onclick="answer(this, 2, 0)">Track profit and report surplus to the pastor monthly</button>
+        <button class="option-btn" data-q="2" data-i="1"
+          onclick="answer(this, 2, 1)">Show faithful stewardship of what members have entrusted</button>
+        <button class="option-btn" data-q="2" data-i="2"
+          onclick="answer(this, 2, 2)">Meet all government requirements for annual tax filing</button>
+        <button class="option-btn" data-q="2" data-i="3"
+          onclick="answer(this, 2, 3)">Give the elders control over how the pastor spends money</button>
+      </div>
+      <div class="feedback" id="fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q3">
+      <div class="question-text">
+        <span class="q-num">Question 3 of 5</span>
+        The most important difference between a shop&rsquo;s cash book and church bookkeeping is:
+      </div>
+      <div class="options">
+        <button class="option-btn" data-q="3" data-i="0"
+          onclick="answer(this, 3, 0)">A shop counts daily; a church only counts on Sundays</button>
+        <button class="option-btn" data-q="3" data-i="1"
+          onclick="answer(this, 3, 1)">A shop tracks profit; a church tracks designated funds</button>
+        <button class="option-btn" data-q="3" data-i="2"
+          onclick="answer(this, 3, 2)">A shop pays tax; a church is always fully tax-exempt</button>
+        <button class="option-btn" data-q="3" data-i="3"
+          onclick="answer(this, 3, 3)">A shop uses software; a church must always use paper</button>
+      </div>
+      <div class="feedback" id="fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" id="q4">
+      <div class="question-text">
+        <span class="q-num">Question 4 of 5</span>
+        A basic cash book cannot tell you:
+      </div>
+      <div class="options">
+        <button class="option-btn" data-q="4" data-i="0"
+          onclick="answer(this, 4, 0)">How much money was received on a particular Sunday</button>
+        <button class="option-btn" data-q="4" data-i="1"
+          onclick="answer(this, 4, 1)">Which expenses were paid in the previous month</button>
+        <button class="option-btn" data-q="4" data-i="2"
+          onclick="answer(this, 4, 2)">Which fund each gift belongs to and what remains in it</button>
+        <button class="option-btn" data-q="4" data-i="3"
+          onclick="answer(this, 4, 3)">Whether an offering was taken on a given date</button>
+      </div>
+      <div class="feedback" id="fb4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block" id="q5">
+      <div class="question-text">
+        <span class="q-num">Question 5 of 5</span>
+        Good bookkeeping systems protect the bookkeeper because:
+      </div>
+      <div class="options">
+        <button class="option-btn" data-q="5" data-i="0"
+          onclick="answer(this, 5, 0)">They make the bookkeeper the sole authority on finances</button>
+        <button class="option-btn" data-q="5" data-i="1"
+          onclick="answer(this, 5, 1)">They remove the need for elders to review accounts ever</button>
+        <button class="option-btn" data-q="5" data-i="2"
+          onclick="answer(this, 5, 2)">Paper records leave a clear trail that proves what happened</button>
+        <button class="option-btn" data-q="5" data-i="3"
+          onclick="answer(this, 5, 3)">They ensure government auditors never inspect the church</button>
+      </div>
+      <div class="feedback" id="fb5"></div>
+    </div>
+
+    <!-- Score -->
+    <div class="score-box" id="scoreBox">
+      <div class="score-num" id="scoreNum"></div>
+      <div class="score-label">out of 5</div>
+      <p class="score-message" id="scoreMsg"></p>
+    </div>
+  </div>
+
+  <!-- Primary source -->
+  <div class="primary-source">
+    <div class="ps-label">Primary source for this lesson</div>
+    <p>
+      <a href="https://mbcb.org/wp-content/uploads/2023/02/church-finanical-guidebook-resource.pdf"
+         target="_blank">
+        <em>Church Financial Guidebook</em> — Mississippi Baptist Convention Board (PDF)
+      </a>
+    </p>
+    <p>
+      Baptist-specific, practical, and free. Written for exactly your context: a small Baptist
+      church where a volunteer manages the finances. Read pages 1–8 (the introduction and
+      the section on the treasurer&rsquo;s role) to see these principles in action.
+    </p>
+  </div>
+
+  <!-- Ask the teacher -->
+  <div class="ask-teacher">
+    <div class="at-label">Ask your teacher</div>
+    Anything from this lesson unclear? A concept that didn&rsquo;t click, or a question about
+    how it applies to your specific church? Just type it in the chat — your teacher (Claude) is
+    there to help.
+  </div>
+
+  <!-- Next lesson -->
+  <div class="next-lesson">
+    <div class="nl-label">Next</div>
+    <a href="0002-the-accounting-equation.html">Lesson 0002 — The Accounting Equation</a>
+    <p>
+      Every transaction in bookkeeping follows one rule: Assets = Liabilities + Net Assets.
+      Next lesson, you will understand what that means and why it is the engine that makes
+      the whole system work.
+    </p>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  const ANSWERS = { 1: 2, 2: 1, 3: 1, 4: 2, 5: 2 };
+
+  const EXPLANATIONS = {
+    1: "Designated gifts are a trust. The moment a member specifies a purpose, that money is ring-fenced. Using it elsewhere — even in hardship — breaks the covenant of trust, and potentially the law. The correct procedure is to seek the congregation's release of those funds if circumstances truly require it.",
+    2: "Stewardship is the foundation. Government requirements and elder oversight matter too, but they are consequences of stewardship, not the primary reason. The books exist because God's people have entrusted money to God's mission.",
+    3: "The key distinction is not frequency or tools — it is purpose. A shop exists to generate profit for its owner. A church exists to steward gifts for a mission. Fund accounting (separating money by designated purpose) is what makes church bookkeeping distinctive.",
+    4: "A single-column cash book shows totals — not which pool of money each transaction came from or went to. If GHS 1,200 came in last month, how much was for the Building Fund and how much was unrestricted? The cash book alone cannot answer that.",
+    5: "A paper trail is the bookkeeper's best defence. If every transaction has a receipt, a count sheet, or a voucher, and every entry can be traced back to a source document, there is no ambiguity. Accusations cannot stand against a clean, complete record."
+  };
+
+  let answered = {};
+
+  function answer(btn, qNum, idx) {
+    if (answered[qNum]) return;
+    answered[qNum] = true;
+
+    const block = document.getElementById('q' + qNum);
+    const btns = block.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = ANSWERS[qNum];
+
+    btns.forEach(b => b.disabled = true);
+
+    if (idx === correct) {
+      btn.classList.add('correct');
+      fb.textContent = '✓ Correct. ' + EXPLANATIONS[qNum];
+      fb.className = 'feedback correct-fb show';
+    } else {
+      btn.classList.add('wrong');
+      btns[correct].classList.add('correct');
+      fb.textContent = '✗ Not quite. ' + EXPLANATIONS[qNum];
+      fb.className = 'feedback wrong-fb show';
+    }
+
+    if (Object.keys(answered).length === 5) showScore();
+  }
+
+  function showScore() {
+    let score = 0;
+    for (let q = 1; q <= 5; q++) {
+      const block = document.getElementById('q' + q);
+      const btns = block.querySelectorAll('.option-btn');
+      if (btns[ANSWERS[q]].classList.contains('correct') &&
+          !Array.from(btns).some((b, i) => i !== ANSWERS[q] && b.classList.contains('wrong') && b.disabled)) {
+        // simpler: check if the correct button was clicked (not just marked)
+      }
+    }
+    // recalculate from DOM state
+    score = 0;
+    for (let q = 1; q <= 5; q++) {
+      const block = document.getElementById('q' + q);
+      const fb = document.getElementById('fb' + q);
+      if (fb.classList.contains('correct-fb')) score++;
+    }
+
+    const box = document.getElementById('scoreBox');
+    const num = document.getElementById('scoreNum');
+    const msg = document.getElementById('scoreMsg');
+
+    num.textContent = score + '/5';
+
+    if (score === 5) {
+      msg.textContent = 'Perfect. You have the foundations of C1 and C2. Move to Lesson 0002 when ready.';
+    } else if (score >= 3) {
+      msg.textContent = 'Good start. Read the explanations for any question you missed, then move on.';
+    } else {
+      msg.textContent = 'Read back through the lesson, paying special attention to the sections on stewardship and fund accounting, then try again.';
+    }
+
+    box.classList.add('show');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>
