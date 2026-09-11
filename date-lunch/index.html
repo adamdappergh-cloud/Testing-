@@ -271,6 +271,9 @@
     100%{opacity:.9;transform:rotate(-14deg) scale(1)}
   }
 
+  .closing { display: flex; flex-direction: column; gap: 10px; }
+  .closing[hidden] { display: none !important; }
+
   #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9; }
 
   @media (max-width: 400px) {
@@ -389,8 +392,12 @@
     <section class="screen" id="s-done" hidden>
       <p class="eyebrow">FILE AUTHORISED</p>
       <div id="docket"></div>
-      <button class="btn solid" id="send-wa" type="button">TRANSMIT TO HANDLER &rarr;</button>
-      <p class="small" id="saved-note">Opens WhatsApp with the file written out.</p>
+      <button class="btn solid" id="handback" type="button">HAND THE PHONE BACK &rarr;</button>
+      <p class="small" id="saved-note">He is pretending not to watch.</p>
+      <div class="closing" id="closing" hidden>
+        <p class="eyebrow">FOR THE HANDLER</p>
+        <h2 class="big">She&rsquo;s filed. Your move.</h2>
+      </div>
     </section>
 
   </div>
@@ -662,17 +669,14 @@
     save();
   }
 
-  function orderText() {
-    var L = ['OPERATION DATE-LUNCH — agent\u2019s parameters', ''];
-    answers.either.forEach(function (p) { L.push('• ' + p.a); });
-    L.push('', 'Matters for debrief:');
-    answers.topics.forEach(function (t) { L.push('• ' + t); });
-    L.push('', 'Location still classified. 1230 hrs.');
-    return L.join('\n');
-  }
-
-  $('send-wa').addEventListener('click', function () {
-    window.open('https://wa.me/?text=' + encodeURIComponent(orderText()), '_blank', 'noopener');
+  $('handback').addEventListener('click', function () {
+    $('handback').hidden = true;
+    $('saved-note').hidden = true;
+    $('closing').hidden = false;
+    if (!reduce) {
+      waveEl.classList.add('surge');
+      setTimeout(function () { waveEl.classList.remove('surge'); }, 900);
+    }
   });
 
   /* Inside Claude, keep a copy the handler can read back. */
