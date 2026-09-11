@@ -682,7 +682,6 @@
       }
     }, reduce ? 60 : 110 + rows.length * 140 + 200);
 
-    save();
   }
 
   $('handback').addEventListener('click', function () {
@@ -694,19 +693,6 @@
       setTimeout(function () { waveEl.classList.remove('surge'); }, 900);
     }
   });
-
-  /* Inside Claude, keep a copy the handler can read back. */
-  function save() {
-    if (!window.claude || !claude.use) return;
-    claude.use('db').then(function (db) {
-      if (!db) return;
-      return db.doc('orders/today').set({
-        either: answers.either,
-        topics: answers.topics,
-        placedAt: new Date().toISOString()
-      });
-    }).catch(function () {});
-  }
 
   /* ---------------- confetti ---------------- */
   var canvas = $('confetti'), ctx = canvas.getContext('2d'), bits = [], running = false;
