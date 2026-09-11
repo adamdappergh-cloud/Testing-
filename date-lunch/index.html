@@ -1,162 +1,176 @@
-<title>Table for Two</title>
+<title>Operation Redacted</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Caveat:wght@500;600;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Saira+Stencil+One&family=Special+Elite&display=swap">
 
 <style>
   :root {
-    --table:      #413B2E;
-    --glow:       rgba(255, 238, 200, 0.20);
-    --paper:      #E9EDE0;
-    --rule:       #B7C4AA;
-    --print:      #4E6B52;
-    --print-soft: #7B9179;
-    --ink:        #1F3A5F;
-    --stamp:      #CC3B28;
-    --mustard:    #D9A226;
-    --redact:     #221F1A;
-    --shadow:     rgba(0, 0, 0, 0.45);
+    --desk:    #211E19;
+    --lamp:    rgba(255, 236, 190, 0.16);
+    --paper:   #E4DCC7;
+    --paper-2: #D6CBB0;
+    --rule:    #B3A78B;
+    --ink:     #2B2721;
+    --ink-2:   #6E6455;
+    --pen:     #27457E;
+    --stamp:   #B3271E;
+    --sea:     #1F6F7A;
+    --sea-2:   #3E99A3;
+    --redact:  #1A1713;
+    --shadow:  rgba(0, 0, 0, 0.5);
 
-    --form: "Special Elite", "Courier New", ui-monospace, monospace;
-    --pen:  "Caveat", "Segoe Script", cursive;
-    --util: "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
+    --type:    "Special Elite", "Courier New", ui-monospace, monospace;
+    --stencil: "Saira Stencil One", "Special Elite", Impact, sans-serif;
+    --hand:    "Caveat", "Segoe Script", cursive;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --table: #141517; --glow: rgba(255,214,140,.13); --paper: #DDE3D2;
-      --rule: #AEBBA1; --print: #46604A; --print-soft: #6E8570; --ink: #1B3355;
-      --stamp: #C03826; --mustard: #C8921F; --redact: #14120F; --shadow: rgba(0,0,0,.7);
+      --desk: #0E0D0C; --lamp: rgba(255,222,160,.10);
+      --paper: #D6CEB9; --paper-2: #C7BCA1; --rule: #A99D82;
+      --ink: #221F1A; --ink-2: #5F5648; --pen: #233E72;
+      --stamp: #A82419; --sea: #1B626C; --sea-2: #368D97;
+      --redact: #0B0A08; --shadow: rgba(0,0,0,.78);
     }
   }
   :root[data-theme="dark"] {
-    --table: #141517; --glow: rgba(255,214,140,.13); --paper: #DDE3D2;
-    --rule: #AEBBA1; --print: #46604A; --print-soft: #6E8570; --ink: #1B3355;
-    --stamp: #C03826; --mustard: #C8921F; --redact: #14120F; --shadow: rgba(0,0,0,.7);
+    --desk: #0E0D0C; --lamp: rgba(255,222,160,.10);
+    --paper: #D6CEB9; --paper-2: #C7BCA1; --rule: #A99D82;
+    --ink: #221F1A; --ink-2: #5F5648; --pen: #233E72;
+    --stamp: #A82419; --sea: #1B626C; --sea-2: #368D97;
+    --redact: #0B0A08; --shadow: rgba(0,0,0,.78);
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   body {
-    background: var(--table);
-    background-image: radial-gradient(ellipse 75% 55% at 50% 40%, var(--glow), transparent 70%);
+    background: var(--desk);
+    background-image: radial-gradient(ellipse 78% 55% at 50% 38%, var(--lamp), transparent 72%);
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-inline: 16px;
-    padding-block: 28px;
-    font-family: var(--util);
+    display: flex; align-items: center; justify-content: center;
+    padding-inline: 16px; padding-block: 28px;
+    font-family: var(--type);
+    overflow-x: hidden;
   }
 
-  .check {
-    position: relative;
-    width: 100%;
-    max-width: 380px;
-    background: var(--paper);
-    color: var(--print);
-    transform: rotate(-1.2deg);
-    box-shadow: 0 18px 40px -12px var(--shadow), 0 2px 6px -2px var(--shadow);
+  /* ---------- the agent, at sea ---------- */
+  #wave {
+    position: fixed; left: 0; top: 0; z-index: 0;
+    pointer-events: none; will-change: transform;
+  }
+  #wave svg { display: block; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+  #wave.surge svg { transform: scale(2.1); }
+  .w-body  { fill: var(--sea); opacity: .5; }
+  .w-curl  { fill: var(--sea-2); opacity: .55; }
+  .w-swell { fill: none; stroke: var(--sea-2); stroke-width: 1.6; opacity: .4; stroke-linecap: round; }
+
+  /* ---------- the file ---------- */
+  .file {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 384px;
+    background: var(--paper); color: var(--ink);
+    transform: rotate(-1deg);
+    box-shadow: 0 20px 44px -14px var(--shadow), 0 2px 6px -2px var(--shadow);
     padding: 0 20px 18px;
     background-image:
-      repeating-linear-gradient(0deg, rgba(0,0,0,.012) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, transparent 1px 4px);
+      repeating-linear-gradient(0deg, rgba(0,0,0,.014) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.014) 0 1px, transparent 1px 4px);
   }
-  .check::before {
-    content: ""; position: absolute; inset: -9px 0 auto 0; height: 10px;
-    background: radial-gradient(circle at 6px 10px, transparent 5.5px, var(--paper) 6px) 0 0 / 12px 10px repeat-x;
+  /* manila tab peeking out behind */
+  .file::before {
+    content: ""; position: absolute; z-index: -1;
+    left: 16px; right: -7px; top: -11px; bottom: -7px;
+    background: var(--paper-2);
+    box-shadow: 0 8px 18px -8px var(--shadow);
   }
-  .check.thunk { animation: thunk .38s ease-out; }
-  @keyframes thunk {
-    0%{transform:rotate(-1.2deg) translateY(0)}
-    28%{transform:rotate(-1.8deg) translateY(5px)}
-    60%{transform:rotate(-.9deg) translateY(-2px)}
-    100%{transform:rotate(-1.2deg) translateY(0)}
+  .file.jolt { animation: jolt .4s ease-out; }
+  @keyframes jolt {
+    0%{transform:rotate(-1deg) translateY(0)}
+    28%{transform:rotate(-1.7deg) translateY(5px)}
+    60%{transform:rotate(-.7deg) translateY(-2px)}
+    100%{transform:rotate(-1deg) translateY(0)}
   }
 
-  .head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 10px; padding-block: 15px 7px;
+  .head { padding-block: 16px 8px; display: flex; flex-direction: column; gap: 5px; }
+  .head .band {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .classified {
+    font-family: var(--stencil); font-size: .62rem; letter-spacing: .22em;
+    color: var(--stamp); border: 2px solid var(--stamp); padding: 3px 7px;
+    transform: rotate(-2deg);
+  }
+  .fileno {
+    font-size: .64rem; letter-spacing: .12em; color: var(--ink-2);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
   }
   .head h1 {
-    font-family: var(--form); font-size: 1rem; font-weight: 400;
-    letter-spacing: .13em; margin: 0;
+    font-family: var(--stencil); font-size: 1.42rem; line-height: 1.1;
+    letter-spacing: .04em; margin: 0; color: var(--ink);
   }
-  .no-field {
-    font-size: .68rem; font-weight: 600; letter-spacing: .1em;
-    color: var(--print-soft); font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
-  .no-field b { color: var(--stamp); font-weight: 700; }
+  .head h1 span { color: var(--stamp); }
 
   .meta {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-    border-block: 1.5px solid var(--print); padding-block: 6px; margin: 0 0 2px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 7px 10px;
+    border-block: 1.5px solid var(--ink); padding-block: 7px; margin: 4px 0 0;
   }
-  .meta div { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-  .meta dt { font-size: .55rem; font-weight: 700; letter-spacing: .12em; color: var(--print-soft); }
+  .meta div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .meta dt { font-size: .54rem; letter-spacing: .16em; color: var(--ink-2); }
   .meta dd {
-    margin: 0; font-family: var(--pen); font-size: 1.08rem; line-height: 1;
-    color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin: 0; font-family: var(--hand); font-size: 1.16rem; line-height: 1;
+    color: var(--pen); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    display: flex; align-items: center; gap: 5px;
   }
+  .sigil { flex: none; }
+  .sigil path { fill: var(--sea); }
 
   .countdown {
-    text-align: center; font-size: .58rem; font-weight: 700; letter-spacing: .2em;
-    color: var(--print-soft); margin: 0; padding-block: 7px;
+    text-align: center; font-size: .55rem; letter-spacing: .17em;
+    color: var(--ink-2); margin: 0; padding-block: 8px;
     border-bottom: 1px solid var(--rule);
   }
   .countdown b {
-    color: var(--stamp); font-variant-numeric: tabular-nums; letter-spacing: .08em;
+    color: var(--stamp); font-variant-numeric: tabular-nums; letter-spacing: .07em;
   }
-  .kitchen {
-    font-family: var(--form); font-size: .68rem; letter-spacing: .06em;
-    color: var(--stamp); margin: 0; min-height: 2.4em; line-height: 1.35;
-  }
-  .bar.slip {
-    background: transparent; color: var(--stamp);
-    font-family: var(--pen); font-size: 1.22rem; letter-spacing: 0; padding: 0;
-  }
-  .stage { min-height: 330px; display: flex; flex-direction: column; justify-content: center; padding-block: 10px; }
 
+  .stage {
+    min-height: 336px; display: flex; flex-direction: column;
+    justify-content: center; padding-block: 12px;
+  }
   .screen { display: flex; flex-direction: column; gap: 14px; }
   .screen[hidden] { display: none !important; }
   .screen.in { animation: in .34s ease both; }
   @keyframes in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
 
   .big {
-    font-family: var(--pen); font-size: 1.92rem; line-height: 1.1; font-weight: 600;
-    color: var(--ink); margin: 0; text-wrap: balance;
+    font-family: var(--hand); font-size: 1.88rem; line-height: 1.12; font-weight: 600;
+    color: var(--pen); margin: 0; text-wrap: balance;
   }
-  .small {
-    font-family: var(--util); font-size: .74rem; line-height: 1.5;
-    letter-spacing: .04em; color: var(--print-soft); margin: 0;
-  }
-  .eyebrow {
-    font-size: .58rem; font-weight: 700; letter-spacing: .18em;
-    color: var(--print-soft); margin: 0;
-  }
+  .small { font-size: .68rem; line-height: 1.6; color: var(--ink-2); margin: 0; }
+  .eyebrow { font-size: .55rem; letter-spacing: .2em; color: var(--ink-2); margin: 0; }
 
-  /* ---- buttons ---- */
+  /* ---------- controls ---------- */
   .btn {
-    font-family: var(--form); letter-spacing: .09em; cursor: pointer;
-    border: 2px solid var(--print); background: var(--paper); color: var(--print);
-    border-radius: 2px; padding: 12px 20px; font-size: .88rem; line-height: 1;
-    width: 100%;
+    font-family: var(--type); letter-spacing: .1em; cursor: pointer;
+    border: 2px solid var(--ink); background: transparent; color: var(--ink);
+    border-radius: 1px; padding: 12px 18px; font-size: .82rem; line-height: 1.2; width: 100%;
   }
   .btn:focus-visible { outline: 3px solid var(--stamp); outline-offset: 3px; }
   .btn.solid {
-    background: var(--print); color: var(--paper); box-shadow: 3px 3px 0 var(--mustard);
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+    box-shadow: 3px 3px 0 var(--stamp);
   }
-  .btn.solid:active { box-shadow: 1px 1px 0 var(--mustard); transform: translate(2px,2px); }
-  .btn:disabled { opacity: .4; cursor: default; box-shadow: none; }
+  .btn.solid:active { box-shadow: 1px 1px 0 var(--stamp); transform: translate(2px,2px); }
+  .btn:disabled { opacity: .38; cursor: default; box-shadow: none; }
 
-  .arena { position: relative; min-height: 128px; display: flex; align-items: center; justify-content: center; }
+  .arena { position: relative; min-height: 130px; display: flex; align-items: center; justify-content: center; }
   #yes {
-    width: auto; min-width: 130px;
+    width: auto; min-width: 150px;
     transform: scale(var(--grow,1)); transform-origin: center;
     transition: transform .34s cubic-bezier(.34,1.56,.64,1);
   }
   #no {
-    position: absolute; width: auto; padding: 9px 14px; font-size: .76rem;
+    position: absolute; width: auto; padding: 9px 13px; font-size: .7rem;
     transform: scale(var(--shrink,1));
     transition: left .22s cubic-bezier(.22,1,.36,1), top .22s cubic-bezier(.22,1,.36,1), transform .22s ease;
   }
@@ -167,24 +181,25 @@
     100%{transform:scale(calc(var(--shrink,1)*.28)) rotate(72deg) translateY(80px);opacity:0}
   }
   .nudge {
-    text-align: center; font-size: .6rem; font-weight: 600;
-    letter-spacing: .13em; color: var(--print-soft); min-height: 1.1em; margin: 0;
+    text-align: center; font-size: .55rem; letter-spacing: .15em;
+    color: var(--ink-2); min-height: 1.2em; margin: 0;
   }
 
-  /* ---- the brief (redactions) ---- */
-  .brief { display: flex; flex-direction: column; gap: 0; }
+  /* ---------- the brief ---------- */
+  .brief { display: flex; flex-direction: column; }
   .bline {
     display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px;
     border-bottom: 1px solid var(--rule); padding-block: 11px;
   }
-  .bline dt { font-size: .58rem; font-weight: 700; letter-spacing: .14em; color: var(--print-soft); }
+  .bline dt { font-size: .55rem; letter-spacing: .15em; color: var(--ink-2); }
   .bline .dots { border-bottom: 1.5px dotted var(--rule); height: 1px; }
-  .bline dd { margin: 0; font-family: var(--pen); font-size: 1.22rem; color: var(--ink); line-height: 1; }
+  .bline dd { margin: 0; font-family: var(--hand); font-size: 1.2rem; color: var(--pen); line-height: 1; }
+  .ok { font-family: var(--type); font-size: .6rem; letter-spacing: .1em; color: var(--sea); }
 
   .bar {
     display: inline-block; background: var(--redact); color: transparent;
-    padding: 4px 12px; border: 0; border-radius: 1px; cursor: pointer;
-    font-family: var(--form); font-size: .8rem; letter-spacing: .1em; line-height: 1.2;
+    padding: 4px 11px; border: 0; border-radius: 0; cursor: pointer;
+    font-family: var(--type); font-size: .76rem; letter-spacing: .1em; line-height: 1.25;
     user-select: none;
   }
   .bar.shake { animation: shake .34s ease; }
@@ -192,167 +207,196 @@
     0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)}
     45%{transform:translateX(5px)} 70%{transform:translateX(-3px)}
   }
-  .bar.open {
-    background: transparent; color: var(--ink); font-family: var(--pen);
-    font-size: 1.22rem; letter-spacing: 0; padding: 0; cursor: default;
+  .bar.slip {
+    background: transparent; color: var(--stamp);
+    font-family: var(--hand); font-size: 1.2rem; letter-spacing: 0; padding: 0;
   }
   .taunt {
-    font-family: var(--pen); font-size: 1.05rem; color: var(--stamp);
-    text-align: right; min-height: 1.2em; margin: 4px 0 0;
+    font-family: var(--hand); font-size: 1.04rem; color: var(--stamp);
+    text-align: right; min-height: 1.2em; margin: 2px 0 0;
   }
 
-  /* ---- either / or ---- */
+  /* ---------- parameters ---------- */
   .pips { display: flex; gap: 5px; justify-content: center; }
-  .pip { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); }
+  .pip { width: 6px; height: 6px; background: var(--rule); }
   .pip.on { background: var(--stamp); }
 
   .pair { display: flex; flex-direction: column; gap: 9px; }
-  .pair .btn { font-family: var(--pen); font-size: 1.28rem; letter-spacing: 0; padding: 15px 16px; }
+  .pair .btn { font-family: var(--hand); font-size: 1.26rem; letter-spacing: 0; padding: 14px 16px; color: var(--pen); }
 
-  /* ---- topic chips ---- */
+  .handler {
+    font-size: .64rem; letter-spacing: .07em; color: var(--stamp);
+    margin: 0; min-height: 2.6em; line-height: 1.4;
+  }
+
+  /* ---------- debrief chips ---------- */
   .chips { display: flex; flex-wrap: wrap; gap: 7px; }
   .chip {
-    font-family: var(--util); font-size: .78rem; font-weight: 600; letter-spacing: .02em;
-    border: 1.5px solid var(--rule); background: transparent; color: var(--print);
-    border-radius: 999px; padding: 8px 13px; cursor: pointer; line-height: 1.2;
+    font-family: var(--type); font-size: .7rem; letter-spacing: .02em;
+    border: 1.5px solid var(--rule); background: transparent; color: var(--ink);
+    border-radius: 0; padding: 8px 11px; cursor: pointer; line-height: 1.25;
   }
-  .chip[aria-pressed="true"] {
-    border-color: var(--print); background: var(--print); color: var(--paper);
-  }
-  .chip:disabled { opacity: .35; cursor: default; }
+  .chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .chip:disabled { opacity: .32; cursor: default; }
   .chip:focus-visible { outline: 3px solid var(--stamp); outline-offset: 2px; }
-  .count { font-variant-numeric: tabular-nums; }
+  .count { font-variant-numeric: tabular-nums; color: var(--stamp); }
 
-  /* ---- final docket ---- */
+  /* ---------- authorised file ---------- */
   .row {
-    display: grid; grid-template-columns: 22px 1fr auto; align-items: end; gap: 8px;
-    border-bottom: 1px solid var(--rule); min-height: 34px; padding-bottom: 3px;
+    display: grid; grid-template-columns: 16px 1fr auto; align-items: end; gap: 8px;
+    border-bottom: 1px solid var(--rule); min-height: 32px; padding-bottom: 3px;
   }
-  .row span { font-family: var(--pen); font-size: 1.08rem; color: var(--ink); line-height: 1.15; }
-  .row .tick { color: var(--print); }
+  .row span { font-family: var(--hand); font-size: 1.06rem; color: var(--pen); line-height: 1.2; }
+  .row .tick { font-family: var(--type); font-size: .6rem; color: var(--sea); }
   .row.w { opacity: 0; transform: translateY(4px); }
   .row.w.written { opacity: 1; transform: none; transition: opacity .3s ease, transform .3s ease; }
 
   .foot {
-    text-align: center; font-size: .6rem; font-weight: 700;
-    letter-spacing: .18em; color: var(--print-soft); padding-top: 12px; margin: 0;
+    text-align: center; font-size: .55rem; letter-spacing: .17em;
+    color: var(--ink-2); padding-top: 12px; margin: 0;
   }
 
   #stamp {
-    position: absolute; right: 12px; bottom: 64px; z-index: 5;
-    font-family: var(--form); font-size: 1.05rem; letter-spacing: .13em;
-    color: var(--stamp); border: 3px solid var(--stamp); border-radius: 4px;
-    padding: 6px 11px; transform: rotate(-15deg) scale(2.4); opacity: 0;
-    mix-blend-mode: multiply; pointer-events: none; text-align: center; line-height: 1.1;
+    position: absolute; right: 10px; bottom: 58px; z-index: 5;
+    font-family: var(--stencil); font-size: 1rem; letter-spacing: .1em;
+    color: var(--stamp); border: 3px solid var(--stamp);
+    padding: 6px 10px; transform: rotate(-14deg) scale(2.4); opacity: 0;
+    mix-blend-mode: multiply; pointer-events: none; text-align: center; line-height: 1.15;
   }
-  #stamp small { display: block; font-size: .48rem; letter-spacing: .2em; }
+  #stamp small { display: block; font-family: var(--type); font-size: .46rem; letter-spacing: .18em; }
   #stamp.on { animation: stamp .34s cubic-bezier(.3,1.4,.5,1) forwards; }
   @keyframes stamp {
-    0%{opacity:0;transform:rotate(-24deg) scale(2.4)}
-    65%{opacity:.95;transform:rotate(-14deg) scale(.94)}
-    100%{opacity:.88;transform:rotate(-15deg) scale(1)}
+    0%{opacity:0;transform:rotate(-23deg) scale(2.4)}
+    65%{opacity:.96;transform:rotate(-13deg) scale(.94)}
+    100%{opacity:.9;transform:rotate(-14deg) scale(1)}
   }
 
   #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9; }
 
+  @media (max-width: 400px) {
+    .head h1 { font-size: 1.24rem; }
+    .big { font-size: 1.66rem; }
+    .file { padding-inline: 17px; }
+    #stamp { right: 6px; font-size: .9rem; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .check.thunk, #no.gone, .bar.shake, .screen.in { animation: none; }
-    #no, #yes, .row.w.written { transition: none; }
+    .file.jolt, #no.gone, .bar.shake, .screen.in { animation: none; }
+    #no, #yes, .row.w.written, #wave svg { transition: none; }
     #no.gone { opacity: 0; }
-    #stamp.on { animation: none; opacity: .88; transform: rotate(-15deg) scale(1); }
+    #stamp.on { animation: none; opacity: .9; transform: rotate(-14deg) scale(1); }
   }
 </style>
 
 <canvas id="confetti" aria-hidden="true"></canvas>
 
-<main class="check" id="check">
+<div id="wave" aria-hidden="true">
+  <svg viewBox="0 0 72 40" width="52" height="29">
+    <path class="w-body" d="M4 30 C4 13 15 6 29 8 C41 10 45 20 39 26 C36 29 30 28 30 24 C30 20 34 19 36 21 C33 15 23 15 20 22 C17 28 11 31 4 30 Z"/>
+    <path class="w-curl" d="M30 24 C30 20 34 19 36 21 C35 18 31 18 30 24 Z"/>
+    <path class="w-swell" d="M2 32 Q 11 36 20 32 T 38 32 T 56 32 T 70 33"/>
+  </svg>
+</div>
+
+<main class="file" id="file">
   <div class="head">
-    <h1>GUEST CHECK</h1>
-    <span class="no-field">No. <b>2020</b></span>
+    <div class="band">
+      <span class="classified">CLASSIFIED</span>
+      <span class="fileno">FILE 2020&ndash;EM &middot; EYES ONLY</span>
+    </div>
+    <h1>OPERATION <span>[REDACTED]</span></h1>
   </div>
 
   <dl class="meta">
-    <div><dt>SERVER</dt><dd>Pokerfaceguy</dd></div>
-    <div><dt>TABLE</dt><dd>for 2</dd></div>
-    <div><dt>TIME</dt><dd id="m-time">12:30</dd></div>
+    <div>
+      <dt>AGENT</dt>
+      <dd>
+        <svg class="sigil" viewBox="0 0 72 40" width="17" height="10" aria-hidden="true">
+          <path d="M4 30 C4 13 15 6 29 8 C41 10 45 20 39 26 C36 29 30 28 30 24 C30 20 34 19 36 21 C33 15 23 15 20 22 C17 28 11 31 4 30 Z"/>
+        </svg>
+        Emitsunami
+      </dd>
+    </div>
+    <div><dt>HANDLER</dt><dd>Pokerfaceguy</dd></div>
+    <div><dt>WINDOW OPENS</dt><dd>1230 hrs</dd></div>
+    <div><dt>CLEARANCE</dt><dd>spousal</dd></div>
   </dl>
 
-  <p class="countdown" id="cd">SERVICE IN <b>&mdash;</b></p>
+  <p class="countdown" id="cd">THIS BRIEFING SELF-DESTRUCTS IN <b>&mdash;</b></p>
 
   <div class="stage">
 
-    <!-- 1. the ask -->
+    <!-- 1 -->
     <section class="screen in" id="s-ask">
-      <p class="eyebrow">TODAY · 12:30</p>
-      <h2 class="big">Emitsunami &mdash;<br>will you have lunch with me?</h2>
+      <p class="eyebrow">AUTHORISATION REQUIRED</p>
+      <h2 class="big">Agent Emitsunami &mdash; do you accept this assignment?</h2>
       <div class="arena" id="arena">
-        <button class="btn solid" id="yes" type="button">YES</button>
-        <button class="btn" id="no" type="button">no</button>
+        <button class="btn solid" id="yes" type="button">ACCEPT</button>
+        <button class="btn" id="no" type="button">decline</button>
       </div>
       <p class="nudge" id="nudge"></p>
     </section>
 
-    <!-- 2. the yes -->
+    <!-- 2 -->
     <section class="screen" id="s-yes" hidden>
-      <p class="eyebrow">ORDER RECEIVED</p>
-      <h2 class="big">You said yes.<br>Again.</h2>
-      <p class="small">Nearly six years and two small girls later, and it still works. Now — there are three things about this lunch you don't know yet.</p>
-      <button class="btn solid" data-go="s-brief" type="button">GO ON THEN →</button>
+      <p class="eyebrow">ASSIGNMENT ACCEPTED</p>
+      <h2 class="big">Good. We had you down as reliable.</h2>
+      <p class="small">Nearly six years in the field, two small operatives at home, and you still say yes. Three details remain classified.</p>
+      <button class="btn solid" data-go="s-brief" type="button">OPEN THE FILE &rarr;</button>
     </section>
 
-    <!-- 3. the brief -->
+    <!-- 3 -->
     <section class="screen" id="s-brief" hidden>
-      <p class="eyebrow">TODAY'S BOOKING</p>
+      <p class="eyebrow">BRIEFING &middot; 4 LINES</p>
       <dl class="brief">
-        <div class="bline"><dt>TIME</dt><span class="dots"></span><dd>12:30</dd></div>
-        <div class="bline"><dt>PLACE</dt><span class="dots"></span>
-          <dd><button class="bar" id="bar-place" type="button">REDACTED</button></dd>
+        <div class="bline"><dt>WINDOW</dt><span class="dots"></span><dd class="ok">1230 HRS &mdash; CONFIRMED</dd></div>
+        <div class="bline"><dt>LOCATION</dt><span class="dots"></span>
+          <dd><button class="bar" id="bar-place" type="button">CLASSIFIED</button></dd>
         </div>
-        <div class="bline"><dt>FOOD</dt><span class="dots"></span>
-          <dd><button class="bar" id="bar-food" type="button">REDACTED</button></dd>
+        <div class="bline"><dt>PROVISIONS</dt><span class="dots"></span>
+          <dd><button class="bar" id="bar-food" type="button">CLASSIFIED</button></dd>
         </div>
-        <div class="bline"><dt>TO DISCUSS</dt><span class="dots"></span>
-          <dd><button class="bar" id="bar-talk" type="button">REDACTED</button></dd>
+        <div class="bline"><dt>DEBRIEF</dt><span class="dots"></span>
+          <dd><button class="bar" id="bar-talk" type="button">CLASSIFIED</button></dd>
         </div>
       </dl>
-      <p class="taunt" id="taunt">tap one. go ahead.</p>
-      <button class="btn solid" data-go="s-food" type="button">FINE — LET ME ORDER →</button>
+      <p class="taunt" id="taunt">try one. go on.</p>
+      <button class="btn solid" data-go="s-food" type="button">SET MY PARAMETERS &rarr;</button>
     </section>
 
-    <!-- 4. either / or -->
+    <!-- 4 -->
     <section class="screen" id="s-food" hidden>
       <div class="pips" id="pips"></div>
-      <p class="eyebrow" id="q-eyebrow">QUESTION 1 OF 4</p>
-      <h2 class="big" id="q-text">Somewhere we know, or somewhere new?</h2>
+      <p class="eyebrow" id="q-eyebrow">PARAMETER 1 OF 4</p>
+      <h2 class="big" id="q-text"></h2>
       <div class="pair" id="q-pair">
         <button class="btn" type="button" data-pick="0"></button>
         <button class="btn" type="button" data-pick="1"></button>
       </div>
-      <p class="kitchen" id="kitchen">KITCHEN: standing by.</p>
-      <p class="small">The table is already booked and the kitchen is not taking amendments. He asked anyway.</p>
+      <p class="handler" id="handler">HANDLER: standing by.</p>
     </section>
 
-    <!-- 5. topics -->
+    <!-- 5 -->
     <section class="screen" id="s-talk" hidden>
-      <p class="eyebrow">THE LAST BLANK LINE</p>
-      <h2 class="big">What are we actually talking about?</h2>
-      <p class="small">Neither of us has planned this bit. Pick <b>three</b> and I'll come prepared. <span class="count" id="picked">0/3</span></p>
+      <p class="eyebrow">MATTERS FOR DEBRIEF</p>
+      <h2 class="big">Nobody has filed an agenda.</h2>
+      <p class="small">Which is an oversight, given the window is ninety minutes. Select <b>three</b>. <span class="count" id="picked">0/3</span></p>
       <div class="chips" id="chips"></div>
-      <button class="btn solid" id="send" type="button" disabled>SEND TO THE KITCHEN →</button>
+      <button class="btn solid" id="send" type="button" disabled>TRANSMIT &rarr;</button>
     </section>
 
-    <!-- 6. the docket -->
+    <!-- 6 -->
     <section class="screen" id="s-done" hidden>
-      <p class="eyebrow">ORDER PLACED</p>
+      <p class="eyebrow">FILE AUTHORISED</p>
       <div id="docket"></div>
-      <button class="btn solid" id="send-wa" type="button">SEND IT TO HIM &rarr;</button>
-      <p class="small" id="saved-note">Opens WhatsApp with your order written out.</p>
+      <button class="btn solid" id="send-wa" type="button">TRANSMIT TO HANDLER &rarr;</button>
+      <p class="small" id="saved-note">Opens WhatsApp with the file written out.</p>
     </section>
 
   </div>
 
-  <p class="foot" id="foot">THANK YOU — SEE YOU AT 12:30</p>
-  <div id="stamp" aria-hidden="true">ORDERED<small>TABLE FOR 2</small></div>
+  <p class="foot" id="foot">1230 HRS &middot; DESTROY AFTER READING</p>
+  <div id="stamp" aria-hidden="true">AUTHORISED<small>EYES ONLY</small></div>
 </main>
 
 <script>
@@ -360,8 +404,30 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (id) { return document.getElementById(id); };
 
-  var check = $('check'), foot = $('foot'), stamp = $('stamp');
+  var file = $('file'), foot = $('foot'), stamp = $('stamp'), waveEl = $('wave');
   var answers = { either: [], topics: [] };
+
+  /* ---------------- the agent, at sea ---------------- */
+  (function () {
+    var x = -80, t = 0;
+    if (reduce) {
+      waveEl.style.transform = 'translate3d(' + (innerWidth * 0.12) + 'px,' + (innerHeight * 0.82) + 'px,0)';
+      return;
+    }
+    function swim() {
+      t += 0.016;
+      x += 0.5;
+      if (x > innerWidth + 80) x = -80;
+      var y = innerHeight * 0.5
+            + Math.sin(t * 0.21) * innerHeight * 0.33
+            + Math.sin(t * 0.95) * 9;
+      waveEl.style.transform =
+        'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' +
+        (Math.sin(t * 0.95) * 5).toFixed(2) + 'deg)';
+      requestAnimationFrame(swim);
+    }
+    swim();
+  })();
 
   /* ---------------- screens ---------------- */
   function show(id) {
@@ -379,14 +445,28 @@
     if (t) show(t.getAttribute('data-go'));
   });
 
-  /* ---------------- 1. the fleeing no ---------------- */
+  /* ---------------- the countdown ---------------- */
+  (function () {
+    var cd = $('cd'), out = cd.querySelector('b');
+    function beat() {
+      var t = new Date(); t.setHours(12, 30, 0, 0);
+      var ms = t - new Date();
+      if (ms <= 0) { cd.innerHTML = 'THE WINDOW IS OPEN. WHERE ARE YOU.'; return; }
+      var s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60);
+      out.textContent = h + 'h ' + ('0' + m).slice(-2) + 'm ' + ('0' + (s % 60)).slice(-2) + 's';
+      setTimeout(beat, 1000);
+    }
+    beat();
+  })();
+
+  /* ---------------- 1. decline evades capture ---------------- */
   var arena = $('arena'), yes = $('yes'), no = $('no'), nudge = $('nudge');
-  var LABELS = ['no', 'not today', 'busy', 'nope', 'oh come on'];
+  var LABELS = ['decline', 'negative', 'request denied', 'no', 'oh, come on'];
   var ASIDES = [
-    'THE NO BUTTON IS OFF TODAY',
-    'IT IS NOT EVEN ON THE MENU',
-    'IT IS GETTING SMALLER',
-    'THAT OPTION EXPIRED IN 2020',
+    'DECLINE IS NOT AN AUTHORISED RESPONSE',
+    'THE BUTTON IS EVADING CAPTURE',
+    'IT IS LOSING ITS NERVE',
+    'THAT OPTION WAS REVOKED IN 2020',
     'ONE OPTION REMAINING'
   ];
   var dodges = 0, settled = false;
@@ -394,7 +474,7 @@
   function park() {
     if (settled || no.dataset.free === '1') return;
     var a = arena.getBoundingClientRect(), y = yes.getBoundingClientRect();
-    var left = (y.right - a.left) + 12;
+    var left = (y.right - a.left) + 10;
     if (left + no.offsetWidth > a.width) left = Math.max(0, a.width - no.offsetWidth);
     no.style.left = left + 'px';
     no.style.top = ((a.height - no.offsetHeight) / 2) + 'px';
@@ -408,7 +488,7 @@
     var x0 = 0, y0 = 0;
     for (var i = 0; i < 14; i++) {
       x0 = Math.random() * maxX; y0 = Math.random() * maxY;
-      if (Math.hypot(x0 + no.offsetWidth / 2 - yc.x, y0 + no.offsetHeight / 2 - yc.y) > (y.width / 2 + 44)) break;
+      if (Math.hypot(x0 + no.offsetWidth / 2 - yc.x, y0 + no.offsetHeight / 2 - yc.y) > (y.width / 2 + 42)) break;
     }
     no.dataset.free = '1';
     no.style.left = x0 + 'px';
@@ -416,7 +496,7 @@
     no.textContent = LABELS[Math.min(dodges, LABELS.length - 1)];
     nudge.textContent = ASIDES[Math.min(dodges, ASIDES.length - 1)];
     no.style.setProperty('--shrink', Math.max(.5, 1 - dodges * .1).toFixed(2));
-    yes.style.setProperty('--grow', Math.min(1.5, 1 + dodges * .1).toFixed(2));
+    yes.style.setProperty('--grow', Math.min(1.45, 1 + dodges * .09).toFixed(2));
     dodges++;
     if (dodges > LABELS.length) {
       settled = true;
@@ -432,25 +512,11 @@
   no.addEventListener('click', function (e) { e.preventDefault(); });
   yes.addEventListener('click', function () { show('s-yes'); });
 
-  /* ---------------- the countdown to 12:30 ---------------- */
-  (function () {
-    var cd = $('cd'), out = cd.querySelector('b');
-    function beat() {
-      var t = new Date(); t.setHours(12, 30, 0, 0);
-      var ms = t - new Date();
-      if (ms <= 0) { cd.innerHTML = 'SERVICE HAS STARTED. WHERE ARE YOU.'; return; }
-      var s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60);
-      out.textContent = h + 'h ' + ('0' + m).slice(-2) + 'm ' + ('0' + (s % 60)).slice(-2) + 's';
-      setTimeout(beat, 1000);
-    }
-    beat();
-  })();
-
-  /* ---------------- 3. redaction taunts ---------------- */
+  /* ---------------- 3. clearance denied ---------------- */
   var TAUNTS = {
-    'bar-place': ['nice try.', 'still no.', "you'll see it when we park.", 'last one. genuinely no.'],
-    'bar-food':  ["that's actually up to you →", 'keep going.', 'two screens away.'],
-    'bar-talk':  ["also up to you, funnily enough →", 'nobody has planned this bit.', 'hence the next screen.']
+    'bar-place': ['clearance denied.', 'still denied.', 'denied. and final.'],
+    'bar-food':  ['that one is yours to set →', 'two screens away.', 'keep going.'],
+    'bar-talk':  ['also yours. nobody has filed it →', 'which is the problem.', 'hence the next screen.']
   };
   var taunted = {};
   document.querySelectorAll('.bar').forEach(function (bar) {
@@ -458,16 +524,16 @@
       var id = bar.id;
       taunted[id] = (taunted[id] || 0);
 
-      /* Third go at PLACE and the bar slips, then thinks better of it. */
+      /* Third attempt on LOCATION and the redaction slips. */
       if (id === 'bar-place' && taunted[id] === 2 && !bar.dataset.slipped) {
         bar.dataset.slipped = '1';
         bar.classList.add('slip');
         bar.textContent = 'the chicken place by the roundabout';
-        $('taunt').textContent = 'wait \u2014 no.';
+        $('taunt').textContent = 'wait — no.';
         setTimeout(function () {
           bar.classList.remove('slip');
-          bar.textContent = 'REDACTED';
-          $('taunt').textContent = "you didn't see that.";
+          bar.textContent = 'CLASSIFIED';
+          $('taunt').textContent = 'you did not see that.';
         }, 1100);
         taunted[id]++;
         return;
@@ -481,22 +547,22 @@
     });
   });
 
-  /* ---------------- 4. either / or ---------------- */
+  /* ---------------- 4. mission parameters ---------------- */
   var QS = [
-    { q: 'Somewhere we know, or somewhere new?', a: ['somewhere we know', 'surprise me'],
-      k: ['KITCHEN: predictable. noted.', 'KITCHEN: brave. the chef has raised an eyebrow.'] },
-    { q: 'Something light, or proper food?', a: ['light — I have an afternoon', 'proper food, obviously'],
-      k: ['KITCHEN: the chef is visibly hurt.', 'KITCHEN: the chef has put his hat back on.'] },
-    { q: 'Outside in the heat, or air-con?', a: ['outside, under something', 'air-con, all of it'],
-      k: ['KITCHEN: at this hour. bold.', 'KITCHEN: correct. it is 31 degrees.'] },
-    { q: 'Back by two, or let it run?', a: ['back by two', 'let it run'],
-      k: ['KITCHEN: we shall see.', 'KITCHEN: the chef is opening something.'] }
+    { q: 'Known ground, or unfamiliar territory?', a: ['known ground', 'unfamiliar territory'],
+      k: ['HANDLER: predictable. logged.', 'HANDLER: bold. the handler has raised an eyebrow.'] },
+    { q: 'Light provisions, or a full operation?', a: ['light — I have an afternoon', 'a full operation'],
+      k: ['HANDLER: noted, with visible disappointment.', 'HANDLER: correct. the handler is pleased.'] },
+    { q: 'Exposed position, or climate control?', a: ['exposed, under cover', 'climate control, all of it'],
+      k: ['HANDLER: at this hour. brave.', 'HANDLER: sensible. it is 31 degrees out there.'] },
+    { q: 'Extraction by 1400, or open-ended?', a: ['extraction by 1400', 'open-ended'],
+      k: ['HANDLER: we shall see about that.', 'HANDLER: the handler is clearing his afternoon.'] }
   ];
   var qi = 0;
 
   function askQ() {
     if (qi >= QS.length) { show('s-talk'); return; }
-    $('q-eyebrow').textContent = 'QUESTION ' + (qi + 1) + ' OF ' + QS.length;
+    $('q-eyebrow').textContent = 'PARAMETER ' + (qi + 1) + ' OF ' + QS.length;
     $('q-text').textContent = QS[qi].q;
     var btns = $('q-pair').querySelectorAll('.btn');
     btns[0].textContent = QS[qi].a[0];
@@ -511,31 +577,29 @@
     if (!b) return;
     var pick = +b.getAttribute('data-pick');
     answers.either.push({ q: QS[qi].q, a: QS[qi].a[pick] });
-    $('kitchen').textContent = QS[qi].k[pick];
+    $('handler').textContent = QS[qi].k[pick];
     qi++;
     if (qi >= QS.length) show('s-talk'); else askQ();
   });
 
-  /* ---------------- 5. topics ---------------- */
+  /* ---------------- 5. matters for debrief ---------------- */
   var TOPICS = [
-    'the girls — five minutes, maximum',
-    'something that is not the girls',
+    'the operatives — five minutes, maximum',
+    'anything that is not the operatives',
     'the house',
-    'where we go this year',
-    'money, briefly',
-    'something you keep not telling me',
-    'a thing you have changed your mind about',
-    'what you want this next year to look like',
-    'something completely stupid'
+    'where we deploy this year',
+    'finances, briefly',
+    'something you have been withholding',
+    'a position you have since reversed',
+    'what the next year should look like',
+    'something entirely stupid'
   ];
   var chips = $('chips');
   TOPICS.forEach(function (t, i) {
     var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'chip';
+    b.type = 'button'; b.className = 'chip';
     b.setAttribute('aria-pressed', 'false');
-    b.dataset.i = i;
-    b.textContent = t;
+    b.dataset.i = i; b.textContent = t;
     chips.appendChild(b);
   });
 
@@ -557,49 +621,53 @@
 
   $('send').addEventListener('click', finish);
 
-  /* ---------------- 6. the docket ---------------- */
-  function finish() {
-    $('send').disabled = true;
-    var html = '';
-    answers.either.forEach(function (p) {
-      html += '<div class="row w"><span>·</span><span>' + esc(p.a) + '</span><span class="tick">✓</span></div>';
-    });
-    answers.topics.forEach(function (t) {
-      html += '<div class="row w"><span>·</span><span>' + esc(t) + '</span><span class="tick">✓</span></div>';
-    });
-    html += '<div class="row w"><span>·</span><span>the girls — not invited</span><span class="tick">✓</span></div>';
-    html += '<div class="row w"><span>·</span><span>the restaurant — still not telling you</span><span class="tick">✓</span></div>';
-    $('docket').innerHTML = html;
-
-    show('s-done');
-
-    var rows = $('docket').querySelectorAll('.row');
-    rows.forEach(function (r, i) {
-      setTimeout(function () { r.classList.add('written'); }, reduce ? 0 : 120 + i * 150);
-    });
-
-    setTimeout(function () {
-      foot.textContent = '12:30. DO NOT BE LATE.';
-      stamp.classList.add('on');
-      if (!reduce) { check.classList.add('thunk'); burst(); }
-    }, reduce ? 60 : 120 + rows.length * 150 + 200);
-
-    save();
-  }
-
+  /* ---------------- 6. authorised ---------------- */
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
   }
 
-  /* ---------------- save her order ---------------- */
+  function finish() {
+    $('send').disabled = true;
+    var html = '';
+    answers.either.forEach(function (p) {
+      html += '<div class="row w"><span>&middot;</span><span>' + esc(p.a) + '</span><span class="tick">SET</span></div>';
+    });
+    answers.topics.forEach(function (t) {
+      html += '<div class="row w"><span>&middot;</span><span>' + esc(t) + '</span><span class="tick">SET</span></div>';
+    });
+    html += '<div class="row w"><span>&middot;</span><span>the operatives — not invited</span><span class="tick">SET</span></div>';
+    html += '<div class="row w"><span>&middot;</span><span>the location — still classified</span><span class="tick">&mdash;</span></div>';
+    $('docket').innerHTML = html;
+
+    show('s-done');
+
+    var rows = $('docket').querySelectorAll('.row');
+    rows.forEach(function (r, i) {
+      setTimeout(function () { r.classList.add('written'); }, reduce ? 0 : 110 + i * 140);
+    });
+
+    setTimeout(function () {
+      foot.textContent = '1230 HRS. DO NOT BE LATE.';
+      stamp.classList.add('on');
+      if (!reduce) {
+        file.classList.add('jolt');
+        waveEl.classList.add('surge');
+        setTimeout(function () { waveEl.classList.remove('surge'); }, 900);
+        burst();
+      }
+    }, reduce ? 60 : 110 + rows.length * 140 + 200);
+
+    save();
+  }
+
   function orderText() {
-    var L = ['My order for 12:30 \u2014', ''];
-    answers.either.forEach(function (p) { L.push('\u2022 ' + p.a); });
-    L.push('', 'To discuss:');
-    answers.topics.forEach(function (t) { L.push('\u2022 ' + t); });
-    L.push('', 'Still waiting on the restaurant.');
+    var L = ['OPERATION [REDACTED] — agent’s parameters', ''];
+    answers.either.forEach(function (p) { L.push('• ' + p.a); });
+    L.push('', 'Matters for debrief:');
+    answers.topics.forEach(function (t) { L.push('• ' + t); });
+    L.push('', 'Location still classified. 1230 hrs.');
     return L.join('\n');
   }
 
@@ -607,7 +675,7 @@
     window.open('https://wa.me/?text=' + encodeURIComponent(orderText()), '_blank', 'noopener');
   });
 
-  /* When this runs inside Claude, quietly keep a copy he can read back. */
+  /* Inside Claude, keep a copy the handler can read back. */
   function save() {
     if (!window.claude || !claude.use) return;
     claude.use('db').then(function (db) {
@@ -622,7 +690,7 @@
 
   /* ---------------- confetti ---------------- */
   var canvas = $('confetti'), ctx = canvas.getContext('2d'), bits = [], running = false;
-  var COLORS = ['#CC3B28', '#4E6B52', '#E9EDE0', '#1F3A5F', '#D9A226'];
+  var COLORS = ['#B3271E', '#1F6F7A', '#E4DCC7', '#27457E', '#3E99A3'];
 
   function size() {
     var d = window.devicePixelRatio || 1;
@@ -633,7 +701,7 @@
   size();
 
   function burst() {
-    var r = check.getBoundingClientRect();
+    var r = file.getBoundingClientRect();
     var ox = r.left + r.width / 2, oy = r.top + r.height * .5;
     for (var i = 0; i < 80; i++) {
       var ang = (-Math.PI / 2) + (Math.random() - .5) * 2.3, sp = 5 + Math.random() * 10;
