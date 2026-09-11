@@ -14,8 +14,10 @@
     --ink-2:   #6E6455;
     --pen:     #27457E;
     --stamp:   #B3271E;
-    --sea:     #1F6F7A;
-    --sea-2:   #3E99A3;
+    --sea:     #2E8B97;
+    --sea-2:   #56B6C0;
+    --sea-3:   #9BD8DE;
+    --sea-ink: #1B5F69;
     --redact:  #1A1713;
     --shadow:  rgba(0, 0, 0, 0.5);
 
@@ -29,7 +31,7 @@
       --desk: #0E0D0C; --lamp: rgba(255,222,160,.10);
       --paper: #D6CEB9; --paper-2: #C7BCA1; --rule: #A99D82;
       --ink: #221F1A; --ink-2: #5F5648; --pen: #233E72;
-      --stamp: #A82419; --sea: #1B626C; --sea-2: #368D97;
+      --stamp: #A82419; --sea: #2A7C88; --sea-2: #4BA5AF; --sea-3: #8ECBD2; --sea-ink: #17545D;
       --redact: #0B0A08; --shadow: rgba(0,0,0,.78);
     }
   }
@@ -37,7 +39,7 @@
     --desk: #0E0D0C; --lamp: rgba(255,222,160,.10);
     --paper: #D6CEB9; --paper-2: #C7BCA1; --rule: #A99D82;
     --ink: #221F1A; --ink-2: #5F5648; --pen: #233E72;
-    --stamp: #A82419; --sea: #1B626C; --sea-2: #368D97;
+    --stamp: #A82419; --sea: #2A7C88; --sea-2: #4BA5AF; --sea-3: #8ECBD2; --sea-ink: #17545D;
     --redact: #0B0A08; --shadow: rgba(0,0,0,.78);
   }
 
@@ -60,9 +62,9 @@
   }
   #wave svg { display: block; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
   #wave.surge svg { transform: scale(2.1); }
-  .w-body  { fill: var(--sea); opacity: .5; }
-  .w-curl  { fill: var(--sea-2); opacity: .55; }
-  .w-swell { fill: none; stroke: var(--sea-2); stroke-width: 1.6; opacity: .4; stroke-linecap: round; }
+  .w-body  { fill: var(--sea); opacity: .82; }
+  .w-curl  { fill: var(--sea-3); opacity: .9; }
+  .w-swell { fill: none; stroke: var(--sea-2); stroke-width: 1.8; opacity: .6; stroke-linecap: round; }
 
   /* ---------- the file ---------- */
   .file {
@@ -122,7 +124,7 @@
     display: flex; align-items: center; gap: 5px;
   }
   .sigil { flex: none; }
-  .sigil path { fill: var(--sea); }
+  .sigil path { fill: var(--sea-ink); }
 
   .countdown {
     text-align: center; font-size: .55rem; letter-spacing: .17em;
@@ -194,7 +196,7 @@
   .bline dt { font-size: .55rem; letter-spacing: .15em; color: var(--ink-2); }
   .bline .dots { border-bottom: 1.5px dotted var(--rule); height: 1px; }
   .bline dd { margin: 0; font-family: var(--hand); font-size: 1.2rem; color: var(--pen); line-height: 1; }
-  .ok { font-family: var(--type); font-size: .6rem; letter-spacing: .1em; color: var(--sea); }
+  .ok { font-family: var(--type); font-size: .6rem; letter-spacing: .1em; color: var(--sea-ink); }
 
   .bar {
     display: inline-block; background: var(--redact); color: transparent;
@@ -247,7 +249,7 @@
     border-bottom: 1px solid var(--rule); min-height: 32px; padding-bottom: 3px;
   }
   .row span { font-family: var(--hand); font-size: 1.06rem; color: var(--pen); line-height: 1.2; }
-  .row .tick { font-family: var(--type); font-size: .6rem; color: var(--sea); }
+  .row .tick { font-family: var(--type); font-size: .6rem; color: var(--sea-ink); }
   .row.w { opacity: 0; transform: translateY(4px); }
   .row.w.written { opacity: 1; transform: none; transition: opacity .3s ease, transform .3s ease; }
 
@@ -294,7 +296,7 @@
 <canvas id="confetti" aria-hidden="true"></canvas>
 
 <div id="wave" aria-hidden="true">
-  <svg viewBox="0 0 72 40" width="52" height="29">
+  <svg viewBox="0 0 72 40" width="72" height="40">
     <path class="w-body" d="M4 30 C4 13 15 6 29 8 C41 10 45 20 39 26 C36 29 30 28 30 24 C30 20 34 19 36 21 C33 15 23 15 20 22 C17 28 11 31 4 30 Z"/>
     <path class="w-curl" d="M30 24 C30 20 34 19 36 21 C35 18 31 18 30 24 Z"/>
     <path class="w-swell" d="M2 32 Q 11 36 20 32 T 38 32 T 56 32 T 70 33"/>
@@ -416,21 +418,35 @@
 
   /* ---------------- the agent, at sea ---------------- */
   (function () {
-    var x = -80, t = 0;
+    var W = 72, H = 40, t = 0;
+
     if (reduce) {
-      waveEl.style.transform = 'translate3d(' + (innerWidth * 0.12) + 'px,' + (innerHeight * 0.82) + 'px,0)';
+      waveEl.style.transform =
+        'translate3d(' + (innerWidth * 0.1) + 'px,' + (innerHeight - 70) + 'px,0)';
       return;
     }
+
     function swim() {
       t += 0.016;
-      x += 0.5;
-      if (x > innerWidth + 80) x = -80;
-      var y = innerHeight * 0.5
-            + Math.sin(t * 0.21) * innerHeight * 0.33
-            + Math.sin(t * 0.95) * 9;
+      var a = t * 0.42;                       /* one lap, roughly 15s */
+      var r = file.getBoundingClientRect();
+
+      /* Ride an ellipse just outside the file, so the wave clears its edges
+         instead of passing behind it. */
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var x = cx + Math.cos(a) * (r.width / 2 + 30) - W / 2;
+      var y = cy + Math.sin(a) * (r.height / 2 + 26) - H / 2;
+
+      /* On a narrow phone the file is nearly screen-wide, so the sides of the
+         orbit would sit off-screen. Slide along the edge rather than vanish. */
+      x = Math.max(4, Math.min(innerWidth - W - 4, x));
+      y = Math.max(4, Math.min(innerHeight - H - 4, y));
+
       waveEl.style.transform =
-        'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' +
-        (Math.sin(t * 0.95) * 5).toFixed(2) + 'deg)';
+        'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)' +
+        ' rotate(' + (Math.sin(a * 2) * 7).toFixed(2) + 'deg)' +
+        ' scaleX(' + (Math.sin(a) > 0 ? -1 : 1) + ')';
+
       requestAnimationFrame(swim);
     }
     swim();
