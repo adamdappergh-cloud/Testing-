@@ -2,7 +2,7 @@ name: Deploy lessons to GitHub Pages
 
 on:
   push:
-    branches: [claude/mattpocock-teach-skill-download-qgkt6p]
+    branches: [claude/mattpocock-teach-skill-download-qgkt6p, date-lunch]
   workflow_dispatch:
 
 permissions:
@@ -30,6 +30,7 @@ jobs:
           cp -r lessons _site/lessons
           cp -r reference _site/reference
           cp -r form-making _site/form-making
+          cp -r date-lunch _site/date-lunch
           cat > _site/index.html <<'HTML'
           <!doctype html>
           <html lang="en">

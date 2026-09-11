@@ -310,7 +310,7 @@
         <button class="btn" type="button" data-pick="0"></button>
         <button class="btn" type="button" data-pick="1"></button>
       </div>
-      <p class="small">The table is already booked. Your answers are going straight to him, which may or may not change anything.</p>
+      <p class="small">The table is already booked and the kitchen is not taking amendments. He asked anyway.</p>
     </section>
 
     <!-- 5. topics -->
@@ -326,7 +326,8 @@
     <section class="screen" id="s-done" hidden>
       <p class="eyebrow">ORDER PLACED</p>
       <div id="docket"></div>
-      <p class="small" id="saved-note">Sent. He has it.</p>
+      <button class="btn solid" id="send-wa" type="button">SEND IT TO HIM &rarr;</button>
+      <p class="small" id="saved-note">Opens WhatsApp with your order written out.</p>
     </section>
 
   </div>
@@ -538,19 +539,30 @@
   }
 
   /* ---------------- save her order ---------------- */
+  function orderText() {
+    var L = ['My order for 12:30 \u2014', ''];
+    answers.either.forEach(function (p) { L.push('\u2022 ' + p.a); });
+    L.push('', 'To discuss:');
+    answers.topics.forEach(function (t) { L.push('\u2022 ' + t); });
+    L.push('', 'Still waiting on the restaurant.');
+    return L.join('\n');
+  }
+
+  $('send-wa').addEventListener('click', function () {
+    window.open('https://wa.me/?text=' + encodeURIComponent(orderText()), '_blank', 'noopener');
+  });
+
+  /* When this runs inside Claude, quietly keep a copy he can read back. */
   function save() {
-    var note = $('saved-note');
-    if (!window.claude || !claude.use) { note.textContent = 'Tell him in person, then.'; return; }
+    if (!window.claude || !claude.use) return;
     claude.use('db').then(function (db) {
-      if (!db) { note.textContent = 'Tell him in person, then.'; return; }
+      if (!db) return;
       return db.doc('orders/today').set({
         either: answers.either,
         topics: answers.topics,
         placedAt: new Date().toISOString()
-      }).then(function () { note.textContent = 'Sent to the kitchen. He has it.'; });
-    }).catch(function () {
-      note.textContent = 'The kitchen did not pick up. Screenshot this and send it to him.';
-    });
+      });
+    }).catch(function () {});
   }
 
   /* ---------------- confetti ---------------- */
