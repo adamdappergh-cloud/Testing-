@@ -252,11 +252,11 @@
 <main class="check" id="check">
   <div class="head">
     <h1>GUEST CHECK</h1>
-    <span class="no-field">No. <b>0212</b></span>
+    <span class="no-field">No. <b>2020</b></span>
   </div>
 
   <dl class="meta">
-    <div><dt>SERVER</dt><dd>your husband</dd></div>
+    <div><dt>SERVER</dt><dd>Pokerfaceguy</dd></div>
     <div><dt>TABLE</dt><dd>for 2</dd></div>
     <div><dt>TIME</dt><dd id="m-time">12:30</dd></div>
   </dl>
@@ -266,7 +266,7 @@
     <!-- 1. the ask -->
     <section class="screen in" id="s-ask">
       <p class="eyebrow">TODAY · 12:30</p>
-      <h2 class="big">Will you have lunch with me?</h2>
+      <h2 class="big">Emitsunami &mdash;<br>will you have lunch with me?</h2>
       <div class="arena" id="arena">
         <button class="btn solid" id="yes" type="button">YES</button>
         <button class="btn" id="no" type="button">no</button>
@@ -278,7 +278,7 @@
     <section class="screen" id="s-yes" hidden>
       <p class="eyebrow">ORDER RECEIVED</p>
       <h2 class="big">You said yes.<br>Again.</h2>
-      <p class="small">Still works. Now — there are three things about this lunch you don't know yet.</p>
+      <p class="small">Nearly six years and two small girls later, and it still works. Now — there are three things about this lunch you don't know yet.</p>
       <button class="btn solid" data-go="s-brief" type="button">GO ON THEN →</button>
     </section>
 
@@ -366,7 +366,7 @@
     'THE NO BUTTON IS OFF TODAY',
     'IT IS NOT EVEN ON THE MENU',
     'IT IS GETTING SMALLER',
-    'THAT OPTION EXPIRED AT THE ALTAR',
+    'THAT OPTION EXPIRED IN 2020',
     'ONE OPTION REMAINING'
   ];
   var dodges = 0, settled = false;
@@ -462,14 +462,14 @@
 
   /* ---------------- 5. topics ---------------- */
   var TOPICS = [
+    'the girls — five minutes, maximum',
+    'something that is not the girls',
     'the house',
-    'something you keep not telling me',
     'where we go this year',
     'money, briefly',
-    'family',
-    'a thing you changed your mind about',
-    'what you want the next year to look like',
-    'work — but only the good bits',
+    'something you keep not telling me',
+    'a thing you have changed your mind about',
+    'what you want this next year to look like',
     'something completely stupid'
   ];
   var chips = $('chips');
@@ -511,6 +511,7 @@
     answers.topics.forEach(function (t) {
       html += '<div class="row w"><span>·</span><span>' + esc(t) + '</span><span class="tick">✓</span></div>';
     });
+    html += '<div class="row w"><span>·</span><span>the girls — not invited</span><span class="tick">✓</span></div>';
     html += '<div class="row w"><span>·</span><span>the restaurant — still not telling you</span><span class="tick">✓</span></div>';
     $('docket').innerHTML = html;
 
