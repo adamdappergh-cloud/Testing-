@@ -99,6 +99,22 @@
     color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
 
+  .countdown {
+    text-align: center; font-size: .58rem; font-weight: 700; letter-spacing: .2em;
+    color: var(--print-soft); margin: 0; padding-block: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .countdown b {
+    color: var(--stamp); font-variant-numeric: tabular-nums; letter-spacing: .08em;
+  }
+  .kitchen {
+    font-family: var(--form); font-size: .68rem; letter-spacing: .06em;
+    color: var(--stamp); margin: 0; min-height: 2.4em; line-height: 1.35;
+  }
+  .bar.slip {
+    background: transparent; color: var(--stamp);
+    font-family: var(--pen); font-size: 1.22rem; letter-spacing: 0; padding: 0;
+  }
   .stage { min-height: 330px; display: flex; flex-direction: column; justify-content: center; padding-block: 10px; }
 
   .screen { display: flex; flex-direction: column; gap: 14px; }
@@ -261,6 +277,8 @@
     <div><dt>TIME</dt><dd id="m-time">12:30</dd></div>
   </dl>
 
+  <p class="countdown" id="cd">SERVICE IN <b>&mdash;</b></p>
+
   <div class="stage">
 
     <!-- 1. the ask -->
@@ -310,6 +328,7 @@
         <button class="btn" type="button" data-pick="0"></button>
         <button class="btn" type="button" data-pick="1"></button>
       </div>
+      <p class="kitchen" id="kitchen">KITCHEN: standing by.</p>
       <p class="small">The table is already booked and the kitchen is not taking amendments. He asked anyway.</p>
     </section>
 
@@ -413,6 +432,20 @@
   no.addEventListener('click', function (e) { e.preventDefault(); });
   yes.addEventListener('click', function () { show('s-yes'); });
 
+  /* ---------------- the countdown to 12:30 ---------------- */
+  (function () {
+    var cd = $('cd'), out = cd.querySelector('b');
+    function beat() {
+      var t = new Date(); t.setHours(12, 30, 0, 0);
+      var ms = t - new Date();
+      if (ms <= 0) { cd.innerHTML = 'SERVICE HAS STARTED. WHERE ARE YOU.'; return; }
+      var s = Math.floor(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60);
+      out.textContent = h + 'h ' + ('0' + m).slice(-2) + 'm ' + ('0' + (s % 60)).slice(-2) + 's';
+      setTimeout(beat, 1000);
+    }
+    beat();
+  })();
+
   /* ---------------- 3. redaction taunts ---------------- */
   var TAUNTS = {
     'bar-place': ['nice try.', 'still no.', "you'll see it when we park.", 'last one. genuinely no.'],
@@ -424,6 +457,22 @@
     bar.addEventListener('click', function () {
       var id = bar.id;
       taunted[id] = (taunted[id] || 0);
+
+      /* Third go at PLACE and the bar slips, then thinks better of it. */
+      if (id === 'bar-place' && taunted[id] === 2 && !bar.dataset.slipped) {
+        bar.dataset.slipped = '1';
+        bar.classList.add('slip');
+        bar.textContent = 'the chicken place by the roundabout';
+        $('taunt').textContent = 'wait \u2014 no.';
+        setTimeout(function () {
+          bar.classList.remove('slip');
+          bar.textContent = 'REDACTED';
+          $('taunt').textContent = "you didn't see that.";
+        }, 1100);
+        taunted[id]++;
+        return;
+      }
+
       $('taunt').textContent = TAUNTS[id][Math.min(taunted[id], TAUNTS[id].length - 1)];
       taunted[id]++;
       bar.classList.remove('shake');
@@ -434,10 +483,14 @@
 
   /* ---------------- 4. either / or ---------------- */
   var QS = [
-    { q: 'Somewhere we know, or somewhere new?', a: ['somewhere we know', 'surprise me'] },
-    { q: 'Something light, or proper food?',      a: ['light — I have an afternoon', 'proper food, obviously'] },
-    { q: 'Outside in the heat, or air-con?',      a: ['outside, under something', 'air-con, all of it'] },
-    { q: 'Back by two, or let it run?',           a: ['back by two', 'let it run'] }
+    { q: 'Somewhere we know, or somewhere new?', a: ['somewhere we know', 'surprise me'],
+      k: ['KITCHEN: predictable. noted.', 'KITCHEN: brave. the chef has raised an eyebrow.'] },
+    { q: 'Something light, or proper food?', a: ['light — I have an afternoon', 'proper food, obviously'],
+      k: ['KITCHEN: the chef is visibly hurt.', 'KITCHEN: the chef has put his hat back on.'] },
+    { q: 'Outside in the heat, or air-con?', a: ['outside, under something', 'air-con, all of it'],
+      k: ['KITCHEN: at this hour. bold.', 'KITCHEN: correct. it is 31 degrees.'] },
+    { q: 'Back by two, or let it run?', a: ['back by two', 'let it run'],
+      k: ['KITCHEN: we shall see.', 'KITCHEN: the chef is opening something.'] }
   ];
   var qi = 0;
 
@@ -456,7 +509,9 @@
   $('q-pair').addEventListener('click', function (e) {
     var b = e.target.closest('[data-pick]');
     if (!b) return;
-    answers.either.push({ q: QS[qi].q, a: QS[qi].a[+b.getAttribute('data-pick')] });
+    var pick = +b.getAttribute('data-pick');
+    answers.either.push({ q: QS[qi].q, a: QS[qi].a[pick] });
+    $('kitchen').textContent = QS[qi].k[pick];
     qi++;
     if (qi >= QS.length) show('s-talk'); else askQ();
   });
